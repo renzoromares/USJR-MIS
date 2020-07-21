@@ -1,0 +1,116 @@
+*
+{
+  margin: 0;
+  padding: 0px;
+}
+
+#nav-bar
+{
+  position: sticky;
+  top: 0;
+  z-index:10;
+}
+.navbar-brand img
+{
+   height: 60px;
+   padding-left: 80px;
+
+}
+.navbar-nav li
+{
+  padding: 0 10px;
+
+}
+.navbar-nav li a
+{
+  float: right;
+  text-align: left;
+}
+#nav-bar ul li a:hover
+{
+  color: #FEC039!important;
+}
+.navbar
+{
+  background: #F8F9FA;
+}
+.navbar-toggler 
+{
+  border:none!important;
+}
+.nav-link
+{
+  color: black !important;
+  font-weight: 800;
+  font-size: 17px;
+
+  font-family: 'Mulish', sans-serif;
+}
+.profile
+{
+  width: 50px;
+  height: 35px;
+  cursor: pointer;
+}
+.col1
+{
+  background: #FEC039;
+  color: white;
+  height: 8px;
+}
+.dropdown-menu
+{
+    font-family: 'Mulish', sans-serif;
+    font-weight: 800;
+}
+
+
+
+
+
+/******************************************************************************* JUMBOTRON STYLE HERE ***********************************************************/
+.jumbotron{
+    background: 
+  linear-gradient(
+    rgba(5, 87, 20, 0.671), 
+    rgba(5, 87, 20, 0.671)
+  ),
+  url(img/usjrbackground.jpg);
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  text-align: center;
+  color:#FEC039 !important;
+  height:35 vh;
+  font-weight: 600;
+  font-size: 16px;
+  font-family: 'Sora', sans-serif;;
+  }
+  
+  .title{
+    margin-top:0vh;
+  }
+  .text_margin{
+      width:70vw;
+      margin: 0 auto;
+  }
+  .string-1{
+    padding-top:30px;
+    width:600px;
+    margin:0 auto;
+    font-weight:100;
+    margin-top:-35px;
+  }
+  
+  
+  .content{
+    margin:10%;
+  }
+
+  br{
+    margin:20px;
+  }
+
+
+ /*******************FOOTER**************/
+
+ 

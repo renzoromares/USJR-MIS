@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Home</title>
+
+<link rel="stylesheet" href="{%static 'css/Dashboard.css' %}">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+<link rel = "stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Anton&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Mulish:wght@200&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Raleway:wght@200&display=swap" rel="stylesheet">
+
+
+<link rel="stylesheet" href="css/fonts.css"></link>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" ></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+
+
+</head>
+<body>
+
+<!----------------------------------------------------------------NAVBAR----------------------------------------------------------------------->
+<section id="nav-bar">
+    <nav class="navbar navbar-expand-lg navbar-light">
+        <a class="navbar-brand" href="Dashboard.html"><img src="{% static 'img/logo.png' %}"></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavDropdown">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  Requests
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                  <a class="dropdown-item" href="#">View Request</a>
+                  <a class="dropdown-item" href="makeup-class.html">Make-up Class</a>
+                  <a class="dropdown-item" href="Cash Advance.html">Cash Advance</a>
+                  <a class="dropdown-item" href="Request Certificate.html">Certificate</a>
+                </div>
+              </li>
+                     
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Other Transcations
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                <a class="dropdown-item" href="File a Leave.html">File a Leave</a>
+                <a class="dropdown-item" href="Room Transfer choose.html">Room Transfer</a>
+                <a class="dropdown-item" href="ScheduleTransfer.html">Schedule Transfer</a>
+                <a class="dropdown-item" href="AttendanceReport.html">Attendance Report</a>
+                <a class="dropdown-item" href="Memo Routing.html">Memo Routing</a>
+                <a class="dropdown-item" href="Risograph.html">Requisition for Risograph</a>
+              </div>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" href="Dashboard.html">&nbsp;Home</a>
+                
+              </li>
+
+              <li class="nav-item">
+                <a class="nav-link" href="#">&nbsp;About</a>
+              </li>
+
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    &nbsp;<i class="fa fa-user" aria-hidden="true"></i>
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                  <a class="dropdown-item" href="#">Profile</a>
+                  <a class="dropdown-item" href="#">Logout</a>
+
+                </div>
+              </li>
+          </ul>
+        </div>
+      </nav>
+</section>      
+
+<!----------------------------------------------------------------GRID------------------------------------------------------------------------------------------>
+
+<div class="container-fluid p-0"></div>
+
+<div class = "col1"></div>
+</div>
+</div>  
+<!---------------------------------------------------------------HEADER-------------------------------------------------------------------------------------------->
+
+<!---------------------------------------------------------------SLIDER-------------------------------------------------------------------------------------------->
+
+<div id="carouselExampleCaptions" class="carousel slide" data-ride="carousel">
+  <ol class="carousel-indicators">
+    <li data-target="#carouselExampleCaptions" data-slide-to="0" class="active"></li>
+    <li data-target="#carouselExampleCaptions" data-slide-to="1"></li>
+    <li data-target="#carouselExampleCaptions" data-slide-to="2"></li>
+  </ol>
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+      <img src="{%static 'images/MIS.jpg' %}" class="d-block w-100" alt="...">
+      <div class="carousel-caption d-none d-md-block">
+        <img src="{%static 'images/logomain.png' %}"><br>
+ 
+        <p>USJR MIS</p>
+        <h3>Document Resources System</h3>
+      </div>
+
+    </div>
+    <div class="carousel-item">
+      <img src="{%static 'img/usjrbackground.jpg' %}" class="d-block w-100" alt="...">
+     
+    </div>
+  </div>
+  <a class="carousel-control-prev" href="#carouselExampleCaptions" role="button" data-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="sr-only">Previous</span>
+  </a>
+  <a class="carousel-control-next" href="#carouselExampleCaptions" role="button" data-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="sr-only">Next</span>
+  </a>
+</div>
+
+<style>
+   .carousel-caption
+  {
+    text-align: center;  
+  margin-top: 20px;
+  margin-bottom: 500px;
+    font-size: 90px ;
+    font-weight: 800;
+    font-family: Arial, Helvetica, sans-serif;
+
+  }
+</style>
+<!--------------------------------------------------------------------JUMBOTRON---------------------------------------------------------------------------->
+
+  <div class="jumbotron jumbotron-fluid">
+    <div class="container">
+      <h1 class="display-4"><center>ABOUT</center></h1>
+    </div>
+  </div>
+<style>
+  .jumbotron
+  {
+    background-color: #0D3E21;
+    color: #FEC039;
+    font-family: 'Sora', sans-serif
+  }
+  hr
+  {
+    height: 1px;
+    background: white;
+  }
+ 
+</style>
+<!--------------------------------------------------------------------CARDS FOR ABOUT------------------------------------------------------------------>
+<div class="row">
+  <div class="col-sm-6">
+    <div class="card">
+      <div class="card-body">
+        <div class="about-title">
+          <h5 class="card-title">Benefits of having a Paperless System</h5>
+        </div>
+        <div class="about-content">
+          <p class="card-text">A paperless office, also called a paper-free office, is a work environment which uses minimal physical paper and instead uses primarily digital documents. It also saves time, space, money, eases transfer of information, promotes the environment, and boosts security. Technology has so seamlessly replaced paper processes that it’s difficult to remember how things used to be done. In nearly all cases, the evolution from paper-based items to their electronic counterparts is profoundly more efficient.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-sm-6">
+    <div class="card">
+      <div class="card-body">
+        <div class="about-title">
+          <h5 class="card-title">USJR MIS</h5>
+        </div>
+        <div class="about-content">
+          <p class="card-text">USJR MIS changes the way the institution keeps its significant documents and helps lessen the time consumption in filing requests and making transaction with the school. This initiative has been done because the developers have observed delays in doing school transaction that hinders productivity and also seeing those piles of papers in the storage rooms and the risk of losing it.   </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  .card-body
+  {
+    font-family: 'Mulish', sans-serif;
+    font-weight: 800px;
+    color:#FEC039;
+  }
+    
+
+</style>
+
+
+<div class="card-header"></div>
+    <footer class="page-footer font-small pt-4">
+
+       
+
+        <!-- Footer Text -->
+        <div class="container-fluid text-center text-md-left">
+      
+          <!-- Grid row -->
+          <div class="row">
+      
+            <!-- Grid column -->
+            <div class="col-md-6 mt-md-0 mt-3">
+      
+              <!-- Content -->
+              <br>  
+             <center><img src="{%static images/logomain.png %}"></center> 
+             <p></p>
+              <h5 class="text-uppercase font-weight-bold"><center>USJR MIS</center></h5>
+            <center>MIS-Based Document Resources<br> Management System</p>
+                
+            </center><p>
+            </div>
+            <!-- Grid column -->
+      
+            <hr class="clearfix w-100 d-md-none pb-3">
+      
+            <!-- Grid column -->
+            <div class="col-md-6 mb-md-0 mb-3">
+      
+              <!-- Content -->
+              <p></p>
+              <br>
+              <i class="fa fa-home" aria-hidden="true"></i> 
+               Magallanes Street, 6000, Cebu City, Philippines <p></p>
+              <i class="fa fa-envelope-open" aria-hidden="true"></i>
+              &nbsp; external@usjr.edu.ph <p></p>
+              <i class="fa fa-phone" aria-hidden="true"></i>
+              &nbsp;(63-32) 253-7900
+              
+      
+            </div>
+            <!-- Grid column -->
+      
+          </div>
+          <!-- Grid row -->
+      
+        </div>
+        <!-- Footer Text -->
+      
+      
+      
+      </footer>
+      <!-- Footer -->
+      
+
+      <style>
+          .card-header
+          {
+              background-color:#FEC039;
+              height: 10px;
+              margin-top: 35px;
+
+          }
+          .page-footer
+          {
+              background-color:#0D3E21;
+              color:rgb(240, 231, 231);
+              height: 300px;
+              text-align: center;
+              font-size: 20px;
+          }
+          .fa-home
+          {
+              font-size: 50px;
+          }
+          .fa-envelope-open
+          {
+            font-size: 40px; 
+          }
+          .fa-phone
+          {
+            font-size: 40px; 
+          }
+         hr
+         {
+             width: 10px;
+             height: 5px;
+         }
+      </style>
+
+
+
+
+  </body>
+  </html>
+
+

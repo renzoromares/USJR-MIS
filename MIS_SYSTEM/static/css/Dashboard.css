@@ -1,0 +1,196 @@
+*
+{
+  margin: 0;
+  padding: 0px;
+}
+
+#nav-bar
+{
+  position: sticky;
+  top: 0;
+  z-index:10;
+}
+.navbar-brand img
+{
+   height: 60px;
+   padding-left: 80px;
+
+}
+.navbar-nav li
+{
+  padding: 0 10px;
+
+}
+.navbar-nav li a
+{
+  float: right;
+  text-align: left;
+}
+#nav-bar ul li a:hover
+{
+  color: #FEC039!important;
+}
+.navbar
+{
+  background: #F8F9FA;
+}
+.navbar-toggler 
+{
+  border:none!important;
+}
+.nav-link
+{
+  color: black !important;
+  font-weight: 800;
+  font-size: 17px;
+
+  font-family: 'Mulish', sans-serif;
+}
+.profile
+{
+  width: 50px;
+  height: 35px;
+  cursor: pointer;
+}
+.col1
+{
+  background: #FEC039;
+  color: white;
+  height: 8px;
+}
+.dropdown-menu
+{
+    font-family: 'Mulish', sans-serif;
+    font-weight: 800;
+}
+
+/*********************JUMBOTRON*****************/
+
+.carousel-inner
+{
+    height: 600px;
+}
+
+.carousel-caption
+{
+  color: #35363A!important;
+  font-weight: 600;
+  font-size: 16px;
+
+  font-family: 'Roboto', sans-serif;
+}
+
+.mb-5 {
+  background: blue;
+}
+
+.card-title {
+  text-align: center;
+  font-weight: bold;
+}
+
+.card-text {
+  font-weight: 500;
+  text-indent: 50px;
+}
+
+.card-body {
+  background: #212121;
+  height: 250px;
+}
+
+* {box-sizing:border-box}
+
+/* Slideshow container */
+.slideshow-container {
+  max-width: 1000px;
+  position: relative;
+  margin: auto;
+}
+
+/* Hide the images by default */
+.mySlides {
+  display: none;
+}
+
+/* Next & previous buttons */
+.prev, .next {
+  cursor: pointer;
+  position: absolute;
+  top: 50%;
+  width: auto;
+  margin-top: -22px;
+  padding: 16px;
+  color: white;
+  font-weight: bold;
+  font-size: 18px;
+  transition: 0.6s ease;
+  border-radius: 0 3px 3px 0;
+  user-select: none;
+}
+
+/* Position the "next button" to the right */
+.next {
+  right: 0;
+  border-radius: 3px 0 0 3px;
+}
+
+/* On hover, add a black background color with a little bit see-through */
+.prev:hover, .next:hover {
+  background-color: rgba(0,0,0,0.8);
+}
+
+/* Caption text */
+.text {
+  color: #f2f2f2;
+  font-size: 15px;
+  padding: 8px 12px;
+  position: absolute;
+  bottom: 8px;
+  width: 100%;
+  text-align: center;
+}
+
+/* Number text (1/3 etc) */
+.numbertext {
+  color: #f2f2f2;
+  font-size: 12px;
+  padding: 8px 12px;
+  position: absolute;
+  top: 0;
+}
+
+/* The dots/bullets/indicators */
+.dot {
+  cursor: pointer;
+  height: 15px;
+  width: 15px;
+  margin: 0 2px;
+  background-color: #bbb;
+  border-radius: 50%;
+  display: inline-block;
+  transition: background-color 0.6s ease;
+}
+
+.active, .dot:hover {
+  background-color: #717171;
+}
+
+/* Fading animation */
+.fade {
+  -webkit-animation-name: fade;
+  -webkit-animation-duration: 1.5s;
+  animation-name: fade;
+  animation-duration: 1.5s;
+}
+
+
+@-webkit-keyframes fade {
+  from {opacity: .4}
+  to {opacity: 1}
+}
+
+@keyframes fade {
+  from {opacity: .4}
+  to {opacity: 1}
+}

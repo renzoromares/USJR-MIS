@@ -1,0 +1,369 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+<title>Requisition for Risograph</title>
+
+<link rel="stylesheet" href="{%static 'css/Risograph.css' %}">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+<link rel = "stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Anton&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Mulish:wght@200&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Raleway:wght@200&display=swap" rel="stylesheet">
+
+
+<link rel="stylesheet" href="css/fonts.css"></link>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" ></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+
+
+</head>
+<body>
+
+    <!----------------------------------------------------------------Navigation----------------------------------------------------------------------->
+<section id="nav-bar">
+    <nav class="navbar navbar-expand-lg navbar-light">
+        <a class="navbar-brand" href="Dashboard.html"><img src="{%static 'images/logo.png' %}"></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavDropdown">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  Requests
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                  <a class="dropdown-item" href="#">View Request</a>
+                  <a class="dropdown-item" href="makeup-class.html">Make-up Class</a>
+                  <a class="dropdown-item" href="Cash Advance.html">Cash Advance</a>
+                  <a class="dropdown-item" href="Request Certificate.html">Certificate</a>
+                </div>
+              </li>
+                     
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Other Transcations
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                <a class="dropdown-item" href="File a Leave.html">File a Leave</a>
+                <a class="dropdown-item" href="Room Transfer choose.html">Room Transfer</a>
+                <a class="dropdown-item" href="ScheduleTransfer.html">Schedule Transfer</a>
+                <a class="dropdown-item" href="AttendanceReport.html">Attendance Report</a>
+                <a class="dropdown-item" href="Memo Routing.html">Memo Routing</a>
+                <a class="dropdown-item" href="Risograph.html">Requisition for Risograph</a>
+              </div>
+            </li>
+  
+            <li class="nav-item">
+                <a class="nav-link" href="Dashboard.html">&nbsp;Home</a>
+              </li>
+  
+              <li class="nav-item">
+                <a class="nav-link" href="#">&nbsp;About</a>
+              </li>
+  
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    &nbsp;<i class="fa fa-user" aria-hidden="true"></i>
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                  <a class="dropdown-item" href="View Profile.html">Profile</a>
+                  <a class="dropdown-item" href="login/login.html">Logout</a>
+  
+                </div>
+              </li>
+          </ul>
+        </div>
+      </nav>
+  </section>      
+  
+  <!----------------------------------------------------------------GRID------------------------------------------------------------------------------------------>
+  
+  <div class="container-fluid p-0"></div>
+  
+  <div class = "col1"></div>
+  </div>
+  </div>  
+  <!---------------------------------------------------------------HEADER-------------------------------------------------------------------------------------------->
+  
+  <div id="cover">        
+    <div class="jumbotron jumbotron-fluid">
+      
+      <div class="container">
+          <p></p>
+        <h1>RISOGRAPH/ PHOTOCOPY/ LAMINATION/ COLOR PRINTING</h1>
+      </div>
+    </div>
+  </div>
+  
+  <!----------------------------------------------------------------GRID------------------------------------------------------------------------------------------>
+  
+  <div class="container-fluid p-0">
+  <div class = "col"></div>
+  </div>
+  </div>  
+<!----------------------------------------------------------------FORM------------------------------------------------------------------------------------------>
+<div class = "container contact-form">
+  <form>
+      <form>
+        <div class="form-row">
+       
+            <div class="form-group col-md-4">
+            <label for="dep/college"><b>College/Department:</b></label>
+            <select id="dep/college" class="form-control" placeholder="...">
+            <option>Choose..</option>
+             <option>Arts & Sciences</option>
+              <option >Engineering</option>
+              <option>Commerce</option>
+              <option>Arts & Sciences</option>
+              <option>CICCT</option>
+              <option>Nursing</option>
+            </select>
+          </div>
+          <div class="form-group col-md-4">
+            <label for="number"><b>Required Slip Number:</b></label>
+            <input type="text" class="form-control" id=subject placeholder="">
+          </div>
+
+          <div class="form-group col-md-4">
+            <label for="date"><b>Date:</b></label>
+            <input type="date" class="form-control" id=subject placeholder="">
+          </div>
+      </div>
+
+          <div class="form-row">
+            <div class="form-group col-md-4">
+              <label for="Timein"><b>Time In:</b></label>
+              <input type="text" class="form-control" id="subject" placeholder="">
+            </div>
+            <div class="form-group col-md-4">
+              <label for="Timeout"><b>Time Out:</b></label>
+              <input type="text" class="form-control" id="offercode" placeholder="">
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group col-md-4">
+              <label for="copies"><b>Number of Copies:</b></label>
+              <input type="number" class="form-control" id="" placeholder="">
+            </div>
+            <div class="form-group col-md-4">
+              <label for="paper"><b>Paper Type:</b></label>
+              <select class="form-control" id="" placeholder="">
+                <option>Choose..</option>
+                <option>GroundWood (GW)</option>
+                <option>Colored Bondpaper (Col. Band)</option>
+                <option>White Bondpaper (US Bond)</option>
+                <option>letter Head (LTR)</option>
+               </select>
+            </div>
+            <div class="form-group col-md-4">
+              <label for="size"><b>Paper Size:</b></label>
+              <select class="form-control" id="" placeholder="">
+                <option>Choose..</option>
+                <option>Short</option>
+                <option>Long</option>
+                <option>SK</option>
+                <option>AS</option>
+             
+               </select>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group col-md-4">
+              <label for="Acetate"><b>Acetate:</b></label>
+              <input type="text" class="form-control" id="offercode" placeholder="">
+            </div>
+          </div>
+     
+  
+            <table class="table mb-3 mt-3 "style="width: 100%">
+              <thead>
+                <tr>
+                  <th scope="col"></th>
+                  <th scope="col">B to B</th>
+                  <th scope="col">Discription</th>
+                  <th scope="col">Purpose</th>
+                  <th scope="col">Paper/Film Cost</th>
+                  <th scope="col">Ink/Toner + Labor</th>
+                  <th scope="col">Requisition Cost</th>
+                  <th scope="col"></th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <th scope="row">A</th>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td>------</td>
+                </tr>
+                <tr>
+                  <th scope="row">B</th>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td>------</td>
+                </tr>
+                <tr>
+                  <th scope="row">C</th>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td>------</td>
+                </tr>
+
+                <tr>
+                  <th scope="row"></th>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td>Total Cost:</td>
+                  <td>------</td>
+                </tr>
+              </tbody>
+            </table>
+
+            <center>
+              <button type="submit" class="btn btn-info">Submit</button>
+              </center>
+  
+        </form>
+      </form>
+  </div>
+  
+      <style>
+  
+  
+  .contact-form
+  {
+      background-color:white;
+      margin-top: 20px;
+      margin-bottom: 35px;
+      padding:20px;
+      box-shadow: 0px 0px 10px 3px rgb(248, 246, 246);
+      width: 1500px;
+      border-radius: 20px;
+  
+      font-family: 'Mulish', sans-serif;
+      font-size: medium;
+      font-weight: 600;
+      
+  }
+      </style>
+  
+  <!-------------------------------------------------------------------------------FOOOTER---------------------------------------------------------------------->
+ <div class="card-header"></div>
+ <footer class="page-footer font-small pt-4">
+
+    
+
+     <!-- Footer Text -->
+     <div class="container-fluid text-center text-md-left">
+   
+       <!-- Grid row -->
+       <div class="row">
+   
+         <!-- Grid column -->
+         <div class="col-md-6 mt-md-0 mt-3">
+   
+           <!-- Content -->
+           <br>  
+          <center><img src="{%static 'images/logomain.png' %}"></center> 
+          <p></p>
+           <h5 class="text-uppercase font-weight-bold"><center>USJR MIS</center></h5>
+         <center>MIS-Based Document Resources<br> Management System</p>
+             
+         </center><p>
+         </div>
+         <!-- Grid column -->
+   
+         <hr class="clearfix w-100 d-md-none pb-3">
+   
+         <!-- Grid column -->
+         <div class="col-md-6 mb-md-0 mb-3">
+   
+           <!-- Content -->
+           <p></p>
+           <br>
+           <i class="fa fa-home" aria-hidden="true"></i> 
+            Magallanes Street, 6000, Cebu City, Philippines <p></p>
+           <i class="fa fa-envelope-open" aria-hidden="true"></i>
+           &nbsp; external@usjr.edu.ph <p></p>
+           <i class="fa fa-phone" aria-hidden="true"></i>
+           &nbsp;(63-32) 253-7900
+           <hr>
+   
+         </div>
+         <!-- Grid column -->
+   
+       </div>
+       <!-- Grid row -->
+   
+     </div>
+     <!-- Footer Text -->
+   
+   
+   
+   </footer>
+   <!-- Footer -->
+   
+
+   <style>
+       .card-header
+       {
+           background-color:#FEC039;
+           height: 10px;
+
+       }
+       .page-footer
+       {
+           background-color:#0D3E21;
+           color:rgb(240, 231, 231);
+           height: 300xp;
+           text-align: center;
+           font-size: 20px;
+       }
+       .fa-home
+       {
+           font-size: 50px;
+       }
+       .fa-envelope-open
+       {
+         font-size: 40px; 
+       }
+       .fa-phone
+       {
+         font-size: 40px; 
+       }
+      hr
+      {
+          width: 10px;
+          height: 5px;
+      }
+   </style>
+
+
+  
+  
+
+
+  </body>
+  </html>

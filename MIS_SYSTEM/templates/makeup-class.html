@@ -1,0 +1,352 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+<title>Request for Make-Up Class</title>
+
+<link rel="stylesheet" href="{%static 'static/makeupstyle.css'">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+<link rel = "stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Anton&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Mulish:wght@200&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Raleway:wght@200&display=swap" rel="stylesheet">
+
+
+<link rel="stylesheet" href="css/fonts.css"></link>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" ></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+
+
+</head>
+<body>
+
+<!----------------------------------------------------------------NAVBAR----------------------------------------------------------------------->
+<section id="nav-bar">
+    <nav class="navbar navbar-expand-lg navbar-light">
+        <a class="navbar-brand" href="Dashboard.html"><img src="{%static 'images/logo.png' %}"></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavDropdown">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  Requests
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                  <a class="dropdown-item" href="#">View Request</a>
+                  <a class="dropdown-item" href="makeup-class.html">Make-up Class</a>
+                  <a class="dropdown-item" href="Cash Advance.html">Cash Advance</a>
+                  <a class="dropdown-item" href="Request Certificate.html">Certificate</a>
+                </div>
+              </li>
+                     
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Other Transcations
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                <a class="dropdown-item" href="File a Leave.html">File a Leave</a>
+                <a class="dropdown-item" href="Room Transfer choose.html">Room Transfer</a>
+                <a class="dropdown-item" href="ScheduleTransfer.html">Schedule Transfer</a>
+                <a class="dropdown-item" href="AttendanceReport.html">Attendance Report</a>
+                <a class="dropdown-item" href="Memo Routing.html">Memo Routing</a>
+                <a class="dropdown-item" href="Risograph.html">Requisition for Risograph</a>
+              </div>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" href="Dashboard.html">&nbsp;Home</a>
+              </li>
+
+              <li class="nav-item">
+                <a class="nav-link" href="#">&nbsp;About</a>
+              </li>
+
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    &nbsp;<i class="fa fa-user" aria-hidden="true"></i>
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                  <a class="dropdown-item" href="View Profile.html">Profile</a>
+                  <a class="dropdown-item" href="login/login.html">Logout</a>
+
+                </div>
+              </li>
+          </ul>
+        </div>
+      </nav>
+</section>      
+
+<!----------------------------------------------------------------GRID------------------------------------------------------------------------------------------>
+
+<div class="container-fluid p-0"></div>
+
+<div class = "col1"></div>
+</div>
+</div>  
+<!---------------------------------------------------------------HEADER-------------------------------------------------------------------------------------------->
+
+<div id="cover">        
+    <div class="jumbotron jumbotron-fluid">
+      
+      <div class="container">
+          <p></p>
+        <h1>MAKE-UP CLASS FORM</h1>
+      </div>
+    </div>
+  </div>
+<!-------------------------------------------------------------FORMS------------------------------------------------------------------------------------------------>
+<div class ="container contact-form">
+<form>
+    <form>
+
+        
+        <div class="form-row">
+
+          <div class="form-group col-md-4">
+            <label for="college"><b>College:</b></label>
+            <select id="Department" class="form-control" placeholder="...">
+            <option></option>
+             <option>Arts & Sciences</option>
+              <option >Engineering</option>
+              <option>Commerce</option>
+              <option>Arts & Sciences</option>
+              <option>CICCT</option>
+              <option>Nursing</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group col-md-4">
+            <label for="faculty"><b>Faculty</b></label>
+            <input type="text" class="form-control" id=faculty placeholder="">
+          </div>
+          <div class="form-group col-md-4">
+            <label for="employstat"><b>Employment Status</b></label>
+            <input type="text" class="form-control" id="employstat" placeholder="">
+          </div>          
+        </div>  
+        <p><b>Reasons for the Make-Up Class:</p></b>
+        <fieldset class="form-group">
+            <div class="row">
+              <div class="col-sm-10">
+                <div class="form-check">
+                  <input class="form-check-input" type="radio" name="gridRadios" id="offBusiness" value="option1">
+                  <label class="form-check-label" for="offBusiness">
+                    Offical Business
+                  </label>
+                </div>
+                <div class="form-check">
+                  <input class="form-check-input" type="radio" name="gridRadios" id="sick" value="option2">
+                  <label class="form-check-label" for="sick">
+                    Sick
+                  </label>
+                </div>
+                <div class="form-check disabled">
+                  <input class="form-check-input" type="radio" name="gridRadios" id="emergency" value="option3">
+                  <label class="form-check-label" for="emergency">
+                    Emergency
+                  </label>
+                </div>
+
+                <div class="form-check diabled">
+                  <input class="form-check-input" type="radio" name="gridRadios" id="others" value="option4">
+                  <label class="form-check-label" for="others">
+                    Others, Please specify
+                  </label>
+                  <input type="text" class="form-control" id= placeholder="">
+                </div>                
+              </div>
+            </div>
+
+            <table class="table mb-3 mt-3 "style="width: 100%">
+              <thead>
+                <tr>
+                  <th scope="col">CLASS AFFECTED</th>
+                  <th scope="col"></th>
+                  <th scope="col"></th>
+                  <th scope="col"></th>
+                  <th scope="col">MAKE-UP CLASS PLAN</th>
+                  <th scope="col"></th>
+                  <th scope="col"></th>
+                  <th scope="col"></th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <th scope="col">Subject</th>
+                  <th scope="col">Date</th>
+                  <th scope="col">Time</th>
+                  <th scope="col">Room</th>
+                  <th scope="col">Date of Make-Up Class</th>
+                  <th scope="col">Time</th>
+                  <th scope="col">Room</th>
+                </tr>
+                <tr>
+                  <th scope="row">CPE 323</th>
+                  <td>11/27/18</td>
+                  <td>TTh 10:00-11:30 am</td>
+                  <td>SA-B1-04</td>
+                  <td>12/1/18</td>
+                  <td>Sat 10:00-11:30 am</td>
+                  <td>SA-B1-04</td>
+                </tr>
+                <tr>
+                  <th scope="row">ECE 32G</th>
+                  <td>11/26/18</td>
+                  <td>MWF 09:00-10:00 am</td>
+                  <td> SA-208</td>
+                  <td>11/30/18</td>
+                  <td>Friday 3:00-4:00 pm</td>
+                  <td>SA-B1-03</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">EE 32A</th>
+                    <td>11/26/18</td>
+                    <td>MWF 02:00-03:00 pm</td>
+                    <td> SA-208</td>
+                    <td>11/30/18</td>
+                    <td>Sat 1:00-2:00 pm</td>
+                    <td>SA-207</td>
+                  </tr>
+
+
+                  
+
+            </tbody>
+          </table>
+
+      </form>
+    </form>
+    
+              
+
+        <center>
+          <div class="form-group">
+          <button type="submit" class="btn btn-info"><center>SUBMIT</center></button>
+          </div>
+        </center>
+
+      </form>
+    </form>
+</div>
+
+    <style>
+
+
+.contact-form
+{
+    background-color:white;
+    margin-top: 20px;
+    margin-bottom: 35px;
+    padding:20px;
+    box-shadow: 0px 0px 10px 3px rgb(248, 246, 246);
+    width: 1500px;
+    border-radius: 20px;
+
+    font-family: 'Mulish', sans-serif;
+    font-size: medium;
+    font-weight: 600;
+    
+}
+    </style>
+
+    <!-------------------------------------------------------------------------------FOOOTER---------------------------------------------------------------------->
+    <div class="card-header"></div>
+    <footer class="page-footer font-small pt-4">
+
+       
+
+        <!-- Footer Text -->
+        <div class="container-fluid text-center text-md-left">
+      
+          <!-- Grid row -->
+          <div class="row">
+      
+            <!-- Grid column -->
+            <div class="col-md-6 mt-md-0 mt-3">
+      
+              <!-- Content -->
+              <br>  
+             <center><img src="{% static 'images/logomain.png' %}"></center> 
+             <p></p>
+              <h5 class="text-uppercase font-weight-bold"><center>USJR MIS</center></h5>
+            <center>MIS-Based Document Resources<br> Management System</p>
+                
+            </center><p>
+            </div>
+            <!-- Grid column -->
+      
+            <hr class="clearfix w-100 d-md-none pb-3">
+      
+            <!-- Grid column -->
+            <div class="col-md-6 mb-md-0 mb-3">
+      
+              <!-- Content -->
+              <p></p>
+              <br>
+              <i class="fa fa-home" aria-hidden="true"></i> 
+               Magallanes Street, 6000, Cebu City, Philippines <p></p>
+              <i class="fa fa-envelope-open" aria-hidden="true"></i>
+              &nbsp; external@usjr.edu.ph <p></p>
+              <i class="fa fa-phone" aria-hidden="true"></i>
+              &nbsp;(63-32) 253-7900
+              <hr>
+      
+            </div>
+            <!-- Grid column -->
+      
+          </div>
+          <!-- Grid row -->
+      
+        </div>
+        <!-- Footer Text -->
+      
+      
+      
+      </footer>
+      <!-- Footer -->
+      
+
+      <style>
+          .card-header
+          {
+              background-color:#FEC039;
+              height: 10px;
+
+          }
+          .page-footer
+          {
+              background-color:#0D3E21;
+              color:rgb(240, 231, 231);
+              height: 300xp;
+              text-align: center;
+              font-size: 20px;
+          }
+          .fa-home
+          {
+              font-size: 50px;
+          }
+          .fa-envelope-open
+          {
+            font-size: 40px; 
+          }
+          .fa-phone
+          {
+            font-size: 40px; 
+          }
+         hr
+         {
+             width: 10px;
+             height: 5px;
+         }
+      </style>
+
+
+</body>
+</html>
