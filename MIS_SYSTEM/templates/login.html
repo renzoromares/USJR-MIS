@@ -28,18 +28,18 @@
 <!----------------------------------------------------------------NAVBAR----------------------------------------------------------------------->
 <section id="nav-bar">
     <nav class="navbar navbar-expand-lg navbar-light">
-        <a class="navbar-brand" href="login.html"><img src="{% static 'images/logo.png' %}"></a>
+        <a class="navbar-brand" href="{% url 'home'%}"><img src="{% static 'images/logo.png' %}"></a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNavDropdown">
           <ul class="navbar-nav ml-auto">
             <li class="nav-item">
-                <a class="nav-link active" href="login.html">&nbsp;Login</a>
+                <a class="nav-link active" href="{% url 'home'%}">&nbsp;Login</a>
               </li>
 
               <li class="nav-item">
-                <a class="nav-link" href="../Sign-up (revised)/Sign-Up.html">&nbsp;Register</a>
+                <a class="nav-link" href="{% url 'register'%}">&nbsp;Register</a>
               </li>
 
             
@@ -67,12 +67,14 @@
 </style>
 
     <div class="login-clean" >
-        <form method="post">
+        <form action = {%url "home" %} method="post">
+        {% csrf_token %}
            <center><h2 class="sr-only">Login Form</h2><img src="{% static 'images/usjr logo.png' %}" style="background-size: contain;background-repeat: no-repeat;" width="200px"></center> 
             <div class="illustration"></div>
-            <div class="form-group"><input class="form-control" type="text" name="text" placeholder="ID Number"></div>
+            <div class="form-group"><input class="form-control" type="text" name="ID_Number" placeholder="ID Number"></div>
             <div class="form-group"><input class="form-control" type="password" name="password" placeholder="Password"></div>
-            <div class="form-group"><button id="btn" class="btn btn-info btn-block" type="submit">Log In</button></div><a class="forgot" href="../Sign-up (revised)/Sign-Up.html">Don't have an account? Create one!</a></form>
+            <div class="form-group"><button id="btn" class="btn btn-info btn-block" type="submit">Log In</button></div><a class="forgot" href="{%url 'register'%}">Don't have an account? Create one!</a></form>
+        </form>
     </div>
     <div class="card-header"></div>
     <footer class="page-footer font-small pt-4">
