@@ -1,3 +1,7 @@
 from django.db import models
+from Accounts.models import Form
 
-# Create your models here.
+class Certifacate(models.Model):
+    Form_ID = models.ForeignKey(Form,on_delete=models.CASCADE)
+    Reason = models.TextField
+    
