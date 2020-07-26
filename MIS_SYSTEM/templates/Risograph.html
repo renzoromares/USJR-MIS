@@ -4,6 +4,7 @@
 <head>
 <title>Requisition for Risograph</title>
 
+<link rel="stylesheet" href="{%static 'css/Design.css' %}">
 <link rel="stylesheet" href="{%static 'css/Risograph.css' %}">
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
 <link rel = "stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -139,11 +140,11 @@
           <div class="form-row">
             <div class="form-group col-md-4">
               <label for="Timein"><b>Time In:</b></label>
-              <input type="text" class="form-control" id="subject" placeholder="">
+              <input type="time" class="form-control" id="subject" placeholder="">
             </div>
             <div class="form-group col-md-4">
               <label for="Timeout"><b>Time Out:</b></label>
-              <input type="text" class="form-control" id="offercode" placeholder="">
+              <input type="time" class="form-control" id="offercode" placeholder="">
             </div>
           </div>
 
@@ -183,63 +184,11 @@
           </div>
      
   
-            <table class="table mb-3 mt-3 "style="width: 100%">
-              <thead>
-                <tr>
-                  <th scope="col"></th>
-                  <th scope="col">B to B</th>
-                  <th scope="col">Discription</th>
-                  <th scope="col">Purpose</th>
-                  <th scope="col">Paper/Film Cost</th>
-                  <th scope="col">Ink/Toner + Labor</th>
-                  <th scope="col">Requisition Cost</th>
-                  <th scope="col"></th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <th scope="row">A</th>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td>------</td>
-                </tr>
-                <tr>
-                  <th scope="row">B</th>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td>------</td>
-                </tr>
-                <tr>
-                  <th scope="row">C</th>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td>------</td>
-                </tr>
-
-                <tr>
-                  <th scope="row"></th>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td>Total Cost:</td>
-                  <td>------</td>
-                </tr>
-              </tbody>
-            </table>
+          <div class="add-file">
+            <label for="myfile">Attach a file:</label>
+            <input type="file" id="myfile" name="myfile">
+          </div>
+            
 
             <center>
               <button type="submit" class="btn btn-info">Submit</button>

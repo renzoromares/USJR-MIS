@@ -104,3 +104,18 @@
   br{
     margin:20px;
   }
+
+/********new**/
+.add-file {
+    margin-left: 130px;
+    text-align: center;
+    height: 50px;
+}
+
+.profileDisplay {
+    cursor: pointer;
+}
+
+.profileDisplay :hover {
+    background: lightgray;
+}

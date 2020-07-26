@@ -4,6 +4,8 @@
 <head>
 <title>Profile</title>
 
+<link rel="stylesheet" href="{%static 'javascript/style.css' %}">
+<link rel="stylesheet" href="{%static 'css/Design.css' %}">
 <link rel="stylesheet" href="{%static 'css/View Profile.css' %}">
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
 <link rel = "stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -114,10 +116,14 @@
 <!----------------------------------------------------------------REQUESTS----------------------------------------------------------------------------------------->  
 <center>
 <div class="card mb-5" style="max-width: 540px;">
-    <div class="row no-gutters">
-      <div class="col-md-4">
-        <img src="{%static 'images/id.png' %}" style="margin-right: 5px;" class="card-img" alt="5">
-      </div>
+      <div class="row no-gutters">
+        <div class="col-md-4">
+          <div class="profileDisplay">
+            <img src="{%static 'images/id.png' %}" style="margin-right: 5px;" class="card-img" alt="5" onclick="triggerClick()" class="" >
+            <label class="profileDisplay" for="profileImage">Click Image to Update</label>
+            <input type="file" style="display: none;" name="profileImage" id="profileImage" onchange="displayImage(this)" class="imgselect">
+          </div>
+        </div>
       <div class="col-md-8">
         <div class="card-body">
           <h5 class="card-title">FULL NAME</h5>
