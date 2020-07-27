@@ -1,8 +1,7 @@
 .register-photo {
-  background: #f1f7fc;
+  background: #fdfdfd;
   padding: 80px 0;
 }
-
 .register-photo .image-holder {
   display: table-cell;
   width: auto;
