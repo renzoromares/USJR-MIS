@@ -77,7 +77,7 @@
 /*******************JUMBOTRON STYLE HERE**************/
 
 .jumbotron {
-    background: linear-gradient( rgba(5, 87, 20, 0.671),  rgba(5, 87, 20, 0.671) ), url(../img/usjrbackground.jpg);
+    background: linear-gradient( rgba(5, 87, 20, 0.671),  rgba(5, 87, 20, 0.671) ), url(../images/usjrbackground.jpg);
     background-repeat: no-repeat;
     background-attachment: fixed;
     text-align: center;

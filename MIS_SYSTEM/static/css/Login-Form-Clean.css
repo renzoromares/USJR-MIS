@@ -67,3 +67,35 @@
   text-decoration: none;
 }
 
+.col1 {
+  background: #FEC039;
+  color: white;
+  height: 8px;
+}
+
+/*******************FOOTER**************/
+
+#cardheader {
+  background-color:#FEC039;
+  height: 10px;
+}
+
+#pagefooter {
+  background-color:#0D3E21;
+  color:rgb(240, 231, 231);
+  height: 300xp;
+  text-align: center;
+  font-size: 20px;
+}
+
+#home {
+  font-size: 50px;
+}
+
+#envelope {
+  font-size: 40px; 
+}
+
+#phone {
+  font-size: 40px; 
+}
