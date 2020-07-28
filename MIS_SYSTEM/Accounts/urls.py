@@ -5,6 +5,6 @@ from Accounts.views import Home, Register, Dashboard
 
 urlpatterns = [
     path('',Home, name = 'home'),
-    path('register/', Register, name="register"),
-    path('dashboard/', Dashboard, name="dashboard")
+    path('Register/', Register, name="register"),
+    path('Dashboard/', Dashboard, name="dashboard")
 ]

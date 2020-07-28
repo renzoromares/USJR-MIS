@@ -9,5 +9,3 @@ class Leave(models.Model):
     Date_End =  models.DateField()
     Period_Days = models.IntegerField()
     Reason = models.TextField(max_length=100,null=False)
-
-1234

@@ -13,7 +13,7 @@ class Employee(models.Model):
         
 
 class Department(models.Model):
-    Department_ID = models.AutoField(primary_key=True, default=100)
+    Department_ID = models.AutoField(primary_key=True)
     Id_Number = models.ForeignKey(Employee, on_delete = models.CASCADE)
     department = models.CharField(max_length=100, null=False)  
     Status_Dept = models.TextField(max_length=100, null=False)

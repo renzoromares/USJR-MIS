@@ -1,35 +1,36 @@
 
 .container-fluid {
-    width: 90%;
+  width: 90%;
 }
 
 #btn {
-    background-color: #ddd;
-    color: black;
-    transition: all 0.5s;
-    cursor: pointer;
-    margin: 5px;
-  }
-  
-  
-  #btn:hover {
-    background-color: rgb(063, 187, 120);
-    color: white;
-  }
-
-  .navbar {
-    height: 80px;  
-    box-shadow: 1px 1px 5px;
-  }
-
-  .login-clean {
-      margin-top: 50px;
-  }
-
-  .col1
-{
-  background: #FEC039;
-  color: white;
-  height: 8px;
+  background-color: #ddd;
+  color: black;
+  transition: all 0.5s;
+  cursor: pointer;
+  margin: 5px;
 }
+
+
+#btn:hover {
+  background-color: rgb(063, 187, 120);
+  color: white;
+}
+
+.navbar {
+  height: 80px;  
+  box-shadow: 1px 1px 5px;
+}
+
+.login-clean {
+    margin-top: 50px;
+}
+
+.col1
+{
+background: #FEC039;
+color: white;
+height: 8px;
+}
+
 

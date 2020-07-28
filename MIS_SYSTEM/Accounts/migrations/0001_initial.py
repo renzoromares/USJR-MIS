@@ -36,7 +36,7 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='Department',
             fields=[
-                ('Department_ID', models.AutoField(default=100, primary_key=True, serialize=False)),
+                ('Department_ID', models.AutoField(primary_key=True, serialize=False)),
                 ('department', models.CharField(max_length=100)),
                 ('Status_Dept', models.TextField(max_length=100)),
                 ('Id_Number', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='Accounts.Employee')),
