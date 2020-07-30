@@ -2,15 +2,17 @@ from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from .models import Employee, Department
 from django.contrib import messages
+from ViewProfile.views import Profile
+from ViewRequest.views import ViewRequestFac,ViewRequestPres,ViewRequestReads
 
 def Home(request):
     
     if request.method == "POST":
         if Employee.objects.filter(Id_Number=request.POST["ID_Number"]).exists() and Employee.objects.filter(Password=request.POST["password"]).exists():
-            return redirect("dashboard")
-        
+            data = Department.objects.prefetch_related('Id_Number').get(Id_Number= request.POST["ID_Number"])
+            return render(request, "Dashboard.html", {'data' : data})  
         else:
-            return redirect("home")               
+            return redirect("home")
     else:
         return render(request,'login.html')
 

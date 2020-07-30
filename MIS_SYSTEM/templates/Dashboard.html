@@ -32,12 +32,23 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarNavDropdown">
           <ul class="navbar-nav ml-auto">
+            {% ifequal data.Status_Dept "President" %}
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'viewrequestpres' %}">&nbsp;View Request</a>
+              
+            </li>
+            {% else %}
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                   Requests
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                  <a class="dropdown-item" href="#">View Request</a>
+                  {% ifequal data.Status_Dept "Chairman" %}
+                  <a class="dropdown-item" href="{% url 'viewrequestfac' %}">View Request</a>
+                  {% endifequal %}
+                  {% ifequal data.Status_Dept "Faculty" %}
+                  <a class="dropdown-item" href="{% url 'viewrequestfac' %}">View Request</a>
+                  {% endifequal %}
                   <a class="dropdown-item" href="makeup-class.html">Make-up Class</a>
                   <a class="dropdown-item" href="Cash Advance.html">Cash Advance</a>
                   <a class="dropdown-item" href="Request Certificate.html">Certificate</a>
@@ -59,6 +70,7 @@
                 <a class="dropdown-item" href="Risograph.html">Requisition for Risograph</a>
               </div>
             </li>
+            {% endifequal %}
 
             <li class="nav-item">
                 <a class="nav-link" href="Dashboard.html">&nbsp;Home</a>
@@ -74,7 +86,7 @@
                     &nbsp;<i class="fa fa-user" aria-hidden="true"></i>
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                  <a class="dropdown-item" href="#">Profile</a>
+                  <a class="dropdown-item" href="{% url 'profile' id=data.Id_Number.Id_Number %} ">{{ data.Id_Number.Id_Number }}</a>
                   <a class="dropdown-item" href="{%url 'home'%}">Logout</a>
 
                 </div>
