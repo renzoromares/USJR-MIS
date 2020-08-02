@@ -1,7 +1,10 @@
 from django.db import models
-from Accounts.models import Form
+from Accounts.models import Employee
 
 class Certifacate(models.Model):
-    Form_ID = models.ForeignKey(Form,on_delete=models.CASCADE)
+    Id_Number = models.ForeignKey(Employee,on_delete = models.CASCADE)
     Reason = models.TextField
+
+    class Meta:
+        db_table = 'Certifacate'
     

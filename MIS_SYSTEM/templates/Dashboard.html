@@ -1,9 +1,10 @@
+{% load static %}
 <!DOCTYPE html>
 <html>
 <head>
 <title>Home</title>
 
-<link rel="stylesheet" href="../static/css/Dashboard.css">
+<link rel="stylesheet" href="{% static 'css/Dashboard.css' %}">
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
 <link rel = "stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 <link href="https://fonts.googleapis.com/css2?family=EB+Garamond&display=swap" rel="stylesheet">
@@ -12,8 +13,6 @@
 <link href="https://fonts.googleapis.com/css2?family=Mulish:wght@200&display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@200&display=swap" rel="stylesheet">
 
-
-<link rel="stylesheet" href="css/fonts.css"></link>
 
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" ></script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
@@ -26,7 +25,7 @@
 <!----------------------------------------------------------------NAVBAR----------------------------------------------------------------------->
 <section id="nav-bar">
     <nav class="navbar navbar-expand-lg navbar-light">
-        <a class="navbar-brand" href="Dashboard.html"><img src="../static/images/logo.png"></a>
+        <a class="navbar-brand" href="{% url 'dashboard' %}"><img src="{% static 'images/logo.png' %}"></a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
@@ -49,31 +48,29 @@
                   {% ifequal data.Status_Dept "Faculty" %}
                   <a class="dropdown-item" href="{% url 'viewrequestfac' %}">View Request</a>
                   {% endifequal %}
-                  <a class="dropdown-item" href="makeup-class.html">Make-up Class</a>
-                  <a class="dropdown-item" href="Cash Advance.html">Cash Advance</a>
-                  <a class="dropdown-item" href="Request Certificate.html">Certificate</a>
+                  <a class="dropdown-item" href="{% url 'makeupclass' id=data.Id_Number.Id_Number  %}">Make-up Class</a>
+                  <a class="dropdown-item" href="{% url 'cashadvance' id=data.Id_Number.Id_Number %}">Cash Advance</a>
+                  <a class="dropdown-item" href="{% url 'requestcertificate' id=data.Id_Number.Id_Number %}">Certificate</a>
                 </div>
               </li>
-
-             
                      
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 Other Transcations
               </a>
               <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                <a class="dropdown-item" href="File a Leave.html">File a Leave</a>
-                <a class="dropdown-item" href="Room Transfer choose.html">Room Transfer</a>
-                <a class="dropdown-item" href="ScheduleTransfer.html">Schedule Transfer</a>
-                <a class="dropdown-item" href="AttendanceReport.html">Attendance Report</a>
-                <a class="dropdown-item" href="Memo Routing.html">Memo Routing</a>
-                <a class="dropdown-item" href="Risograph.html">Requisition for Risograph</a>
+                <a class="dropdown-item" href="{% url 'fileleave' id=data.Id_Number.Id_Number %}">File a Leave</a>
+                <a class="dropdown-item" href="{% url 'roomtransfer' id=data.Id_Number.Id_Number  %}">Room Transfer</a>
+                <a class="dropdown-item" href="{% url 'scheduletransfer' id=data.Id_Number.Id_Number   %}">Schedule Transfer</a>
+                <a class="dropdown-item" href="{% url 'attendancereport' id=data.Id_Number.Id_Number  %}">Attendance Report</a>
+                <a class="dropdown-item" href="{% url 'memorouting' id=data.Id_Number.Id_Number %}">Memo Routing</a>
+                <a class="dropdown-item" href="{% url 'risograph' id=data.Id_Number.Id_Number  %}">Requisition for Risograph</a>
               </div>
             </li>
             {% endifequal %}
 
             <li class="nav-item">
-                <a class="nav-link" href="Dashboard.html">&nbsp;Home</a>
+                <a class="nav-link" href="{% url 'dashboard' %}">&nbsp;Home</a>
                 
               </li>
 
@@ -87,9 +84,9 @@
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                   <a class="dropdown-item" href="{% url 'profile' id=data.Id_Number.Id_Number %} ">{{ data.Id_Number.Id_Number }}</a>
-                  <a class="dropdown-item" href="{%url 'home'%}">Logout</a>
+                  <a class="dropdown-item" href="{%url 'dashboard' %}">Logout</a>
 
-                </div>
+                </div>  
               </li>
 
              
@@ -114,9 +111,9 @@
   </ol>
   <div class="carousel-inner">
     <div class="carousel-item active">
-      <img src="../static/images/MIS.jpg" class="d-block w-100" alt="...">
+      <img src="{% static 'images/MIS.jpg' %}" class="d-block w-100" alt="...">
       <div class="carousel-caption d-none d-md-block">
-        <img src="../static/images/logomain.png"><br>
+        <img src="{% static 'images/logomain.png' %}"><br>
  
         <p>USJR MIS</p>
         <h3>Document Resources System</h3>
@@ -124,7 +121,7 @@
 
     </div>
     <div class="carousel-item">
-      <img src="../static/images/usjrbackground.jpg" class="d-block w-100" alt="...">
+      <img src="{% static 'images/usjrbackground.jpg' %}" class="d-block w-100" alt="...">
      
     </div>
   </div>
@@ -211,7 +208,7 @@
       
               <!-- Content -->
               <br>  
-             <center><img src="../static/images/logomain.png"></center> 
+             <center><img src="{% static 'images/logomain.png' %}"></center> 
              <p></p>
               <h5 class="text-uppercase font-weight-bold"><center>USJR MIS</center></h5>
             <center>MIS-Based Document Resources<br> Management System</p>

@@ -1,9 +1,8 @@
 from django.db import models
-from Accounts.models import Form
-
+from Accounts.models import Employee
 
 class Risograph(models.Model):
-    Form_ID = models.ForeignKey(Form,on_delete=models.CASCADE)
+    Id_Number = models.ForeignKey(Employee,on_delete = models.CASCADE)
     ReqSlipNo = models.CharField(max_length= 100, null=False)
     Date = models.DateField()
     Department = models.CharField(max_length=100,null=False)
@@ -14,6 +13,8 @@ class Risograph(models.Model):
     Size = models.CharField(max_length=20, null=False)
     File = models.ImageField(upload_to='pictures')
 
+    class Meta:
+        db_table = 'Risograph'
 
 
 

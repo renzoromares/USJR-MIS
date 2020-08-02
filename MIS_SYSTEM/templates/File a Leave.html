@@ -1,11 +1,12 @@
+{% load static %}
 <!DOCTYPE html>
 <html>
 <head>
 <title>File a Leave</title>
 
 
-<link rel="stylesheet" href="../static/css/File a Leave.css">
-<link rel="stylesheet" href="../static/css/Design.css">
+<link rel="stylesheet" href="{% static 'css/File a Leave.css' %}">
+<link rel="stylesheet" href="{% static 'css/Design.css' %}">
 
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
 <link rel = "stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -22,14 +23,13 @@
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
 
-
 </head>
 <body>
 
 <!----------------------------------------------------------------NAVBAR----------------------------------------------------------------------->
 <section id="nav-bar">
     <nav class="navbar navbar-expand-lg navbar-light">
-        <a class="navbar-brand"  href="Dashboard.html"><img src="../static/images/logo.png"></a>
+        <a class="navbar-brand"  href="Dashboard.html"><img src="{% static 'images/logo.png' %}"></a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
@@ -96,31 +96,32 @@
 </div>
 <!-------------------------------------------------------------FORMS------------------------------------------------------------------------------------------------>
 <div class = "container contact-form">
-<form>
+<form action="" method="POST" enctype="multipart/form-data" >
+  {% csrf_token %}
     <form>
         <div class="form-row">
           <div class="form-group col-md-4">
             <label for="firstname"><b>First Name:</b></label>
-            <input type="text" class="form-control" id=firstname placeholder="">
+            <input type="text" class="form-control" id=firstname placeholder="" required style="text-transform:uppercase">
           </div>
           <div class="form-group col-md-4">
             <label for="middlename"><b>Middle Name:</b></label>
-            <input type="text" class="form-control" id="middlename" placeholder="">
+            <input type="text" class="form-control" id="middlename" placeholder="" required style="text-transform:uppercase">
           </div>
           <div class="form-group col-md-4">
             <label for="lastname"><b>Last Name:</b></label>
-            <input type="text" class="form-control" id="lastname" placeholder="">
+            <input type="text" class="form-control" id="lastname" placeholder="" required style="text-transform:uppercase">
           </div>
         </div>
         
         <div class="form-row">
           <div class="form-group col-md-4">
             <label for="desig"><b>Designation:</b></label>
-            <input type="text" class="form-control" id="desig">
+            <input type="text" class="form-control" id="desig" name="Designation" required style="text-transform:uppercase">
           </div>
           <div class="form-group col-md-4">
             <label for="Department"><b>Department:</b></label>
-            <select id="Department" class="form-control" placeholder="...">
+            <select id="Department" class="form-control" placeholder="..." required>
               <option disabled selected hidden>Choose..</option>
               <option>Arts & Sciences</option>
               <option>Engineering</option>
@@ -137,11 +138,11 @@
         <div class="form-row">
             <div class="form-group col-md-4">
               <label for="datestart"><b>From</b>:</label>
-              <input type="date" class="form-control" id="datestart">
+              <input type="date" class="form-control" id="datestart" name ="Date_Start" required>
             </div>
             <div class="form-group col-md-4">
                 <label for="dateEnd"><b>To:</b></label>
-                <input type="date" class="form-control" id="dateEnd">
+                <input type="date" class="form-control" id="dateEnd" name = "Date_End" required>
               </div>
             </div>
        
@@ -152,19 +153,19 @@
               <legend class="col-form-label col-sm-2 pt-0"><b>Employment Status:</b></legend>
               <div class="col-sm-10">
                 <div class="form-check">
-                  <input class="form-check-input" type="radio" name="gridRadios" id="permanentStat" value="option1">
+                  <input class="form-check-input" type="radio" name="status" id="rd1" value="Permanent">
                   <label class="form-check-label" for="permanentStat">
                     Permanent
                   </label>
                 </div>
                 <div class="form-check">
-                  <input class="form-check-input" type="radio" name="gridRadios" id="probationaryStat" value="option2">
+                  <input class="form-check-input" type="radio" name="status" id="rd2" value="Probationary" >
                   <label class="form-check-label" for="probationaryStat">
                     Probationary
                   </label>
                 </div>
                 <div class="form-check disabled">
-                  <input class="form-check-input" type="radio" name="gridRadios" id="partTime" value="option3">
+                  <input class="form-check-input" type="radio" name="status" id="rd3" value=" Part-Time">
                   <label class="form-check-label" for="partTime">
                     Part-Time
                   </label>
@@ -179,25 +180,24 @@
               <legend class="col-form-label col-sm-2 pt-0"><b>Leave Applied For:</b></legend>
               <div class="col-sm-10">
                 <div class="form-check">
-                  <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios1" value="option3">
+                  <input class="form-check-input" type="radio" name="typeofLeave" id="rd1" value="Sick Leave">
                   <label class="form-check-label" for="gridRadios1">
                    Sick Leave with pay( Provide copy of  Doctor’s /Dean  Certification)
                   </label>
                 </div>
                 <div class="form-check">
-                  <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios2" value="option4">
+                  <input class="form-check-input" type="radio" name="typeofLeave" id="rd2" value="Maternity/Paternity Leave" >
                   <label class="form-check-label" for="gridRadios2">
                     Maternity/Paternity Leave (Provide copy of  for SSS Notification/Certification of Live Birth)
                   </label>
                 </div>
                 <div class="form-check disabled">
-                  <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios3" value="option5">
+                  <input class="form-check-input" type="radio" name="typeofLeave" id="rd3" value="Emergency Leave" >
                   <label class="form-check-label" for="gridRadios3">
                     Emergency Leave
                   </label>
                 </div>
-
-                <input type="file" id="myfile" name="myfile"><br><br>
+                <input type="file" id="myfile" name="document"><br><br>
               </div>
             </div>
           </fieldset>
@@ -207,7 +207,7 @@
         <div class="form-group">
         <label class="col-md-4 control-label" for="textarea"><b>Reasons:</b></label>
         <div class="col-md-8">                     
-        <textarea class="form-control" id="textarea" name="textarea"></textarea>
+        <textarea class="form-control" id="textarea" name="Reasons" required></textarea>
         </div>
         </div>
         </center>
@@ -229,7 +229,7 @@
       <div class="row">
         <div class="col-md-6 mt-md-0 mt-3">
           <br>  
-          <center><img src="../static/images/logomain.png"></center> 
+          <center><img src="{% static 'images/logomain.png' %}"></center> 
           <p></p>
           <h5 class="text-uppercase font-weight-bold"><center>USJR MIS</center></h5>
           <center>MIS-Based Document Resources<br> Management System</p></center><p>

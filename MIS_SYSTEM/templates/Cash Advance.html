@@ -1,10 +1,11 @@
+{%load static%}
 <!DOCTYPE html>
 <html>
 <head>
 <title>Request for Cash Advance</title>
 
-<link rel="stylesheet" href="../static/css/Cash Advance.css">
-<link rel="stylesheet" href="../static/css/Design.css">
+<link rel="stylesheet" href="{% static 'css/Cash Advance.css' %}">
+<link rel="stylesheet" href="{% static 'css/Design.css' %}">
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
 <link rel = "stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 <link href="https://fonts.googleapis.com/css2?family=EB+Garamond&display=swap" rel="stylesheet">
@@ -12,9 +13,6 @@
 <link href="https://fonts.googleapis.com/css2?family=Sora:wght@700&display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Mulish:wght@200&display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@200&display=swap" rel="stylesheet">
-
-
-<link rel="stylesheet" href="css/fonts.css"></link>
 
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" ></script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
@@ -27,7 +25,7 @@
 <!----------------------------------------------------------------NAVBAR----------------------------------------------------------------------->
 <section id="nav-bar">
     <nav class="navbar navbar-expand-lg navbar-light">
-        <a class="navbar-brand" href="Dashboard.html"><img src="../static/images/logo.png"></a>
+        <a class="navbar-brand" href="Dashboard.html"><img src="{% static 'images/logo.png' %}"></a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
@@ -38,10 +36,10 @@
                   Requests
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                  <a class="dropdown-item" href="#">View Request</a>
-                  <a class="dropdown-item" href="makeup-class.html">Make-up Class</a>
-                  <a class="dropdown-item" href="Cash Advance.html">Cash Advance</a>
-                  <a class="dropdown-item" href="Request Certificate.html">Certificate</a>
+                  <a class="dropdown-item" href="{% url 'requestcertificate' id=data.Id_Number.Id_Number %} "> View Request</a>
+                  <a class="dropdown-item" href="{% url 'makeupclass' id=data.Id_Number.Id_Number %}">Make-up Class</a>
+                  <a class="dropdown-item" href="{% url 'cashadvance' id=data.Id_Number.Id_Number  %}">Cash Advance</a>
+                  <a class="dropdown-item" href="{% url 'requestcertificate' id=data.Id_Number.Id_Number %}">Certificate</a>
                 </div>
               </li>
                      
@@ -50,12 +48,12 @@
                 Other Transcations
               </a>
               <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                <a class="dropdown-item" href="File a Leave.html">File a Leave</a>
-                <a class="dropdown-item" href="Room Transfer choose.html">Room Transfer</a>
-                <a class="dropdown-item" href="ScheduleTransfer.html">Schedule Transfer</a>
-                <a class="dropdown-item" href="AttendanceReport.html">Attendance Report</a>
-                <a class="dropdown-item" href="Memo Routing.html">Memo Routing</a>
-                <a class="dropdown-item" href="Risograph.html">Requisition for Risograph</a>
+                <a class="dropdown-item" href="{% url 'fileleave' id=data.Id_Number.Id_Number %}">File a Leave</a>
+                <a class="dropdown-item" href="{% url 'roomtransfer' id=data.Id_Number.Id_Number %}">Room Transfer</a>
+                <a class="dropdown-item" href="{% url 'scheduletransfer' id=data.Id_Number.Id_Number  %}">Schedule Transfer</a>
+                <a class="dropdown-item" href="{% url  'attendancereport' id=data.Id_Number.Id_Number %}">Attendance Report</a>
+                <a class="dropdown-item" href="{% url 'memorouting' id=data.Id_Number.Id_Number %}">Memo Routing</a>
+                <a class="dropdown-item" href="{% url 'risograph' id=data.Id_Number.Id_Number %}">Requisition for Risograph</a>
               </div>
             </li>
 
@@ -98,14 +96,14 @@
   <div class="card mb-5">
       <div class="row no-gutters">
         <div class="col-md-4">
-          <img src="../static/images/id.png" class="card-img" alt="5">
+          <img src="{% static 'images/id.png' %}" class="card-img" alt="5">
         </div>
         <div class="col-md-8">
           <div class="card-body">
               <p></p>
-            <h5 class="card-title">John D. Watsons</h5>
-            <h5 class="card-text">ID Number: 20105269</h5>
-            <h5 class="card-text">Status: President</h5>
+            <h5 class="card-title" id="fullname" >{{data.Id_Number.Full_Name }}</h5>
+            <h5 class="card-text">ID Number: {{data.Id_Number.Id_Number}}</h5> 
+            <h5 class="card-text">Status: {{ data.Status_Dept }}</h5>
          
           </div>
         </div>
@@ -114,14 +112,16 @@
   </center>
 
 <div class = "container contact-form">
-<form>
+
+<form action="" method="POST">
+  {% csrf_token %}
     <form>    
         <!-- Textarea -->
         <center>
           <div class="form-group">
             <div class="form-group col-md-4">
               <label for="subject"><b>Enter Cash Amount:</b></label>
-              <input type="" class="form-control" id=subject placeholder="">
+              <input type="" class="form-control" name = "Amount" id=subject placeholder="Amount in Php" required>
             </div>
           </div>
         
@@ -129,15 +129,15 @@
         <div class="form-group">
         <label class="col-md-4 control-label" for="textarea"><b>State the Reason/s for the Request:</b></label>
         <div class="col-md-8">                     
-        <textarea class="form-control" id="textarea" name="textarea" rows="9" cols="80"></textarea>
+        <textarea class="form-control" id="textarea" name="Reason" rows="9" cols="80" required></textarea>
         </div>
         </div>
         </center>
 
         <center>
-          <div class="form-group">
-          <button type="submit" class="btn btn-info"><center>SUBMIT</center></button>
-          </div>
+            <div class="form-group">
+            <button type="submit" class="btn btn-info"><center>SUBMIT</center></button>
+            </div>
         </center>
 
 
@@ -152,7 +152,7 @@
       <div class="row">
         <div class="col-md-6 mt-md-0 mt-3">
           <br>  
-          <center><img src="../static/images/logomain.png"></center> 
+          <center><img src="{% static 'images/logomain.png' %} "></center> 
           <p></p>
           <h5 class="text-uppercase font-weight-bold"><center>USJR MIS</center></h5>
           <center>MIS-Based Document Resources<br> Management System</p></center><p>

@@ -8,6 +8,9 @@ class MemoIngoing(models.Model):
     Description = models.TextField(max_length=100,null=False)
     Receive_From = models.CharField(max_length=50, null=False)
     Receive_By = models.CharField(max_length=50,null=False)
+    
+    class Meta:
+        db_table = 'MemoIngoing'
 
 
 class MemoOutgoing(models.Model):
@@ -17,3 +20,6 @@ class MemoOutgoing(models.Model):
     Forwarded_by = models.CharField(max_length=50, null=False)
     Forwarded_to= models.CharField(max_length=50,null=False)
     Received_by = models.CharField(max_length=50,null=False)
+
+    class Meta:
+        db_table = 'MemoOutgoing'
