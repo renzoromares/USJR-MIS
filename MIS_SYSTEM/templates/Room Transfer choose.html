@@ -92,13 +92,24 @@
   </div>
 </div>
 <!----------------------------------------------------------------FORM------------------------------------------------------------------------------------------>
+<script>
+  function func()
+  {
+    if(document.getElementById('Permanentroom').checked){
+      location.href ="{% url 'roomtransferpermanent' id=data.Id_Number.Id_Number %}"
+    }
+    else if(document.getElementById('Temporaryroom').checked){
+      location.href ="{% url 'roomtransfertemporary' id=data.Id_Number.Id_Number %}"
+    }
+  }
+</script>
 <form action="" method="POST">
   {% csrf_token %}
   <center>
   <div class = "container transfer"> 
   <label><b><u>Please choose one of the following options:</u></b></label>
   <div class="form-check">
-      <input class="form-check-input" type="radio" name="Room" id="Permanentroom" value="Permanent">
+      <input class="form-check-input" type="radio" name="Room" id="Permanentroom" value="Permanent" >
       <label class="form-check-label" for="Permanentroom">
         Permanent Room Transfer
       </label>
@@ -111,7 +122,7 @@
   <p></p>
     <center>
         <div class="form-group">
-        <button type="submit" class="btn btn-info"><center>SUBMIT</center></button>
+        <button type="submit" class="btn btn-info" onclick ="func()" ><center>SUBMIT</center></button>
         </div>
       </center>
     </div>
