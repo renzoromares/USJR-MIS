@@ -7,5 +7,4 @@ urlpatterns = [
   
    path('risograph',Risograph, name = "risograph"),
    path('risograph/<id>', Risograph , name = "risograph"),
-
 ]

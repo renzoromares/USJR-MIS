@@ -25,8 +25,8 @@
 
 <!----------------------------------------------------------------Navigation----------------------------------------------------------------------->
 <section id="nav-bar">
-  <nav class="navbar navbar-expand-lg navbar-light">
-        <a class="navbar-brand" href="Dashboard.html"><img src="{% static 'images/logo.png' %}"></a>
+    <nav class="navbar navbar-expand-lg navbar-light">
+        <a class="navbar-brand" href="https://usjr.edu.ph/"target="_blank"><img src="{% static 'images/logo.png' %}"></a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
@@ -37,29 +37,29 @@
                   Requests
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                  <a class="dropdown-item" href="#">View Request</a>
-                  <a class="dropdown-item" href="makeup-class.html">Make-up Class</a>
-                  <a class="dropdown-item" href="Cash Advance.html">Cash Advance</a>
-                  <a class="dropdown-item" href="Request Certificate.html">Certificate</a>
+                  <a class="dropdown-item" href="{% url 'viewrequestfac' id=data.Id_Number.Id_Number %} "> View Request</a>
+                  <a class="dropdown-item" href="{% url 'makeupclass' id=data.Id_Number.Id_Number %}">Make-up Class</a>
+                  <a class="dropdown-item" href="{% url 'cashadvance' id=data.Id_Number.Id_Number  %}">Cash Advance</a>
+                  <a class="dropdown-item" href="{% url 'requestcertificate' id=data.Id_Number.Id_Number %}">Certificate</a>
                 </div>
-              </li>
-                     
-            <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                Other Transcations
-              </a>
-              <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                <a class="dropdown-item" href="File a Leave.html">File a Leave</a>
-                <a class="dropdown-item" href="Room Transfer choose.html">Room Transfer</a>
-                <a class="dropdown-item" href="ScheduleTransfer.html">Schedule Transfer</a>
-                <a class="dropdown-item" href="AttendanceReport.html">Attendance Report</a>
-                <a class="dropdown-item" href="Memo Routing.html">Memo Routing</a>
-                <a class="dropdown-item" href="Risograph.html">Requisition for Risograph</a>
-              </div>
+                </li>
+                       
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  Other Transcations
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                <a class="dropdown-item" href="{% url 'fileleave' id=data.Id_Number.Id_Number %}">File a Leave</a>
+                <a class="dropdown-item" href="{% url 'roomtransfer' id=data.Id_Number.Id_Number %}">Room Transfer</a>
+                <a class="dropdown-item" href="{% url 'scheduletransfer' id=data.Id_Number.Id_Number  %}">Schedule Transfer</a>
+                <a class="dropdown-item" href="{% url  'attendancereport' id=data.Id_Number.Id_Number %}">Attendance Report</a>
+                <a class="dropdown-item" href="{% url 'memorouting' id=data.Id_Number.Id_Number %}">Memo Routing</a>
+                <a class="dropdown-item" href="{% url 'risograph' id=data.Id_Number.Id_Number %}">Requisition for Risograph</a>
+                </div>
             </li>
   
             <li class="nav-item">
-                <a class="nav-link" href="Dashboard.html">&nbsp;Home</a>
+                <a class="nav-link" href="{% url 'dashboard' id=data.Id_Number.Id_Number %}">&nbsp;Home</a>
               </li>
   
               <li class="nav-item">
@@ -71,17 +71,18 @@
                     &nbsp;<i class="fa fa-user" aria-hidden="true"></i>
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                  <a class="dropdown-item" href="View Profile.html">Profile</a>
+                  <a class="dropdown-item" href="{% url 'profile' id=data.Id_Number.Id_Number %}">Profile</a>
                   <a class="dropdown-item" href="login/login.html">Logout</a>
+  
                 </div>
               </li>
           </ul>
         </div>
-  </nav>
+      </nav>
 
-  <div class="container-fluid p-0"></div>
-  <div class = "col1"></div>
-</section>      
+      <div class="container-fluid p-0"></div>
+      <div class = "col1"></div>
+  </section>       
 
 <!---------------------------------------------------------------HEADER-------------------------------------------------------------------------------------------->
 <div id="cover">        
@@ -94,13 +95,14 @@
 </div> 
 <!----------------------------------------------------------------FORM------------------------------------------------------------------------------------------>
 <div class = "container contact-form">
-  <form>
+  <form method="post" onsubmit="myFunction()">
+  {% csrf_token %}
       <form>
         <div class="form-row">
        
             <div class="form-group col-md-4">
             <label for="dep/college"><b>College/Department:</b></label>
-            <select id="dep/college" class="form-control" placeholder="...">
+            <select id="dep/college" class="form-control" placeholder="..." name="College/Department" required>
             <option>Choose..</option>
              <option>Arts & Sciences</option>
               <option >Engineering</option>
@@ -110,37 +112,32 @@
               <option>Nursing</option>
             </select>
           </div>
-          <div class="form-group col-md-4">
-            <label for="number"><b>Required Slip Number:</b></label>
-            <input type="text" class="form-control" id=subject placeholder="">
-          </div>
 
           <div class="form-group col-md-4">
             <label for="date"><b>Date:</b></label>
-            <input type="date" class="form-control" id=subject placeholder="">
+            <input type="date" class="form-control" id=subject placeholder="" name="date" required>
           </div>
       </div>
 
           <div class="form-row">
             <div class="form-group col-md-4">
               <label for="Timein"><b>Time In:</b></label>
-              <input type="time" class="form-control" id="subject" placeholder="">
+              <input type="time" class="form-control" id="subject" placeholder="" name="Time_In" required>
             </div>
             <div class="form-group col-md-4">
               <label for="Timeout"><b>Time Out:</b></label>
-              <input type="time" class="form-control" id="offercode" placeholder="">
+              <input type="time" class="form-control" id="offercode" placeholder="" name="Time_Out" required>
             </div>
           </div>
 
           <div class="form-row">
             <div class="form-group col-md-4">
               <label for="copies"><b>Number of Copies:</b></label>
-              <input type="number" class="form-control" id="" placeholder="">
+              <input type="number" class="form-control" id="" placeholder="" name="No_Of_Copies" required>
             </div>
             <div class="form-group col-md-4">
               <label for="paper"><b>Paper Type:</b></label>
-              <select class="form-control" id="" placeholder="">
-                <option>Choose..</option>
+              <select class="form-control" id="" placeholder="..." name="Paper_Type" required>
                 <option>GroundWood (GW)</option>
                 <option>Colored Bondpaper (Col. Band)</option>
                 <option>White Bondpaper (US Bond)</option>
@@ -149,13 +146,11 @@
             </div>
             <div class="form-group col-md-4">
               <label for="size"><b>Paper Size:</b></label>
-              <select class="form-control" id="" placeholder="">
-                <option>Choose..</option>
+              <select class="form-control" id="" placeholder="..." name="PaperSize" required>
                 <option>Short</option>
                 <option>Long</option>
                 <option>SK</option>
-                <option>AS</option>
-             
+                <option>AS</option>            
                </select>
             </div>
           </div>
@@ -163,7 +158,7 @@
           <div class="form-row">
             <div class="form-group col-md-4">
               <label for="Acetate"><b>Acetate:</b></label>
-              <input type="text" class="form-control" id="offercode" placeholder="">
+              <input type="text" class="form-control" id="offercode" name="Acetate" required>
             </div>
           </div>
 
@@ -176,6 +171,12 @@
             <center>
               <button type="submit" class="btn btn-info">Submit</button>
               </center>
+
+     <script>
+      function myFunction() {
+      alert("You have succesfully submitted your request");
+      }
+      </script>
   
         </form>
       </form>

@@ -4,8 +4,8 @@ from ViewRequest.views import ViewRequestPres, ViewRequestReads, ViewRequestFac
 
 urlpatterns = [
 
-    path('View-Request-President/', ViewRequestPres, name="viewrequestpres"),
-    path('View-Request-READS/', ViewRequestReads, name="viewrequestreads"),
-    path('View-Request-Faculty/', ViewRequestFac, name="viewrequestfac"),
+    path('View-Request-President/<id>', ViewRequestPres, name="viewrequestpres"),
+    path('View-Request-READS/<id>', ViewRequestReads, name="viewrequestreads"),
+    path('View-Request-Faculty/<id>', ViewRequestFac, name="viewrequestfac"),
 
 ]

@@ -4,13 +4,16 @@ from Accounts.models import Employee, Department
 # Create your views here.
 
 
-def ViewRequestPres(request):
-    return render(request,"ViewRequestPres.html") 
+def ViewRequestPres(request,id):
+    data = Department.objects.prefetch_related('Id_Number').get(Id_Number = id)
+    return render(request,"ViewRequestPres.html", {'data' : data}) 
 
-def ViewRequestReads(request):
-    return render(request,"ViewRequestReads.html") 
+def ViewRequestReads(request,id):
+    data = Department.objects.prefetch_related('Id_Number').get(Id_Number = id)
+    return render(request,"ViewRequestReads.html", {'data' : data}) 
 
-def ViewRequestFac(request):
-    return render(request,"ViewRequestsFac.html") 
+def ViewRequestFac(request,id):
+    data = Department.objects.prefetch_related('Id_Number').get(Id_Number = id)
+    return render(request,"ViewRequestsFac.html", {'data' : data}) 
 
 

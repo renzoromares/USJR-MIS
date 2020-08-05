@@ -25,7 +25,7 @@
 <!----------------------------------------------------------------NAVBAR----------------------------------------------------------------------->
 <section id="nav-bar">
     <nav class="navbar navbar-expand-lg navbar-light">
-        <a class="navbar-brand" href="{% url 'dashboard' %}"><img src="{% static 'images/logo.png' %}"></a>
+        <a class="navbar-brand" href="https://usjr.edu.ph/"target="_blank"><img src="{% static 'images/logo.png' %}"></a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
@@ -33,7 +33,7 @@
           <ul class="navbar-nav ml-auto">
             {% ifequal data.Status_Dept "President" %}
             <li class="nav-item">
-              <a class="nav-link" href="{% url 'viewrequestpres' %}">&nbsp;View Request</a>
+              <a class="nav-link" href="{% url 'viewrequestpres' id=data.Id_Number.Id_Number %}">&nbsp;View Request</a>
               
             </li>
             {% else %}
@@ -43,10 +43,10 @@
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                   {% ifequal data.Status_Dept "Chairman" %}
-                  <a class="dropdown-item" href="{% url 'viewrequestfac' %}">View Request</a>
+                  <a class="dropdown-item" href="{% url 'viewrequestfac' id=data.Id_Number.Id_Number %}">View Request</a>
                   {% endifequal %}
                   {% ifequal data.Status_Dept "Faculty" %}
-                  <a class="dropdown-item" href="{% url 'viewrequestfac' %}">View Request</a>
+                  <a class="dropdown-item" href="{% url 'viewrequestfac' id=data.Id_Number.Id_Number %}">View Request</a>
                   {% endifequal %}
                   <a class="dropdown-item" href="{% url 'makeupclass' id=data.Id_Number.Id_Number  %}">Make-up Class</a>
                   <a class="dropdown-item" href="{% url 'cashadvance' id=data.Id_Number.Id_Number %}">Cash Advance</a>
@@ -70,7 +70,7 @@
             {% endifequal %}
 
             <li class="nav-item">
-                <a class="nav-link" href="{% url 'dashboard' %}">&nbsp;Home</a>
+                <a class="nav-link" href="{% url 'dashboard' id=data.Id_Number.Id_Number %}">&nbsp;Home</a>
                 
               </li>
 
@@ -83,7 +83,7 @@
                     &nbsp;<i class="fa fa-user" aria-hidden="true"></i>
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                  <a class="dropdown-item" href="{% url 'profile' id=data.Id_Number.Id_Number %} ">{{ data.Id_Number.Id_Number }}</a>
+                  <a class="dropdown-item" href="{% url 'profile' id=data.Id_Number.Id_Number %} ">Profile</a>
                   <a class="dropdown-item" href="{%url 'dashboard' %}">Logout</a>
 
                 </div>  
@@ -285,5 +285,3 @@
       
   </body>
   </html>
-
-

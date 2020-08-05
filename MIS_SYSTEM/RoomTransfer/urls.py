@@ -1,3 +1,4 @@
+
 from django.urls import path
 from .import views
 from RoomTransfer.views import RoomTransfer, RoomTransferPermanent, RoomTransferTemporary
@@ -5,6 +6,6 @@ from RoomTransfer.views import RoomTransfer, RoomTransferPermanent, RoomTransfer
 urlpatterns = [
    path('roomtransfer',RoomTransfer, name = "roomtransfer"),
    path('roomtransfer/<id>', RoomTransfer , name = "roomtransfer"),
-   path('roomtransferpermanent/<id>', RoomTransferPermanent, name = "roomtransferpermanent"),
-   path('roomtransfertemporary/<id>', RoomTransferTemporary, name ="roomtransfertemporary")
+   path('RoomTransferPermanent/<id>', RoomTransferPermanent, name = "roomtransferpermanent"),
+   path('RoomTransferTemporary/<id>', RoomTransferTemporary, name ="roomtransfertemporary")
 ]

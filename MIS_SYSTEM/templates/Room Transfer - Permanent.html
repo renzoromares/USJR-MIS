@@ -27,62 +27,63 @@
 <!----------------------------------------------------------------NAVBAR----------------------------------------------------------------------->
 <section id="nav-bar">
     <nav class="navbar navbar-expand-lg navbar-light">
-        <a class="navbar-brand" href="Dashboard.html"><img src="{% static 'images/logo.png' %}"></a>
+        <a class="navbar-brand" href="https://usjr.edu.ph/"target="_blank"><img src="{% static 'images/logo.png' %}"></a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNavDropdown">
           <ul class="navbar-nav ml-auto">
             <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink1" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                   Requests
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                  <a class="dropdown-item" href="#">View Request</a>
-                  <a class="dropdown-item" href="makeup-class.html">Make-up Class</a>
-                  <a class="dropdown-item" href="Cash Advance.html">Cash Advance</a>
-                  <a class="dropdown-item" href="Request Certificate.html">Certificate</a>
+                  <a class="dropdown-item" href="{% url 'viewrequestfac' id=data.Id_Number.Id_Number %} "> View Request</a>
+                  <a class="dropdown-item" href="{% url 'makeupclass' id=data.Id_Number.Id_Number %}">Make-up Class</a>
+                  <a class="dropdown-item" href="{% url 'cashadvance' id=data.Id_Number.Id_Number  %}">Cash Advance</a>
+                  <a class="dropdown-item" href="{% url 'requestcertificate' id=data.Id_Number.Id_Number %}">Certificate</a>
                 </div>
-              </li>
-                     
-            <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                Other Transcations
-              </a>
-              <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                <a class="dropdown-item" href="File a Leave.html">File a Leave</a>
-                <a class="dropdown-item" href="Room Transfer choose.html">Room Transfer</a>
-                <a class="dropdown-item" href="ScheduleTransfer.html">Schedule Transfer</a>
-                <a class="dropdown-item" href="AttendanceReport.html">Attendance Report</a>
-                <a class="dropdown-item" href="Memo Routing.html">Memo Routing</a>
-                <a class="dropdown-item" href="Risograph.html">Requisition for Risograph</a>
-              </div>
+                </li>
+                       
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  Other Transcations
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                <a class="dropdown-item" href="{% url 'fileleave' id=data.Id_Number.Id_Number %}">File a Leave</a>
+                <a class="dropdown-item" href="{% url 'roomtransfer' id=data.Id_Number.Id_Number %}">Room Transfer</a>
+                <a class="dropdown-item" href="{% url 'scheduletransfer' id=data.Id_Number.Id_Number  %}">Schedule Transfer</a>
+                <a class="dropdown-item" href="{% url  'attendancereport' id=data.Id_Number.Id_Number %}">Attendance Report</a>
+                <a class="dropdown-item" href="{% url 'memorouting' id=data.Id_Number.Id_Number %}">Memo Routing</a>
+                <a class="dropdown-item" href="{% url 'risograph' id=data.Id_Number.Id_Number %}">Requisition for Risograph</a>
+                </div>
             </li>
-
+  
             <li class="nav-item">
-                <a class="nav-link" href="Dashboard.html">&nbsp;Home</a>
+                <a class="nav-link" href="{% url 'dashboard' id=data.Id_Number.Id_Number %}">&nbsp;Home</a>
               </li>
-
+  
               <li class="nav-item">
                 <a class="nav-link" href="#">&nbsp;About</a>
               </li>
-
+  
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     &nbsp;<i class="fa fa-user" aria-hidden="true"></i>
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                  <a class="dropdown-item" href="View Profile.html">Profile</a>
+                  <a class="dropdown-item" href="{% url 'profile' id=data.Id_Number.Id_Number %}">Profile</a>
                   <a class="dropdown-item" href="login/login.html">Logout</a>
-
+  
                 </div>
               </li>
           </ul>
         </div>
       </nav>
+
       <div class="container-fluid p-0"></div>
       <div class = "col1"></div>
-</section>      
+  </section>     
 <!---------------------------------------------------------------HEADER-------------------------------------------------------------------------------------------->
 <div id="cover">        
   <div class="jumbotron jumbotron-fluid">
@@ -103,7 +104,7 @@
         </div>
         <div class="form-group col-md-4">
           <label for="Department"><b>Department:</b></label>
-          <select id="Department" class="form-control" placeholder="...">
+          <select id="Department" class="form-control" placeholder="..." required>
             <option disabled selected hidden>Choose..</option>
             <option>Arts & Sciences</option>
             <option >Engineering</option>
@@ -118,17 +119,17 @@
       <div class="form-row">
         <div class="form-group col-md-4">
           <label for="desig"><b>Subject:</b></label>
-          <input type="text" class="form-control" id="desig" name="Subject">
+          <input type="text" class="form-control" id="desig" name="Subject" required>
         </div>
 
         <div class="form-group col-md-4">
           <label for="desig"><b>Offer Code:</b></label>
-          <input type="text" class="form-control" id="desig" name="Offer_Code">
+          <input type="text" class="form-control" id="desig" name="Offer_Code" required>
         </div>
 
         <div class="form-group col-md-4">
           <label for="daysnum"><b>Time/Day:</b></label>
-          <input type="text" class="form-control" id="daysnum" name="Time_Day">
+          <input type="text" class="form-control" id="daysnum" name="Time_Day" required>
         </div>
       </div>
       <p><b>This is to inform the IMS of the following activity/ies of my class to be conducted as specified:</p></b>
@@ -136,18 +137,18 @@
       <div class="form-row">
           <div class="form-group col-md-4">
             <label for="Roomfrom"><b>Transfer Room From</b>:</label>
-            <input type="text" class="form-control" name="Room_From">
+            <input type="text" class="form-control" name="Room_From" required>
           </div>
           <div class="form-group col-md-4">
               <label for="Roomto"><b>To:</b></label>
-              <input type="text" class="form-control" name="Room_To">
+              <input type="text" class="form-control" name="Room_To" required>
             </div>
       </div>
   
       <div class="form-row">
           <div class="form-group col-md-4">
             <label for="TakeEffect"><b>To take effect on:</b></label>
-            <input type="date" class="form-control" name="Date_Effective">
+            <input type="date" class="form-control" name="Date_Effective" required>
           </div>
         </div>
       
@@ -157,7 +158,7 @@
       <div class="form-group">
       <label class="col-md-4 control-label" for="textarea"><b>Reasons:</b></label>
       <div class="col-md-8">                     
-      <textarea class="form-control" id="textarea"  name="Reason" ></textarea>
+      <textarea class="form-control" id="textarea"  name="Reason" required ></textarea>
       </div>
       </div>
       </center>
@@ -167,6 +168,11 @@
         <button type="submit" class="btn btn-info"><center>SUBMIT</center></button>
         </div>
       </center>
+
+                  <script>
+      function myFunction() {
+      alert("You have succesfully submitted your request");
+      }
 
 
     </form>
