@@ -35,32 +35,77 @@
       </button>
       <div class="collapse navbar-collapse" id="navbarNavDropdown">
         <ul class="navbar-nav ml-auto">
-          <li class="nav-item dropdown">
+        {% ifequal data.Status_Dept "President" %}
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'viewrequestpres' id=data.Id_Number.Id_Number %}">&nbsp;View Request</a>
+          
+        </li>
+        {% else %}
+        
+            {% ifequal data.Status_Dept "Chairman" %}
+            <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 Requests
               </a>
               <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                <a class="dropdown-item" href="{% url 'viewrequestfac' id=data.Id_Number.Id_Number %} "> View Request</a>
-                <a class="dropdown-item" href="{% url 'makeupclass' id=data.Id_Number.Id_Number %}">Make-up Class</a>
-                <a class="dropdown-item" href="{% url 'cashadvance' id=data.Id_Number.Id_Number  %}">Cash Advance</a>
+                <a class="dropdown-item" href="{% url 'viewrequestfac' id=data.Id_Number.Id_Number %}">View Request</a>
+                <a class="dropdown-item" href="{% url 'viewrequestincoming' id=data.Id_Number.Id_Number %}">View Request - Incoming</a>
+                <a class="dropdown-item" href="{% url 'viewrequestoutgoing' id=data.Id_Number.Id_Number %}">View Request - Outgoing</a>
+                <a class="dropdown-item" href="{% url 'makeupclass' id=data.Id_Number.Id_Number  %}">Make-up Class</a>
+                <a class="dropdown-item" href="{% url 'cashadvance' id=data.Id_Number.Id_Number %}">Cash Advance</a>
                 <a class="dropdown-item" href="{% url 'requestcertificate' id=data.Id_Number.Id_Number %}">Certificate</a>
               </div>
-              </li>
-                     
-            <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                Other Transcations
-              </a>
-              <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+            </li>
+                  
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Other Transcations
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
               <a class="dropdown-item" href="{% url 'fileleave' id=data.Id_Number.Id_Number %}">File a Leave</a>
-              <a class="dropdown-item" href="{% url 'roomtransfer' id=data.Id_Number.Id_Number %}">Room Transfer</a>
-              <a class="dropdown-item" href="{% url 'scheduletransfer' id=data.Id_Number.Id_Number  %}">Schedule Transfer</a>
-              <a class="dropdown-item" href="{% url  'attendancereport' id=data.Id_Number.Id_Number %}">Attendance Report</a>
+              <a class="dropdown-item" href="{% url 'roomtransfer' id=data.Id_Number.Id_Number  %}">Room Transfer</a>
+              <a class="dropdown-item" href="{% url 'scheduletransfer' id=data.Id_Number.Id_Number   %}">Schedule Transfer</a>
+              <a class="dropdown-item" href="{% url 'attendancereport' id=data.Id_Number.Id_Number  %}">Attendance Report</a>
               <a class="dropdown-item" href="{% url 'memorouting' id=data.Id_Number.Id_Number %}">Memo Routing</a>
-              <a class="dropdown-item" href="{% url 'risograph' id=data.Id_Number.Id_Number %}">Requisition for Risograph</a>
-              </div>
+              <a class="dropdown-item" href="{% url 'risograph' id=data.Id_Number.Id_Number  %}">Requisition for Risograph</a>
+            </div>
           </li>
-
+            {% endifequal %}
+            {% ifequal data.Status_Dept "Faculty" %}
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  Requests
+                </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                <a class="dropdown-item" href="{% url 'viewrequestfac' id=data.Id_Number.Id_Number %}">View Request</a>
+                <a class="dropdown-item" href="{% url 'makeupclass' id=data.Id_Number.Id_Number  %}">Make-up Class</a>
+                <a class="dropdown-item" href="{% url 'cashadvance' id=data.Id_Number.Id_Number %}">Cash Advance</a>
+                <a class="dropdown-item" href="{% url 'requestcertificate' id=data.Id_Number.Id_Number %}">Certificate</a>
+              </div>
+            </li>
+                  
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Other Transcations
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+              <a class="dropdown-item" href="{% url 'fileleave' id=data.Id_Number.Id_Number %}">File a Leave</a>
+              <a class="dropdown-item" href="{% url 'roomtransfer' id=data.Id_Number.Id_Number  %}">Room Transfer</a>
+              <a class="dropdown-item" href="{% url 'scheduletransfer' id=data.Id_Number.Id_Number   %}">Schedule Transfer</a>
+              <a class="dropdown-item" href="{% url 'attendancereport' id=data.Id_Number.Id_Number  %}">Attendance Report</a>
+              <a class="dropdown-item" href="{% url 'memorouting' id=data.Id_Number.Id_Number %}">Memo Routing</a>
+              <a class="dropdown-item" href="{% url 'risograph' id=data.Id_Number.Id_Number  %}">Requisition for Risograph</a>
+            </div>
+          </li>
+            {% endifequal %}
+            {% ifequal data.Status_Dept "Reads" %}
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'viewrequestreads' id=data.Id_Number.Id_Number %}">&nbsp;View Request</a>
+              
+            </li>
+            {% endifequal %}
+      {% endifequal %}
+      
           <li class="nav-item">
               <a class="nav-link" href="{% url 'dashboard' id=data.Id_Number.Id_Number %}">&nbsp;Home</a>
             </li>

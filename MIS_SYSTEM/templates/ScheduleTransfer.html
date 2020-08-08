@@ -94,19 +94,22 @@
   </div>
 </div>
 <!----------------------------------------------------------------FORM------------------------------------------------------------------------------------------>
+<form action="" method="post" onsubmit="myFunction()" >
+  {% csrf_token %}
 <center>
 <div class = "container transfer"> 
 <label><b><u>Please choose one of the following options:</u></b></label>
 <div class="form-check">
-    <input class="form-check-input" type="radio" name="transfer" id="Permanentsched" value="option1">
-    <label class="form-check-label" for="transfer">
+    <input class="form-check-input" type="radio" name="transfer" id="Permanentsched" value="option1" required>
+    <label class="form-check-label" for="Permanentsched">
        Permanent Schedule Transfer
     </label>
   </div>
   <div class="form-check">
-    <input class="form-check-input" type="radio" name="transfer" id="Temporarysched" value="option2">
-    <label class="form-check-label" for="transfer">
+    <input class="form-check-input" type="radio" name="transfer" id="Temporarysched" value="option2" required>
+    <label class="form-check-label" for="Temporarysched">
     Temporary Schedule Transfer
+  </div>
     </label>
 <p></p>
      <center>
@@ -116,7 +119,7 @@
       </center>
   </div>
 </center>
-
+</form>
 <!-------------------------------------------------------------------------------FOOOTER---------------------------------------------------------------------->
 <div id="cardheader" class="card-header"></div>
   <footer id="pagefooter" class="page-footer font-small pt-4">

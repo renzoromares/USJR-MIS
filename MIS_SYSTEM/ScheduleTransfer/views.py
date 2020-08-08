@@ -1,8 +1,43 @@
 from django.shortcuts import render,redirect
-from Accounts.models import Employee, Department
+from Accounts.models import Employee, Department, Form
+from .models import Schedule_Transfer
+from datetime import datetime
+
 
 def ScheduleTransfer(request,id):
+    data = Department.objects.prefetch_related('Id_Number').get(Id_Number = id)   
+    if request.method == "POST":
+        if request.POST["transfer"] =="option1":
+            return redirect("schedtransferpermanent",id =data.Id_Number.Id_Number)
+        
+        elif request.POST["transfer"] =="option2":
+            return redirect("schedtransfertemporary",id = data.Id_Number.Id_Number)  
+    else:        
+        return render(request,"ScheduleTransfer.html",{'data':data}) 
+
+
+def ScheduleTransferPermanent(request,id):
     data = Department.objects.prefetch_related('Id_Number').get(Id_Number = id)
-    return render(request,"ScheduleTransfer.html", {'data' : data}) 
+    employeeID = Employee.objects.get(Id_Number = id)
+    if request.method == "POST":
+        form = Form(Id_Number=employeeID, Type='ScheduleTransfer_Permanent',Date_Requested=datetime.today().strftime('%Y-%m-%d'),Date_Approved=None,Status='Pending')
+        form.save()
+        schedTransfer = Schedule_Transfer(Id_Number=employeeID, Type='ScheduleTransfer_Permanent', Date_Notify=datetime.today().strftime('%Y-%m-%d'), Subject=request.POST["Subject"], Offer_Code=request.POST["Offer_Code"], Time_Day=request.POST["Time_Day"], Schedule_From=request.POST["Room_From"], Schedule_To=request.POST["Room_To"],Reason=request.POST["Reason"])
+        schedTransfer.save()
+        return render(request,"Schedule Transfer - Permanent.html",{'data':data})
     
+    else: 
+        return render(request,"Schedule Transfer - Permanent.html",{'data':data})
+
+def ScheduleTransferTemporary(request,id):
+    data = Department.objects.prefetch_related('Id_Number').get(Id_Number = id)
+    employeeID = Employee.objects.get(Id_Number = id)
+    if request.method == "POST":
+        form = Form(Id_Number=employeeID, Type='ScheduleTransfer_Temporary',Date_Requested=datetime.today().strftime('%Y-%m-%d'),Date_Approved=None,Status='Pending')
+        form.save()
+        schedTransfer = Schedule_Transfer(Id_Number=employeeID, Type='ScheduleTransfer_Temporary', Date_Notify=datetime.today().strftime('%Y-%m-%d'), Subject=request.POST["Subject"], Offer_Code=request.POST["Offer_Code"], Time_Day=request.POST["Time_Day"], Schedule_From=request.POST["Room_From"], Schedule_To=request.POST["Room_To"],Reason=request.POST["Reason"])
+        schedTransfer.save()
+        return render(request,"Schedule Transfer - Temporary.html",{'data':data})
     
+    else: 
+        return render(request,"Schedule Transfer - Temporary.html",{'data':data})    

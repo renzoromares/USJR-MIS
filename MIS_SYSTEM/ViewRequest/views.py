@@ -16,4 +16,11 @@ def ViewRequestFac(request,id):
     data = Department.objects.prefetch_related('Id_Number').get(Id_Number = id)
     return render(request,"ViewRequestsFac.html", {'data' : data}) 
 
+def ViewRequestIncoming(request,id):
+    data = Department.objects.prefetch_related('Id_Number').get(Id_Number = id)
+    return render(request,"ViewRequest - Incoming.html", {'data' : data}) 
+
+def ViewRequestOutgoing(request,id):
+    data = Department.objects.prefetch_related('Id_Number').get(Id_Number = id)
+    return render(request,"ViewRequest - Outgoing.html", {'data' : data}) 
 

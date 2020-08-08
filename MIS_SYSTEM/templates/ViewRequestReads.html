@@ -31,30 +31,8 @@
       </button>
       <div class="collapse navbar-collapse" id="navbarNavDropdown">
         <ul class="navbar-nav ml-auto">
-          <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                Requests
-              </a>
-              <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                <a class="dropdown-item" href="#">View Request</a>
-                <a class="dropdown-item" href="makeup-class.html">Make-up Class</a>
-                <a class="dropdown-item" href="Cash Advance.html">Cash Advance</a>
-                <a class="dropdown-item" href="Request Certificate.html">Certificate</a>
-              </div>
-            </li>
-                   
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              Other Transcations
-            </a>
-            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-              <a class="dropdown-item" href="File a Leave.html">File a Leave</a>
-              <a class="dropdown-item" href="Room Transfer choose.html">Room Transfer</a>
-              <a class="dropdown-item" href="ScheduleTransfer.html">Schedule Transfer</a>
-              <a class="dropdown-item" href="AttendanceReport.html">Attendance Report</a>
-              <a class="dropdown-item" href="Memo Routing.html">Memo Routing</a>
-              <a class="dropdown-item" href="Risograph.html">Requisition for Risograph</a>
-            </div>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'viewrequestreads' id=data.Id_Number.Id_Number %}">&nbsp;View Request</a>
           </li>
 
           <li class="nav-item">
@@ -70,7 +48,7 @@
                   &nbsp;<i class="fa fa-user" aria-hidden="true"></i>
               </a>
               <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                <a class="dropdown-item" href="View Profile.html">Profile</a>
+                <a class="dropdown-item" href="{% url 'profile' id=data.Id_Number.Id_Number %}">Profile</a>
                 <a class="dropdown-item" href="login/login.html">Logout</a>
 
               </div>
