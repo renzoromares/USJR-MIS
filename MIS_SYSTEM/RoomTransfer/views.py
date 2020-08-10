@@ -20,9 +20,9 @@ def RoomTransferPermanent(request,id):
     data = Department.objects.prefetch_related('Id_Number').get(Id_Number = id)
     employeeID = Employee.objects.get(Id_Number = id)
     if request.method == "POST":
-        form = Form(Id_Number=employeeID, Type='RoomTransfer_Permanent',Date_Requested=datetime.today().strftime('%Y-%m-%d'),Date_Approved=None,Status='Pending')
+        form = Form(Id_Number=employeeID, Type='RoomTransfer(Permanent)',Date_Requested=datetime.today().strftime('%Y-%m-%d'),Date_Approved=None,Status='Pending')
         form.save()
-        roomTransfer = Room_Transfer(Id_Number=employeeID, Type='RoomTransfer_Permanent', Date_Notify=datetime.today().strftime('%Y-%m-%d'), Subject=request.POST["Subject"], Offer_Code=request.POST["Offer_Code"], Time_Day=request.POST["Time_Day"], Room_From=request.POST["Room_From"], Room_To=request.POST["Room_To"],Date_Effective=None ,Reason=request.POST["Reason"])
+        roomTransfer = Room_Transfer(Id_Number=employeeID, Type='RoomTransfer(Permanent)', Date_Notify=datetime.today().strftime('%Y-%m-%d'), Subject=request.POST["Subject"], Offer_Code=request.POST["Offer_Code"], Time_Day=request.POST["Time_Day"], Room_From=request.POST["Room_From"], Room_To=request.POST["Room_To"],Date_Effective=None ,Reason=request.POST["Reason"])
         roomTransfer.save()
         return render(request,"Room Transfer - Permanent.html",{'data':data})
     
@@ -33,9 +33,9 @@ def RoomTransferTemporary(request,id):
     data = Department.objects.prefetch_related('Id_Number').get(Id_Number = id)
     employeeID = Employee.objects.get(Id_Number = id)
     if request.method == "POST":
-        form = Form(Id_Number=employeeID, Type='RoomTransfer_Permanent',Date_Requested=datetime.today().strftime('%Y-%m-%d'),Date_Approved=None,Status='Pending')
+        form = Form(Id_Number=employeeID, Type='RoomTransfer(Temporary)',Date_Requested=datetime.today().strftime('%Y-%m-%d'),Date_Approved=None,Status='Pending')
         form.save()
-        roomTransfer = Room_Transfer(Id_Number=employeeID, Type='RoomTransfer_Temporary', Date_Notify=datetime.today().strftime('%Y-%m-%d'), Subject=request.POST["Subject"], Offer_Code=request.POST["Offer_Code"], Time_Day=request.POST["Time_Day"], Room_From=request.POST["Room_From"], Room_To=request.POST["Room_To"],Date_Effective=None,Reason=request.POST["Reason"])
+        roomTransfer = Room_Transfer(Id_Number=employeeID, Type='RoomTransfer(Temporary)', Date_Notify=datetime.today().strftime('%Y-%m-%d'), Subject=request.POST["Subject"], Offer_Code=request.POST["Offer_Code"], Time_Day=request.POST["Time_Day"], Room_From=request.POST["Room_From"], Room_To=request.POST["Room_To"],Date_Effective=None,Reason=request.POST["Reason"])
         roomTransfer.save()
         return render(request,"Room Transfer - Temporary.html",{'data':data})
     

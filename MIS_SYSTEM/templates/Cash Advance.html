@@ -67,14 +67,15 @@
   
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    &nbsp;<i class="fa fa-user" aria-hidden="true"></i>
+                    &nbsp;<i aria-hidden="true"></i>
+                  <a class="nav-link" href="#">&nbsp;{{data.Id_Number.Full_Name}}</a>
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                   <a class="dropdown-item" href="{% url 'profile' id=data.Id_Number.Id_Number %}">Profile</a>
                   <a class="dropdown-item" href="login/login.html">Logout</a>
   
                 </div>
-              </li>
+            </li>
           </ul>
         </div>
       </nav>

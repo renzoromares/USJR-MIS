@@ -10,7 +10,7 @@ def FileLeave(request,id):
     dateApprove = None
     
     if request.method == 'POST':
-        form = Form(Id_Number = employeeID, Type = 'fileleave' , Date_Requested = datetime.today().strftime('%Y-%m-%d'),Date_Approved = dateApprove ,Status = 'Pending')  
+        form = Form(Id_Number = employeeID, Type = 'File Leave' , Date_Requested = datetime.today().strftime('%Y-%m-%d'),Date_Approved = dateApprove ,Status = 'Pending')  
         form.save()
         tempStatus = request.POST.get('status')
         tempLeave = request.POST.get('typeofLeave')

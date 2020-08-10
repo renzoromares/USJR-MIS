@@ -9,7 +9,7 @@ def MakeupClass(request,id):
     dateApprove = None
 
     if request.method == 'POST':
-        form = Form(Id_Number = employeeID, Type = 'makeupclass' , Date_Requested = datetime.today().strftime('%Y-%m-%d'),Date_Approved = dateApprove ,Status = 'Pending')  
+        form = Form(Id_Number = employeeID, Type = 'Make-up Class' , Date_Requested = datetime.today().strftime('%Y-%m-%d'),Date_Approved = dateApprove ,Status = 'Pending')  
         form.save()
         if(request.POST.get('options') == "others"):
             makeupclass = Makeup_Class(Id_Number = employeeID  ,College = request.POST["college"],Reason = request.POST["Reason"],OfferCode =request.POST["offercode"] ,Date =  datetime.today().strftime('%Y-%m-%d') ,Time = request.POST["time"], Room= request.POST["room"], Date_Of = request.POST["dateOf"])

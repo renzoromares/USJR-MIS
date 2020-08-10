@@ -10,7 +10,7 @@ def CashAdvance(request,id):
     dateApprove = None
     
     if(request.method == "POST"):
-        form = Form(Id_Number = employeeID, Type = 'cashadvance' , Date_Requested = datetime.today().strftime('%Y-%m-%d'),Date_Approved = dateApprove ,Status = 'Pending')  
+        form = Form(Id_Number = employeeID, Type = 'Cash Advance' , Date_Requested = datetime.today().strftime('%Y-%m-%d'),Date_Approved = dateApprove ,Status = 'Pending')  
         form.save()
         cash_advance = Cash_Advance(Id_Number = employeeID, Cash_Amount = request.POST["Amount"], Reason  = request.POST["Reason"] )
         cash_advance.save()

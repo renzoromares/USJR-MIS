@@ -26,7 +26,7 @@ class Department(models.Model):
     def __str__(self):
         return "%s %s" % (self.department, self.Status_Dept)
 
-
+    
 
 class Form(models.Model):
     Form_ID = models.AutoField(primary_key=True)

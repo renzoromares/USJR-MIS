@@ -39,10 +39,10 @@
                 Requests
               </a>
               <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                <a class="dropdown-item" href="{% url 'viewrequestfac' id=data.Id_Number.Id_Number %}">View Request</a>
-                <a class="dropdown-item" href="{% url 'makeupclass' id=data.Id_Number.Id_Number  %}">Make-up Class</a>
-                <a class="dropdown-item" href="{% url 'cashadvance' id=data.Id_Number.Id_Number %}">Cash Advance</a>
-                <a class="dropdown-item" href="{% url 'requestcertificate' id=data.Id_Number.Id_Number %}">Certificate</a>
+                <a class="dropdown-item" href="{% url 'viewrequestfac' id=2016019590 %} "> View Request</a>
+                <a class="dropdown-item" href="{% url 'makeupclass' id=2016019590 %}">Make-up Class</a>
+                <a class="dropdown-item" href="{% url 'cashadvance' id=2016019590  %}">Cash Advance</a>
+                <a class="dropdown-item" href="{% url 'requestcertificate' id=2016019590 %}">Certificate</a>
               </div>
             </li>
                    
@@ -51,17 +51,17 @@
               Other Transcations
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-              <a class="dropdown-item" href="{% url 'fileleave' id=data.Id_Number.Id_Number %}">File a Leave</a>
-              <a class="dropdown-item" href="{% url 'roomtransfer' id=data.Id_Number.Id_Number %}">Room Transfer</a>
-              <a class="dropdown-item" href="{% url 'scheduletransfer' id=data.Id_Number.Id_Number %}">Schedule Transfer</a>
-              <a class="dropdown-item" href="{% url 'attendancereport' id=data.Id_Number.Id_Number %}">Attendance Report</a>
-              <a class="dropdown-item" href="{% url 'memorouting' id=data.Id_Number.Id_Number %}">Memo Routing</a>
-              <a class="dropdown-item" href="{% url 'risograph' id=data.Id_Number.Id_Number %}">Requisition for Risograph</a>
+              <a class="dropdown-item" href="{% url 'fileleave' id=2016019590 %}">File a Leave</a>
+              <a class="dropdown-item" href="{% url 'roomtransfer' id=2016019590 %}">Room Transfer</a>
+              <a class="dropdown-item" href="{% url 'scheduletransfer' id=2016019590  %}">Schedule Transfer</a>
+              <a class="dropdown-item" href="{% url  'attendancereport' id=2016019590 %}">Attendance Report</a>
+              <a class="dropdown-item" href="{% url 'memorouting' id=2016019590 %}">Memo Routing</a>
+              <a class="dropdown-item" href="{% url 'risograph' id=2016019590 %}">Requisition for Risograph</a>
             </div>
           </li>
 
           <li class="nav-item">
-              <a class="nav-link" href="{% url 'dashboard' id=data.Id_Number.Id_Number %}">&nbsp;Home</a>
+              <a class="nav-link" href="{% url 'dashboard' id=2016019590 %}">&nbsp;Home</a>
             </li>
 
             <li class="nav-item">
@@ -94,26 +94,6 @@
   </div>
 </div>
 <!----------------------------------------------------------------REQUESTS----------------------------------------------------------------------------------------->  
-<center>
-<div class="card mb-5" style="max-width: 540px;">
-
-    <div class="row no-gutters">
-      <div class="col-md-4">
-        <img src="{% static 'images/id.png' %}" class="card-img" alt="5">
-      </div>
-    
-      <div class="col-md-8">
-        <div class="card-body">
-          <h5 class="card-title">{{data.Id_Number.Full_Name }}</h5>
-          <h5 class="card-text">ID Number: {{data.Id_Number.Id_Number}}</h5> 
-          <h5 class="card-text">Status: {{ data.Status_Dept }}</h5>
-          <h5 class="card-text">College/Department: {{ data.department }}</h5>
-        </div>
-      </div>
-    </div>
-  </div>
-</center>
-
 <div class = "container fortable"> 
 
   <table class="table mb-3 mt-3 "style="width: 100%">
@@ -127,29 +107,16 @@
       </tr>
     </thead>
     <tbody>
+      {% for items in data %}
       <tr>
-        <th scope="row">1</th>
-        <td>Sick Leave</td>
-        <td>10/11/2020</td>
-        <td>Pending</td>
-        <td>--------------</td>
-      </tr>
-      <tr>
-        <th scope="row">2</th>
-        <td>Room Transfer</td>
-        <td>10/12/2020</td>
-        <td>Approved</td>
-        <td>10/13/2020</td>
-      </tr>
-      <tr>
-        <th scope="row">3</th>
-        <td>Advance Salary</td>
-        <td>10/13/2020</td>
-        <td>Approved</td>
-        <td>10/14/2020</td>
+        <th scope="row">{{ forloop.counter }}</th>
 
+        <td>{{items.Type}}</td>
+        <td>{{ items.Date_Requested}}</td>
+        <td>{{ items.Status}}</td>
+        <td>{{ items.Date_Approved}}</td>
       </tr>
-
+      {% endfor %}
     </tbody>
   </table>
   </div>

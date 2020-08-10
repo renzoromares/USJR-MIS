@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
-from Accounts.models import Employee, Department
+from Accounts.models import Employee, Department, Form
 # Create your views here.
 
 
@@ -13,7 +13,7 @@ def ViewRequestReads(request,id):
     return render(request,"ViewRequestReads.html", {'data' : data}) 
 
 def ViewRequestFac(request,id):
-    data = Department.objects.prefetch_related('Id_Number').get(Id_Number = id)
+    data = Form.objects.filter( Id_Number = id)
     return render(request,"ViewRequestsFac.html", {'data' : data}) 
 
 def ViewRequestIncoming(request,id):
