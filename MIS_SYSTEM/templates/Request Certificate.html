@@ -64,7 +64,7 @@
               </li>
   
               <li class="nav-item">
-                <a class="nav-link" href="#">&nbsp;About</a>
+                <p class="nav-link">{{ data.Id_Number.First_Name }}</p>
               </li>
   
             <li class="nav-item dropdown">
@@ -95,34 +95,17 @@
   </div>
 </div>
 <!-------------------------------------------------------------FORM------------------------------------------------------------------------------------------------>
-<center>
-  <div class="card mb-5" style="max-width: 540px;">
-    <div class="row no-gutters">
-      <div class="col-md-4">
-        <img src="{% static 'images/id.png' %}" class="card-img" alt="5">
-      </div>
-      <div class="col-md-8">
-        <div class="card-body">
-          <p></p>
-          <h5 class="card-title">{{data.Id_Number.Full_Name }}</h5>
-          <h5 class="card-text">ID Number: {{data.Id_Number.Id_Number}}</h5> 
-          <h5 class="card-text">Status: {{ data.Status_Dept }}</h5>
-          <h5 class="card-text">College/Department: {{ data.department }}</h5>
-        </div>
-      </div>
-    </div>
-  </div>
-</center>
 
 <div class = "container contact-form">
-<form>
+<form action="" method="POST" onsubmit="myFunction()">
+  {% csrf_token %}
     <form>
     <center>
       <div class="form-row">
         <div class="form-group col-md-4">
           <label for="Certificate"><b>Certificate to Request:</b></label>
-          <select class="form-control" placeholder="...">
-            <option disabled selected hidden>Choose..</option>
+          <select class="form-control" name="Certificate" required>
+            <option value="">Choose</option>
             <option>Certificate of Employment</option>
             <option>Certificate of Recognition</option>
             <option>Certificate of Good Moral</option>
@@ -132,7 +115,7 @@
 
         <div class="form-group col-md-4">
           <label for="other"><b>Others:</b></label>
-          <input type="text" class="form-control" placeholder="Type other Certificate you want to request">
+          <input type="text" name="Others_Certificate" class="form-control" placeholder="Type other Certificate you want to request">
         </div>
    
       </div>
@@ -140,7 +123,7 @@
         <div class="form-group">  
         <label class="col-md-4 control-label" for="textarea"><b>Request for Certificate Reason:</b></label>
         <div class="col-md-8">                     
-        <textarea class="form-control" id="textarea" name="textarea" rows="9" cols="80"></textarea>
+        <textarea class="form-control" id="textarea" name="Reason" rows="9" cols="80"></textarea>
         </div>
         </div>
 
@@ -148,6 +131,11 @@
           <button type="submit" class="btn btn-info"><center>SUBMIT</center></button>
           </div>
     </center>
+          <script>
+      function myFunction() {
+      alert("You have succesfully submitted your request");
+      }
+      </script>
     </form>
   </form>
 </div>

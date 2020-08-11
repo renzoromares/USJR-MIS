@@ -63,7 +63,7 @@
               </li>
   
               <li class="nav-item">
-                <a class="nav-link" href="#">&nbsp;About</a>
+                <p class="nav-link">{{ data.Id_Number.First_Name }}</p>
               </li>
   
             <li class="nav-item dropdown">
@@ -103,8 +103,8 @@
             <div class="form-group col-md-4">
             <label for="dep/college"><b>College/Department:</b></label>
             <select id="dep/college" class="form-control" placeholder="..." name="College/Department" required>
-            <option>Choose..</option>
-             <option>Arts & Sciences</option>
+              <option>Choose..</option>
+              <option>Arts & Sciences</option>
               <option >Engineering</option>
               <option>Commerce</option>
               <option>Arts & Sciences</option>
@@ -133,11 +133,12 @@
           <div class="form-row">
             <div class="form-group col-md-4">
               <label for="copies"><b>Number of Copies:</b></label>
-              <input type="number" class="form-control" id="" placeholder="" name="No_Of_Copies" required>
+              <input type="number" class="form-control" id="" placeholder="" name="No_Of_Copies" min="1" required>
             </div>
             <div class="form-group col-md-4">
               <label for="paper"><b>Paper Type:</b></label>
               <select class="form-control" id="" placeholder="..." name="Paper_Type" required>
+                <option value="">Choose...</option>
                 <option>GroundWood (GW)</option>
                 <option>Colored Bondpaper (Col. Band)</option>
                 <option>White Bondpaper (US Bond)</option>
@@ -147,18 +148,12 @@
             <div class="form-group col-md-4">
               <label for="size"><b>Paper Size:</b></label>
               <select class="form-control" id="" placeholder="..." name="PaperSize" required>
+                <option value="">Choose...</option>
                 <option>Short</option>
                 <option>Long</option>
                 <option>SK</option>
                 <option>AS</option>            
                </select>
-            </div>
-          </div>
-
-          <div class="form-row">
-            <div class="form-group col-md-4">
-              <label for="Acetate"><b>Acetate:</b></label>
-              <input type="text" class="form-control" id="offercode" name="Acetate" required>
             </div>
           </div>
 

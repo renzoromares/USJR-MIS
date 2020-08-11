@@ -64,7 +64,7 @@
               </li>
   
               <li class="nav-item">
-                <a class="nav-link" href="#">&nbsp;About</a>
+                <p class="nav-link">{{ data.Id_Number.First_Name }}</p>
               </li>
   
             <li class="nav-item dropdown">
@@ -95,27 +95,8 @@
 </div>
 <!-------------------------------------------------------------FORMS------------------------------------------------------------------------------------------------>
 <div class = "container contact-form">
-  <form action="" method="POST">
-    {% csrf_token %}
-      <div class="form-row">
-        <div class="form-group col-md-4">
-          <label for="date"><b>Date of Notification:</b></label>
-          <input type="date" class="form-control" id="date" placeholder="" name = "Date_Notify" required>
-        </div>
-        <div class="form-group col-md-4">
-          <label for="Department"><b>Department:</b></label>
-          <select id="Department" class="form-control" placeholder="..." required>
-            <option disabled selected hidden>Choose..</option>
-            <option>Arts & Sciences</option>
-            <option >Engineering</option>
-            <option>Commerce</option>
-            <option>Arts & Sciences</option>
-            <option>CICCT</option>
-            <option>Nursing</option>
-          </select>
-        </div>
-      </div>
-      
+  <form action="" method="POST" onsubmit="myFunction()">
+    {% csrf_token %}  
       <div class="form-row">
         <div class="form-group col-md-4">
           <label for="desig"><b>Subject:</b></label>
@@ -169,10 +150,11 @@
         </div>
       </center>
 
-                  <script>
+      <script>
       function myFunction() {
       alert("You have succesfully submitted your request");
       }
+      </script>
 
 
     </form>

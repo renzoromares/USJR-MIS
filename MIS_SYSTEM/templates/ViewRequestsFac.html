@@ -65,7 +65,7 @@
             </li>
 
             <li class="nav-item">
-              <a class="nav-link" href="#">&nbsp;About</a>
+              <p class="nav-link">{{ data.Id_Number.First_Name }}</p>
             </li>
 
           <li class="nav-item dropdown">
@@ -94,8 +94,9 @@
   </div>
 </div>
 <!----------------------------------------------------------------REQUESTS----------------------------------------------------------------------------------------->  
-<div class = "container fortable"> 
 
+
+<div class = "container fortable"> 
   <table class="table mb-3 mt-3 "style="width: 100%">
     <thead>
       <tr>
@@ -107,6 +108,7 @@
       </tr>
     </thead>
     <tbody>
+
       {% for items in data %}
       <tr>
         <th scope="row">{{ forloop.counter }}</th>

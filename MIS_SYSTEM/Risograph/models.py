@@ -11,7 +11,6 @@ class risograph(models.Model):
     No_of_Copies = models.IntegerField(null=False)
     Size = models.CharField(max_length=50, null=False)
     File = models.ImageField(upload_to='pictures',null=True)
-    Acetate = models.CharField(max_length=50,null=False)
 
     class Meta:
         db_table = 'Risograph'

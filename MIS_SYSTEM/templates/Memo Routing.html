@@ -63,7 +63,7 @@
               </li>
   
               <li class="nav-item">
-                <a class="nav-link" href="#">&nbsp;About</a>
+                <p class="nav-link">{{ data.Id_Number.First_Name }}</p>
               </li>
   
             <li class="nav-item dropdown">
@@ -101,12 +101,12 @@
   <label><b><u>Please choose one of the following options:</u></b></label>
 
     <div class="form-check">
-      <input class="Memo form-check-input" type="radio" name="Memo" id="Permanentsched" value="Outgoing" onclick="myFunction(this.value)">
+      <input class="Memo form-check-input" type="radio" name="Memo" id="Permanentsched" value="Outgoing" required >
       <label class="form-check-label" for="Memo"> Memo Routing - Outgoing</label>
     </div>
 
     <div class="form-check">
-      <input class="Memo form-check-input" type="radio" name="Memo" id="Temporarysched" value="Incoming" onclick="myFunction(this.value)">
+      <input class="Memo form-check-input" type="radio" name="Memo" id="Temporarysched" value="Incoming" required>
       <label class="form-check-label" for="Memo">Memo Routing - Incoming</label>
     </div>
       <p></p>

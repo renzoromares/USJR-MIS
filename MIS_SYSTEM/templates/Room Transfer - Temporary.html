@@ -63,7 +63,7 @@
               </li>
 
               <li class="nav-item">
-                <a class="nav-link" href="#">&nbsp;About</a>
+                <p class="nav-link">{{ data.Id_Number.First_Name }}</p>
               </li>
 
             <li class="nav-item dropdown">
@@ -98,33 +98,6 @@
 <form action="" method="POST" onsubmit="myFunction()">
   {% csrf_token %}
     <form>
-      <div class="form-row">
-        <div class="form-group col-md-4">
-          <label for="dateofnoti"><b>Date of Notification:</b></label>
-          <input type="date" class="form-control" id=dateofnoti  placeholder="" name ="NOTIFY" required>
-        </div>
-
-
-          <div class="form-group col-md-4">
-          <label for="dep/college"><b>College/Department:</b></label>
-          <select id="dep/college" class="form-control" placeholder="..." required>
-            <option disabled selected hidden>Choose..</option>
-            <option>Arts & Sciences</option>
-            <option>Engineering</option>
-            <option>Commerce</option>
-            <option>Arts & Sciences</option>
-            <option>CICCT</option>
-            <option>Nursing</option>
-            <option>Department of Computer Engineering</option>
-            <option>Department of Civil Engineering</option>
-            <option>Department of ECE</option>
-            <option>Department of IE</option>
-            <option>Department of EE</option>
-            <option>Department of ME</option>
-          </select>
-        </div>
-
-      </div>
         <div class="form-row">
           <div class="form-group col-md-4">
             <label for="subject"><b>Subject:</b></label>

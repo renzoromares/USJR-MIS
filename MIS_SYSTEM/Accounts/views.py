@@ -34,10 +34,10 @@ def Register(request):
             return redirect("register")    
             
         else:
-            signUpEmployee = Employee(Id_Number = request.POST["ID"], Full_Name = request.POST["full_name"],Email = request.POST["email"], Contact = request.POST["contact_number"], Password = request.POST["password"])
+            signUpEmployee = Employee(Id_Number = request.POST["ID"], First_Name = request.POST["first_name"], Last_Name=request.POST["last_name"], Email = request.POST["email"], Contact = request.POST["contact_number"], Password = request.POST["password"])
             signUpEmployee.save()
             id = Employee.objects.get(Id_Number = request.POST["ID"])
-            signUpDepartment = Department(Id_Number=id, department=request.POST["Department"],Status_Dept=request.POST["Status"])    
+            signUpDepartment = Department(Id_Number=id, department=request.POST["Department"],Status_Dept=request.POST["Status"],College=request.POST["College"])    
             signUpDepartment.save()
             return redirect("home")
     
