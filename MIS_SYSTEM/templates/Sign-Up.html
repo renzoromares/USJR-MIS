@@ -77,10 +77,10 @@ p{
             <form class="border rounded" action = {%url "register" %} method="post" style="color: rgb(80,94,108);">
             {% csrf_token %}
                 <h2 class="text-center"><strong>REGISTRATION</h2>
-                <div class="form-group"><input class="border rounded form-control" type="text" required="" placeholder="ID Number" name="ID"></div>
-                <div class="form-group"><input class="border rounded form-control" type="text" name = "first_name" placeholder="First Name" ></div>
-                <div class="form-group"><input class="border rounded form-control" type="text" name = "last_name" placeholder="Last Name" ></div>
-                <div class="form-group"><select class="border rounded form-control" type="text" name = "Status">
+                <div class="form-group"><input class="border rounded form-control" type="text" required="" placeholder="ID Number" name="ID"required></div>
+                <div class="form-group"><input class="border rounded form-control" type="text" name = "first_name" placeholder="First Name" required></div>
+                <div class="form-group"><input class="border rounded form-control" type="text" name = "last_name" placeholder="Last Name" required></div>
+                <div class="form-group"><select class="border rounded form-control" type="text" name = "Status" required>
                     <option disabled selected hidden>Choose Status</option>
                     <option>VP Acadamics</option>
                     <option>Dean</option>
@@ -95,7 +95,7 @@ p{
                 </select>
                 </div>
                 
-                <div class="form-group"><select class="border rounded form-control" type="text" name = "College">
+                <div class="form-group"><select class="border rounded form-control" type="text" name = "College" required>
                     <option disabled selected hidden>Choose College</option>
                     <option>Engineering</option>
                     <option>Commerce</option>
@@ -105,7 +105,7 @@ p{
                     <option>Education</option>
                 </select>
                 </div>
-                <div class="form-group"><select class="border rounded form-control" type="text" name = "Department">
+                <div class="form-group"><select class="border rounded form-control" type="text" name = "Department" required>
                     <option disabled selected hidden>Choose Department</option>
                     <option>Computer Engineering</option>
                     <option>Industrial Engineering</option>
@@ -115,7 +115,7 @@ p{
                     <option>Civil Engineering</option>
                 </select>
                 </div>
-                <div class="form-group"><input class="border rounded form-control" type="email" name= "email" placeholder="Email" required=""></div>
+                <div class="form-group"><input class="border rounded form-control" type="email" name= "email" placeholder="Email" required=""required></div>
                 <div class="form-group"><input class="border rounded form-control" type="text" name= "contact_number" placeholder="Contact Number" required=""></div>
                 <div class="form-group"><input class="border rounded form-control" id="myInput" type="password" name= "password" placeholder="Password (should contain atleast 1 capital letter and 1 number) minimum of 8 characters" required="" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,20}"></div>
                 <div class="form-group"><input class="border rounded form-control" id="myInput1" type="password" name= "password-repeat" placeholder="Confirm Password" required=""></div>

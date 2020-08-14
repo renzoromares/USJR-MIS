@@ -9,7 +9,7 @@ def Risograph(request,id):
     if request.method == "POST":
         form = Form(Id_Number=employeeID, Type="Risograph", Date_Requested=datetime.today().strftime('%Y-%m-%d'),Date_Approved=None,Status="Pending")
         form.save()
-        _risograph = risograph(Id_Number=employeeID,Date=request.POST["date"],Department=request.POST["College/Department"],Time_in=request.POST["Time_In"],Time_out=request.POST["Time_Out"],Paper_Type=request.POST["Paper_Type"], No_of_Copies=request.POST["No_Of_Copies"],Size=request.POST["PaperSize"],Acetate=request.POST["Acetate"])
+        _risograph = risograph(Id_Number=employeeID,Date=datetime.today().strftime('%Y-%m-%d'),Department=request.POST["College/Department"],Paper_Type=request.POST["Paper_Type"], No_of_Copies=request.POST["No_Of_Copies"],Size=request.POST["PaperSize"])
         _risograph.save()
         return render(request,"Risograph.html", {'data' : data}) 
     else:

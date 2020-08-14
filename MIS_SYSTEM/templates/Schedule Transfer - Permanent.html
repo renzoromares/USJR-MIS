@@ -95,8 +95,8 @@
 </div>
 <!-------------------------------------------------------------FORMS------------------------------------------------------------------------------------------------>
 <div class = "container contact-form">
-<form>
-    <form>
+  <form action="" method="POST" onsubmit="myFunction()">
+    {% csrf_token %}  
       <div class="form-row">
           <div class="form-group col-md-4">
           <label for="Co"><b>College/Department:</b></label>
@@ -181,8 +181,12 @@
           </div>
         </center>
 
-
-      </form>
+        <script>
+          function myFunction() {
+          alert("You have succesfully submitted your request");
+          }
+          </script>
+      
     </form>
 </div>
 <!-------------------------------------------------------------------------------FOOOTER---------------------------------------------------------------------->

@@ -45,7 +45,8 @@ class Form(models.Model):
 
 
 #dataForm=Department.objects.raw('Select * From "Department" Natural Join "Form"')
-#dataForm=Form.objects.prefetch_related('Id_Number').get(Id_Number = '2015023657')
+#dataForm=Department.objects.select_related('Id_Number').get(department = 'Computer Engineering')
+#dataForm=Employee.objects.filter(department__department='Computer Engineering').values_list('form__Type','form__Date_Requested','form__Date_Approved','form__Status')
 
 
     

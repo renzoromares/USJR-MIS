@@ -39,10 +39,10 @@
                 Requests
               </a>
               <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                <a class="dropdown-item" href="{% url 'viewrequestfac' id=2016019590 %} "> View Request</a>
-                <a class="dropdown-item" href="{% url 'makeupclass' id=2016019590 %}">Make-up Class</a>
-                <a class="dropdown-item" href="{% url 'cashadvance' id=2016019590  %}">Cash Advance</a>
-                <a class="dropdown-item" href="{% url 'requestcertificate' id=2016019590 %}">Certificate</a>
+                <a class="dropdown-item" href="{% url 'viewrequestfac' id=data.Id_Number.Id_Number %} "> View Request</a>
+                <a class="dropdown-item" href="{% url 'makeupclass' id=data.Id_Number.Id_Number %}">Make-up Class</a>
+                <a class="dropdown-item" href="{% url 'cashadvance' id=data.Id_Number.Id_Number  %}">Cash Advance</a>
+                <a class="dropdown-item" href="{% url 'requestcertificate' id=data.Id_Number.Id_Number %}">Certificate</a>
               </div>
             </li>
                    
@@ -51,17 +51,17 @@
               Other Transcations
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-              <a class="dropdown-item" href="{% url 'fileleave' id=2016019590 %}">File a Leave</a>
-              <a class="dropdown-item" href="{% url 'roomtransfer' id=2016019590 %}">Room Transfer</a>
-              <a class="dropdown-item" href="{% url 'scheduletransfer' id=2016019590  %}">Schedule Transfer</a>
-              <a class="dropdown-item" href="{% url  'attendancereport' id=2016019590 %}">Attendance Report</a>
-              <a class="dropdown-item" href="{% url 'memorouting' id=2016019590 %}">Memo Routing</a>
-              <a class="dropdown-item" href="{% url 'risograph' id=2016019590 %}">Requisition for Risograph</a>
+              <a class="dropdown-item" href="{% url 'fileleave' id=data.Id_Number.Id_Number %}">File a Leave</a>
+              <a class="dropdown-item" href="{% url 'roomtransfer' id=data.Id_Number.Id_Number %}">Room Transfer</a>
+              <a class="dropdown-item" href="{% url 'scheduletransfer' id=data.Id_Number.Id_Number  %}">Schedule Transfer</a>
+              <a class="dropdown-item" href="{% url  'attendancereport' id=data.Id_Number.Id_Number %}">Attendance Report</a>
+              <a class="dropdown-item" href="{% url 'memorouting' id=data.Id_Number.Id_Number %}">Memo Routing</a>
+              <a class="dropdown-item" href="{% url 'risograph' id=data.Id_Number.Id_Number %}">Requisition for Risograph</a>
             </div>
           </li>
 
           <li class="nav-item">
-              <a class="nav-link" href="{% url 'dashboard' id=2016019590 %}">&nbsp;Home</a>
+              <a class="nav-link" href="{% url 'dashboard' id=data.Id_Number.Id_Number %}">&nbsp;Home</a>
             </li>
 
             <li class="nav-item">
@@ -109,17 +109,36 @@
     </thead>
     <tbody>
 
-      {% for items in data %}
+      {% for items in dataForm %}
       <tr>
         <th scope="row">{{ forloop.counter }}</th>
-
-        <td>{{items.Type}}</td>
-        <td>{{ items.Date_Requested}}</td>
-        <td>{{ items.Status}}</td>
-        <td>{{ items.Date_Approved}}</td>
+        {% ifequal data.Status_Dept "Faculty" %}
+        <td>{{ items.form__Type }}</td>
+        <td>{{ items.form__Date_Requested }}</td>
+        <td>{{ items.form__Status }}</td>
+        <td>{{ items.form__Date_Approved }}</td>
+        {% endifequal %}
+        {% ifequal data.Status_Dept "Chairman" %}
+          <td>{{ items.form__Type }}<br>Filed by: {{ items.First_Name }} {{ items.Last_Name }}</td>
+          <td>{{ items.form__Date_Requested }}</td>
+          <td>{{ items.form__Status }}</td>
+          <td>{{ items.form__Date_Approved }}</td>
+          <td>
+            <form action="" method="POST" onsubmit="myFunction()">
+              {% csrf_token %} 
+              <button type="submit" name="Form_ID" value="{{ items.form__Form_ID }}" class="btn btn-info">APPROVE</button>
+              <script>
+                function myFunction() {
+                alert("You have succesfully Approved the request");
+                }
+                </script>
+            </form>
+          </td>
+        {% endifequal %}
       </tr>
       {% endfor %}
     </tbody>
+    <!---RObertWasHere--->
   </table>
   </div>
 <!-------------------------------------------------------------------------------FOOOTER---------------------------------------------------------------------->
