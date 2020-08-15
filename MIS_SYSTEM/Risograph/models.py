@@ -2,6 +2,7 @@ from django.db import models
 from Accounts.models import Employee
 
 class risograph(models.Model):
+    Risograph_ID = models.AutoField(primary_key=True)
     Id_Number = models.ForeignKey(Employee,on_delete = models.CASCADE)
     Date = models.DateField()
     Department = models.CharField(max_length=100,null=False)

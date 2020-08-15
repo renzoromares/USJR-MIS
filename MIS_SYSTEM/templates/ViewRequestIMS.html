@@ -39,10 +39,10 @@
                 Requests
               </a>
               <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                <a class="dropdown-item" href="{% url 'viewrequestfac' id=2016019590 %} "> View Request</a>
-                <a class="dropdown-item" href="{% url 'makeupclass' id=2016019590 %}">Make-up Class</a>
-                <a class="dropdown-item" href="{% url 'cashadvance' id=2016019590  %}">Cash Advance</a>
-                <a class="dropdown-item" href="{% url 'requestcertificate' id=2016019590 %}">Certificate</a>
+                <a class="dropdown-item" href="{% url 'viewrequestfac' id=data.Id_Number.Id_Number %} "> View Request</a>
+                <a class="dropdown-item" href="{% url 'makeupclass' id=data.Id_Number.Id_Number %}">Make-up Class</a>
+                <a class="dropdown-item" href="{% url 'cashadvance' id=data.Id_Number.Id_Number  %}">Cash Advance</a>
+                <a class="dropdown-item" href="{% url 'requestcertificate' id=data.Id_Number.Id_Number %}">Certificate</a>
               </div>
             </li>
                    
@@ -51,17 +51,17 @@
               Other Transcations
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-              <a class="dropdown-item" href="{% url 'fileleave' id=2016019590 %}">File a Leave</a>
-              <a class="dropdown-item" href="{% url 'roomtransfer' id=2016019590 %}">Room Transfer</a>
-              <a class="dropdown-item" href="{% url 'scheduletransfer' id=2016019590  %}">Schedule Transfer</a>
-              <a class="dropdown-item" href="{% url  'attendancereport' id=2016019590 %}">Attendance Report</a>
-              <a class="dropdown-item" href="{% url 'memorouting' id=2016019590 %}">Memo Routing</a>
-              <a class="dropdown-item" href="{% url 'risograph' id=2016019590 %}">Requisition for Risograph</a>
+              <a class="dropdown-item" href="{% url 'fileleave' id=data.Id_Number.Id_Number %}">File a Leave</a>
+              <a class="dropdown-item" href="{% url 'roomtransfer' id=data.Id_Number.Id_Number %}">Room Transfer</a>
+              <a class="dropdown-item" href="{% url 'scheduletransfer' id=data.Id_Number.Id_Number  %}">Schedule Transfer</a>
+              <a class="dropdown-item" href="{% url  'attendancereport' id=data.Id_Number.Id_Number %}">Attendance Report</a>
+              <a class="dropdown-item" href="{% url 'memorouting' id=data.Id_Number.Id_Number %}">Memo Routing</a>
+              <a class="dropdown-item" href="{% url 'risograph' id=data.Id_Number.Id_Number %}">Requisition for Risograph</a>
             </div>
           </li>
 
           <li class="nav-item">
-              <a class="nav-link" href="{% url 'dashboard' id=2016019590 %}">&nbsp;Home</a>
+              <a class="nav-link" href="{% url 'dashboard' id=data.Id_Number.Id_Number %}">&nbsp;Home</a>
             </li>
 
             <li class="nav-item">
@@ -99,47 +99,28 @@
 <div class = "container fortable"> 
   <table class="table mb-3 mt-3 "style="width: 100%">
     <thead>
-      <tr id="gg">
+      <tr>
         <th scope="col">#</th>
-        <b><th scope="col">College/Department:</th>
-        <b><th scope="col">Date Requested</th></b>
-		    <th scope="col">No. Copies</th>
-		    <th scope="col">Paper Type</th>
-	    	<th scope="col">Paper Size</th>
+        <th scope="col">Files Requested</th>
+        <th scope="col">Date Requested</th>
         <th scope="col">Status</th>
         <th scope="col">Date Approved</th>
-        <th scope="col">Price</th>
       </tr>
     </thead>
     <tbody>
-  {% with  articleCount=num1|stringformat:"s" %}
-    {% with  articleSlice=":"|add:articleCount %}
-      {% for items in data|slice:articleSlice %}
-      
-          <form method="POST">
-            {% csrf_token %}
-            <tr>
-            <th scope="row">{{ forloop.counter }}</th>
-            <td>{{items.risograph__Department}}</td>
-            <td>{{items.form__Date_Requested}}</td>   
-            <td>{{items.risograph__No_of_Copies}}</td>
-            <td>{{items.risograph__Paper_Type}}</td>
-            <td>{{items.risograph__Size}}</td>
-            <td>{{items.form__Status}}</td>
-            <td>{{items.form__Date_Approved}}</td>
-            <td><input type="text" class="form-control" name="price" size="10" placeholder="₱"></td>
-            <td><input type="text" class="form-control" name="Riso_ID" value="{{items.risograph__Risograph_ID}}" hidden></button></td>
-            <td><button type="submit" class="btn btn-info" name="FormID" value="{{items.form__Form_ID}}">SUBMIT</button></td>
-            </tr>
-          </form>
-      {% endfor %}
-    {% endwith %}
-{% endwith %}
-    </tbody>
-  </table>
- 
-  </div>
 
+      {% for items in dataForm %}
+      <tr>
+          <td>{{ items.Type }}<br>Filed by: {{ items.Id_Number.First_Name }} {{ items.Id_Number.Last_Name }}</td>
+          <td>{{ items.Type }}</td>
+          <td>{{ items.Status }}</td>
+          <td>{{ items.Date_Approved }}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+    <!---RObertWasHere--->
+  </table>
+  </div>
 <!-------------------------------------------------------------------------------FOOOTER---------------------------------------------------------------------->
 <div id="cardheader" class="card-header"></div>
   <footer id="pagefooter" class="page-footer font-small pt-4">
