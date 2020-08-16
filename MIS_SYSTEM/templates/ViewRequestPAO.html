@@ -39,10 +39,10 @@
                 Requests
               </a>
               <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                <a class="dropdown-item" href="{% url 'viewrequestfac' id=2016019590 %} "> View Request</a>
-                <a class="dropdown-item" href="{% url 'makeupclass' id=2016019590 %}">Make-up Class</a>
-                <a class="dropdown-item" href="{% url 'cashadvance' id=2016019590  %}">Cash Advance</a>
-                <a class="dropdown-item" href="{% url 'requestcertificate' id=2016019590 %}">Certificate</a>
+                <a class="dropdown-item" href="{% url 'viewrequestpao' id=dataEmployee.Id_Number.Id_Number  %} "> View Request</a>
+                <a class="dropdown-item" href="{% url 'makeupclass' id=dataEmployee.Id_Number.Id_Number  %}">Make-up Class</a>
+                <a class="dropdown-item" href="{% url 'cashadvance' id=dataEmployee.Id_Number.Id_Number   %}">Cash Advance</a>
+                <a class="dropdown-item" href="{% url 'requestcertificate' id=dataEmployee.Id_Number.Id_Number  %}">Certificate</a>
               </div>
             </li>
                    
@@ -61,11 +61,11 @@
           </li>
 
           <li class="nav-item">
-              <a class="nav-link" href="{% url 'dashboard' id=2016019590 %}">&nbsp;Home</a>
+              <a class="nav-link" href="{% url 'dashboard' id=dataEmployee.Id_Number.Id_Number  %}">&nbsp;Home</a>
             </li>
 
             <li class="nav-item">
-              <p class="nav-link">{{ data.Id_Number.First_Name }}</p>
+              <p class="nav-link">{{ dataEmployee.Id_Number.First_Name }}</p>
             </li>
 
           <li class="nav-item dropdown">
@@ -112,11 +112,10 @@
       </tr>
     </thead>
     <tbody>
-  {% with  articleCount=num1|stringformat:"s" %}
-    {% with  articleSlice=":"|add:articleCount %}
-      {% for items in data|slice:articleSlice %}
+
+      {% for items in data %}
       
-          <form method="POST">
+          <form method="POST" onsubmit="myFunction()">
             {% csrf_token %}
             <tr>
             <th scope="row">{{ forloop.counter }}</th>
@@ -127,14 +126,17 @@
             <td>{{items.risograph__Size}}</td>
             <td>{{items.form__Status}}</td>
             <td>{{items.form__Date_Approved}}</td>
-            <td><input type="text" class="form-control" name="price" size="10" placeholder="₱"></td>
+            <td><input type="text" class="form-control" name="price" size="10" placeholder="₱" required></td>
             <td><input type="text" class="form-control" name="Riso_ID" value="{{items.risograph__Risograph_ID}}" hidden></button></td>
             <td><button type="submit" class="btn btn-info" name="FormID" value="{{items.form__Form_ID}}">SUBMIT</button></td>
             </tr>
+                <script>
+                function myFunction() {
+                alert("You have succesfully Approved the request");
+                }
+                </script>
           </form>
       {% endfor %}
-    {% endwith %}
-{% endwith %}
     </tbody>
   </table>
  

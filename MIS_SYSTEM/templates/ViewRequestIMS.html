@@ -111,10 +111,11 @@
 
       {% for items in dataForm %}
       <tr>
-          <td>{{ items.Type }}<br>Filed by: {{ items.Id_Number.First_Name }} {{ items.Id_Number.Last_Name }}</td>
-          <td>{{ items.Type }}</td>
-          <td>{{ items.Status }}</td>
-          <td>{{ items.Date_Approved }}</td>
+          <th scope="row">{{ forloop.counter }}</th>
+          <td>{{ items.form__Type }}<br>Filed by: {{ items.First_Name }} {{ items.Last_Name }}</td>
+          <td>{{ items.form__Date_Requested }}</td>
+          <td>{{ items.form__Status }}</td>
+          <td>{{ items.form__Date_Approved }}</td>
       </tr>
       {% endfor %}
     </tbody>
