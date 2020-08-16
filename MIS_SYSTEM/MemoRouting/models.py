@@ -2,24 +2,17 @@ from django.db import models
 from Accounts.models import Employee
 
 
-class MemoIngoing(models.Model):
+class Memo_Routing(models.Model):
     Id_Number = models.ForeignKey(Employee,on_delete=models.CASCADE)
-    Date = models.DateField()
-    Description = models.TextField(max_length=100,null=False)
-    Receive_From = models.CharField(max_length=50, null=False)
-    Receive_By = models.CharField(max_length=50,null=False)
-    
-    class Meta:
-        db_table = 'MemoIngoing'
-
-
-class MemoOutgoing(models.Model):
-    Id_Number = models.ForeignKey(Employee,on_delete=models.CASCADE)
-    Date = models.DateField()
-    Description = models.TextField(max_length=100,null=False)
-    Forwarded_by = models.CharField(max_length=50, null=False)
-    Forwarded_to= models.CharField(max_length=50,null=False)
-    Received_by = models.CharField(max_length=50,null=False)
+    Type_Request = models.CharField(null = False, max_length=100)
+    Date_Faculty_Submitted = models.DateField(null = True)
+    Date_Chairman_Approved = models.DateField(null = True)
+    Date_Dean_Approved = models.DateField(null = True)
+    Date_VP_Acad_Approved = models.DateField(null = True)
+    Date_President_Approved = models.DateField(null = True)
+    Date_PAO_Approved = models.DateField(null = True)
+    Date_Accounting_Approved = models.DateField(null = True)
+    Date_HR_Approved = models.DateField(null = True)
 
     class Meta:
-        db_table = 'MemoOutgoing'
+        db_table = 'Memo_Routing'

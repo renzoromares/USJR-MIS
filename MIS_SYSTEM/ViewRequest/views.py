@@ -17,15 +17,17 @@ def ViewRequestReads(request,id):
 def ViewRequestFac(request,id):
     data = Department.objects.prefetch_related('Id_Number').get(Id_Number = id)
     if data.Status_Dept=='Chairman':
-        dataForm = Employee.objects.filter(department__department = data.department, form__Status = 'Pending').values('form__Form_ID','First_Name','Last_Name','form__Type','form__Date_Requested','form__Date_Approved','form__Status')
+        dataForm = Employee.objects.filter(department__department = data.department, memo_routing__Date_Chairman_Approved = None, form__Form_ID__isnull = False).values('memo_routing__id','form__Form_ID','First_Name','Last_Name','form__Type','form__Date_Requested','form__Date_Approved')
     elif data.Status_Dept=='Faculty':
-        dataForm = Employee.objects.filter(Id_Number = id).values('form__Type','form__Date_Requested','form__Date_Approved','form__Status')
+        dataForm = Employee.objects.filter(Id_Number = id, form__Form_ID__isnull = False).values('form__Type','form__Date_Requested','form__Date_Approved')
+    elif data.Status_Dept=='Dean':
+        dataForm = Employee.objects.filter(department__College = data.College, memo_routing__Date_Dean_Approved = None, memo_routing__Date_Chairman_Approved__isnull = False, form__Form_ID__isnull = False).values('memo_routing__id','form__Form_ID','First_Name','Last_Name','form__Type','form__Date_Requested','form__Date_Approved')
+    elif data.Status_Dept=='VP Academics':
+        dataForm = Employee.objects.filter(memo_routing__Date_Chairman_Approved__isnull = False, memo_routing__Date_Dean_Approved__isnull = False, memo_routing__Date_VP_Acad_Approved = None, form__Form_ID__isnull = False).values('memo_routing__id','form__Form_ID','First_Name','Last_Name','form__Type','form__Date_Requested','form__Date_Approved')
     if request.method == "POST":
         formpk=request.POST["Form_ID"]
-        update=Form.objects.get(Form_ID = formpk)
-        update.Date_Approved=datetime.today().strftime('%Y-%m-%d')
-        update.Status='Approved'
-        update.save(update_fields=['Date_Approved', 'Status'])
+        update=Memo_Routing.objects.get(Memo_ID = formpk)
+        update.save(update_fields=['Date_Approved'])
 
     return render(request,"ViewRequestsFac.html", {'data' : data, 'dataForm' : dataForm})
 
@@ -39,8 +41,7 @@ def ViewRequestPao(request,id):
             
         update=Form.objects.get(Form_ID=request.POST["FormID"])
         update.Date_Approved=datetime.today().strftime('%Y-%m-%d')
-        update.Status='Approved'
-        update.save(update_fields=['Date_Approved', 'Status'])
+        update.save(update_fields=['Date_Approved'])
     return render(request,"ViewRequestPAO.html", {'data' : data, 'dataEmployee': dataEmployee}) 
 
 

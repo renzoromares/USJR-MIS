@@ -17,12 +17,12 @@ def MemoRouting(request,id):
 
 def MemoRoutingOutgoing(request,id):
     data = Department.objects.prefetch_related('Id_Number').get(Id_Number = id)
-    return render(request,"Memo Routing - Outoging.html", {'data' : data}) 
+    return render(request,"Memo Routing.html", {'data' : data}) 
 
 
 def MemoRoutingIngoing(request,id):
     data = Department.objects.prefetch_related('Id_Number').get(Id_Number = id)
-    return render(request,"Memo Routing - Incoming.html", {'data' : data}) 
+    return render(request,"Memo Routing.html", {'data' : data}) 
     
    
     

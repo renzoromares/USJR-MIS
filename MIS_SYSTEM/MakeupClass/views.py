@@ -1,6 +1,7 @@
 from django.shortcuts import render,redirect
 from Accounts.models import Employee, Department, Form
 from MakeupClass.models import Makeup_Class
+from MemoRouting.models import Memo_Routing
 from datetime import datetime
 
 def MakeupClass(request,id):
@@ -14,10 +15,14 @@ def MakeupClass(request,id):
         if(request.POST.get('options') == "others"):
             makeupclass = Makeup_Class(Id_Number = employeeID  ,College = request.POST["college"],Reason = request.POST["Reason"],OfferCode =request.POST["offercode"] ,Date =  datetime.today().strftime('%Y-%m-%d') ,Time = request.POST["time"], Room= request.POST["room"], Date_Of = request.POST["dateOf"])
             makeupclass.save()
+            memo_makeupclass = Memo_Routing(Id_Number = employeeID, Type_Request = 'Make-up Class', Date_Faculty_Submitted = datetime.today().strftime('%Y-%m-%d'))
+            memo_makeupclass.save()
             return render(request,"makeup-class.html", {'data' : data}) 
         else:
             makeupclass = Makeup_Class(Id_Number = employeeID  ,College =  request.POST["college"],Reason = request.POST.get('options'),OfferCode = request.POST["offercode"] ,Date =  datetime.today().strftime('%Y-%m-%d'),Time = request.POST["time"], Room= request.POST["room"], Date_Of = request.POST["dateOf"])
             makeupclass.save()
+            memo_makeupclass = Memo_Routing(Id_Number = employeeID, Type_Request = 'Make-up Class', Date_Faculty_Submitted = datetime.today().strftime('%Y-%m-%d'))
+            memo_makeupclass.save()
             return render(request,"makeup-class.html", {'data' : data}) 
     else:
         return render(request,"makeup-class.html", {'data' : data}) 

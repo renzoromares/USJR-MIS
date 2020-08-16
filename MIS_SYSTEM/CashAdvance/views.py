@@ -1,5 +1,6 @@
 from django.shortcuts import render,redirect
 from Accounts.models import Employee, Department, Form
+from MemoRouting.models import Memo_Routing
 from datetime import datetime
 from CashAdvance.models import Cash_Advance
 
@@ -14,6 +15,8 @@ def CashAdvance(request,id):
         form.save()
         cash_advance = Cash_Advance(Id_Number = employeeID, Cash_Amount = request.POST["Amount"], Reason  = request.POST["Reason"] )
         cash_advance.save()
+        memo_cash_advance = Memo_Routing(Id_Number = employeeID, Type_Request = 'Cash Advance', Date_Faculty_Submitted = datetime.today().strftime('%Y-%m-%d'))
+        memo_cash_advance.save()
         return render(request,"Cash Advance.html", {'data' : data})
     else:     
         return render(request,"Cash Advance.html", {'data' : data}) 

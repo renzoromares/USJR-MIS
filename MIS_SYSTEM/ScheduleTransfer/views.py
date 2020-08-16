@@ -24,6 +24,8 @@ def ScheduleTransferPermanent(request,id):
         form.save()
         schedTransfer = Schedule_Transfer(Id_Number=employeeID, Type='ScheduleTransfer(Permanent)', Date_Notify=datetime.today().strftime('%Y-%m-%d'), Subject=request.POST["Subject"], Offer_Code=request.POST["Offer_Code"], Time_Day=request.POST["Time_Day"], Schedule_From=request.POST["Room_From"], Schedule_To=request.POST["Room_To"],Reason=request.POST["Reason"])
         schedTransfer.save()
+        memo_schedTransfer = Memo_Routing(Id_Number=employeeID, Type_Request = 'ScheduleTransfer(Permanent)', Date_Faculty_Submitted = datetime.today().strftime('%Y-%m-%d'))
+        memo_schedTransfer.save()
         return render(request,"Schedule Transfer - Permanent.html",{'data':data})
     
     else: 
@@ -37,6 +39,8 @@ def ScheduleTransferTemporary(request,id):
         form.save()
         schedTransfer = Schedule_Transfer(Id_Number=employeeID, Type='ScheduleTransfer(Temporary)', Date_Notify=datetime.today().strftime('%Y-%m-%d'), Subject=request.POST["Subject"], Offer_Code=request.POST["Offer_Code"], Time_Day=request.POST["Time_Day"], Schedule_From=request.POST["Schedule_From"], Schedule_To=request.POST["Schedule_To"],Reason=request.POST["Reason"])
         schedTransfer.save()
+        memo_schedTransfer = Memo_Routing(Id_Number=employeeID, Type_Request = 'ScheduleTransfer(Temporary)', Date_Faculty_Submitted = datetime.today().strftime('%Y-%m-%d'))
+        memo_schedTransfer.save()
         return render(request,"Schedule Transfer - Temporary.html",{'data':data})
     
     else: 

@@ -73,7 +73,7 @@
                   &nbsp;<i class="fa fa-user" aria-hidden="true"></i>
               </a>
               <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                <a class="dropdown-item" href="View Profile.html">Profile</a>
+                <a class="dropdown-item" href="{% url 'profile' id=data.Id_Number.Id_Number %}">Profile</a>
                 <a class="dropdown-item" href="login/login.html">Logout</a>
 
               </div>
@@ -103,8 +103,6 @@
         <th scope="col">#</th>
         <th scope="col">Files Requested</th>
         <th scope="col">Date Requested</th>
-        <th scope="col">Status</th>
-        <th scope="col">Date Approved</th>
       </tr>
     </thead>
     <tbody>
@@ -121,8 +119,6 @@
         {% ifequal data.Status_Dept "Chairman" %}
           <td>{{ items.form__Type }}<br>Filed by: {{ items.First_Name }} {{ items.Last_Name }}</td>
           <td>{{ items.form__Date_Requested }}</td>
-          <td>{{ items.form__Status }}</td>
-          <td>{{ items.form__Date_Approved }}</td>
           <td>
             <form action="" method="POST" onsubmit="myFunction()">
               {% csrf_token %} 
