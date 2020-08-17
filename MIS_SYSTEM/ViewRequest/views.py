@@ -17,13 +17,13 @@ def ViewRequestReads(request,id):
 def ViewRequestFac(request,id):
     data = Department.objects.prefetch_related('Id_Number').get(Id_Number = id)
     if data.Status_Dept=='Chairman':
-        dataForm = Employee.objects.filter(department__department = data.department, memo_routing__Date_Chairman_Approved = None, form__Form_ID__isnull = False).values('memo_routing__id','form__Form_ID','First_Name','Last_Name','form__Type','form__Date_Requested','form__Date_Approved')
+        dataForm = Employee.objects.filter(department__department = data.department, memo_routing__Date_Chairman_Approved = None, form__Form_ID__isnull = False).distinct('form__Form_ID').values('memo_routing__id','form__Form_ID','First_Name','Last_Name','form__Type','form__Date_Requested','form__Date_Approved')
     elif data.Status_Dept=='Faculty':
         dataForm = Employee.objects.filter(Id_Number = id, form__Form_ID__isnull = False).values('form__Type','form__Date_Requested','form__Date_Approved')
     elif data.Status_Dept=='Dean':
-        dataForm = Employee.objects.filter(department__College = data.College, memo_routing__Date_Dean_Approved = None, memo_routing__Date_Chairman_Approved__isnull = False, form__Form_ID__isnull = False).values('memo_routing__id','form__Form_ID','First_Name','Last_Name','form__Type','form__Date_Requested','form__Date_Approved')
+        dataForm = Employee.objects.filter(department__College = data.College, memo_routing__Date_Dean_Approved = None, memo_routing__Date_Chairman_Approved__isnull = False, form__Form_ID__isnull = False).distinct('form__Form_ID').values('memo_routing__id','form__Form_ID','First_Name','Last_Name','form__Type','form__Date_Requested','form__Date_Approved')
     elif data.Status_Dept=='VP Academics':
-        dataForm = Employee.objects.filter(memo_routing__Date_Chairman_Approved__isnull = False, memo_routing__Date_Dean_Approved__isnull = False, memo_routing__Date_VP_Acad_Approved = None, form__Form_ID__isnull = False).values('memo_routing__id','form__Form_ID','First_Name','Last_Name','form__Type','form__Date_Requested','form__Date_Approved')
+        dataForm = Employee.objects.filter(memo_routing__Date_Chairman_Approved__isnull = False, memo_routing__Date_Dean_Approved__isnull = False, memo_routing__Date_VP_Acad_Approved = None, form__Form_ID__isnull = False).distinct('form__Form_ID').values('memo_routing__id','form__Form_ID','First_Name','Last_Name','form__Type','form__Date_Requested','form__Date_Approved')
     if request.method == "POST":
         formpk=request.POST["Form_ID"]
         update=Memo_Routing.objects.get(Memo_ID = formpk)
