@@ -55,7 +55,7 @@
               <a class="dropdown-item" href="{% url 'roomtransfer' id=data.Id_Number.Id_Number %}">Room Transfer</a>
               <a class="dropdown-item" href="{% url 'scheduletransfer' id=data.Id_Number.Id_Number  %}">Schedule Transfer</a>
               <a class="dropdown-item" href="{% url  'attendancereport' id=data.Id_Number.Id_Number %}">Attendance Report</a>
-              <a class="dropdown-item" href="{% url 'memorouting' id=data.Id_Number.Id_Number %}">Memo Routing</a>
+              <a class="dropdown-item" href="{% url 'memoroutingincoming' id=data.Id_Number.Id_Number %}">Memo Routing</a>
               <a class="dropdown-item" href="{% url 'risograph' id=data.Id_Number.Id_Number %}">Requisition for Risograph</a>
             </div>
           </li>
@@ -100,9 +100,17 @@
   <table class="table mb-3 mt-3 "style="width: 100%">
     <thead>
       <tr>
+        {% ifequal data.Status_Dept "Faculty" %}
         <th scope="col">#</th>
         <th scope="col">Files Requested</th>
         <th scope="col">Date Requested</th>
+        <th scope="col">Status</th>
+        {% else %}
+        <th scope="col">#</th>
+        <th scope="col">Files Requested</th>
+        <th scope="col">Date Requested</th>
+        <th scope="col"> </th>
+        {% endifequal %}
       </tr>
     </thead>
     <tbody>
@@ -114,15 +122,44 @@
         <td>{{ items.form__Type }}</td>
         <td>{{ items.form__Date_Requested }}</td>
         <td>{{ items.form__Status }}</td>
-        <td>{{ items.form__Date_Approved }}</td>
         {% endifequal %}
         {% ifequal data.Status_Dept "Chairman" %}
+          <td>{{ items.memo_routing__Type_Request }}<br>Filed by: {{ items.First_Name }} {{ items.Last_Name }}</td>
+          <td>{{ items.memo_routing__Date_Faculty_Submitted }}</td>
+          <td>
+            <form action="" method="POST" onsubmit="myFunction()">
+              {% csrf_token %} 
+              <button type="submit" name="Memo_ID" value="{{ items.memo_routing__id }}" class="btn btn-info">APPROVE</button>
+              <script>
+                function myFunction() {
+                alert("You have succesfully Approved the request");
+                }
+                </script>
+            </form>
+          </td>
+        {% endifequal %}
+        {% ifequal data.Status_Dept "Dean" %}
+        <td>{{ items.memo_routing__Type_Request }}<br>Filed by: {{ items.First_Name }} {{ items.Last_Name }}</td>
+        <td>{{ items.memo_routing__Date_Faculty_Submitted }}</td>
+          <td>
+            <form action="" method="POST" onsubmit="myFunction()">
+              {% csrf_token %} 
+              <button type="submit" name="Memo_ID" value="{{ items.memo_routing__id }}" class="btn btn-info">APPROVE</button>
+              <script>
+                function myFunction() {
+                alert("You have succesfully Approved the request");
+                }
+                </script>
+            </form>
+          </td>
+        {% endifequal %}
+        {% ifequal data.Status_Dept "VP Academics" %}
           <td>{{ items.form__Type }}<br>Filed by: {{ items.First_Name }} {{ items.Last_Name }}</td>
           <td>{{ items.form__Date_Requested }}</td>
           <td>
             <form action="" method="POST" onsubmit="myFunction()">
               {% csrf_token %} 
-              <button type="submit" name="Form_ID" value="{{ items.form__Form_ID }}" class="btn btn-info">APPROVE</button>
+              <button type="submit" name="Memo_ID" value="{{ items.memo_routing__id }}" class="btn btn-info">APPROVE</button>
               <script>
                 function myFunction() {
                 alert("You have succesfully Approved the request");

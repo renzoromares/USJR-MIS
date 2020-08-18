@@ -17,7 +17,7 @@ def FileLeave(request,id):
         tempLeave = request.POST.get('typeofLeave')
         upload_file = request.FILES['document']
 
-        fileleave = Leave(Id_Number = employeeID, Designation  = request.POST["Designation"], Employee_Status = tempStatus ,Typeof_Leave = tempLeave , Date_Start = request.POST["Date_Start"],Date_End = request.POST["Date_End"],Period_Days ='3',Reason = request.POST["Reasons"],Image = upload_file)
+        fileleave = Leave(Id_Number = employeeID, Employee_Status = tempStatus ,Typeof_Leave = tempLeave , Date_Start = request.POST["Date_Start"],Date_End = request.POST["Date_End"],Period_Days ='3',Reason = request.POST["Reasons"],Image = upload_file)
         fileleave.save()
         memo_fileleave = Memo_Routing(Id_Number = employeeID, Type_Request = 'File Leave', Date_Faculty_Submitted = datetime.today().strftime('%Y-%m-%d'))
         memo_fileleave.save()

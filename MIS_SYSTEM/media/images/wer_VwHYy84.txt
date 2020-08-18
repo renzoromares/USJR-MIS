@@ -1,0 +1,14 @@
+Host
+ec2-50-16-198-4.compute-1.amazonaws.com
+Database
+dcd508vs4qt99d
+User
+alihbljfntrqqx
+Port
+5432
+Password
+09ff704b13e49f5db3f4d1f5330cd2a8762b20f8b821352c7d052227463a8045
+URI
+postgres://alihbljfntrqqx:09ff704b13e49f5db3f4d1f5330cd2a8762b20f8b821352c7d052227463a8045@ec2-50-16-198-4.compute-1.amazonaws.com:5432/dcd508vs4qt99d
+Heroku CLI
+heroku pg:psql postgresql-cylindrical-86127 --app mis-system

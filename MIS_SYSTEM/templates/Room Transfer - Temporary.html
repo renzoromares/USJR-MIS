@@ -37,25 +37,25 @@
                   Requests
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                  <a class="dropdown-item" href="#">View Request</a>
-                  <a class="dropdown-item" href="makeup-class.html">Make-up Class</a>
-                  <a class="dropdown-item" href="Cash Advance.html">Cash Advance</a>
-                  <a class="dropdown-item" href="Request Certificate.html">Certificate</a>
+                  <a class="dropdown-item" href="{% url 'viewrequestfac' id=data.Id_Number.Id_Number %} "> View Request</a>
+                  <a class="dropdown-item" href="{% url 'makeupclass' id=data.Id_Number.Id_Number %}">Make-up Class</a>
+                  <a class="dropdown-item" href="{% url 'cashadvance' id=data.Id_Number.Id_Number  %}">Cash Advance</a>
+                  <a class="dropdown-item" href="{% url 'requestcertificate' id=data.Id_Number.Id_Number %}">Certificate</a>
                 </div>
-              </li>
-                     
-            <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                Other Transcations
-              </a>
-              <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                <a class="dropdown-item" href="File a Leave.html">File a Leave</a>
-                <a class="dropdown-item" href="Room Transfer choose.html">Room Transfer</a>
-                <a class="dropdown-item" href="ScheduleTransfer.html">Schedule Transfer</a>
-                <a class="dropdown-item" href="AttendanceReport.html">Attendance Report</a>
-                <a class="dropdown-item" href="Memo Routing.html">Memo Routing</a>
-                <a class="dropdown-item" href="Risograph.html">Requisition for Risograph</a>
-              </div>
+                </li>
+                       
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  Other Transcations
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                <a class="dropdown-item" href="{% url 'fileleave' id=data.Id_Number.Id_Number %}">File a Leave</a>
+                <a class="dropdown-item" href="{% url 'roomtransfer' id=data.Id_Number.Id_Number %}">Room Transfer</a>
+                <a class="dropdown-item" href="{% url 'scheduletransfer' id=data.Id_Number.Id_Number  %}">Schedule Transfer</a>
+                <a class="dropdown-item" href="{% url  'attendancereport' id=data.Id_Number.Id_Number %}">Attendance Report</a>
+                <a class="dropdown-item" href="{% url 'memoroutingincoming' id=data.Id_Number.Id_Number %}">Memo Routing</a>
+                <a class="dropdown-item" href="{% url 'risograph' id=data.Id_Number.Id_Number %}">Requisition for Risograph</a>
+                </div>
             </li>
 
             <li class="nav-item">
