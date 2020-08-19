@@ -129,7 +129,7 @@
           <td>
             <form action="" method="POST" onsubmit="myFunction()">
               {% csrf_token %} 
-              <button type="submit" name="Memo_ID" value="{{ items.memo_routing__id }}" class="btn btn-info">APPROVE</button>
+              <button type="submit" name="Memo_ID" value="{{ items.memo_routing__id }}" class="btn btn-info">View</button>
               <script>
                 function myFunction() {
                 alert("You have succesfully Approved the request");
@@ -141,17 +141,14 @@
         {% ifequal data.Status_Dept "Dean" %}
         <td>{{ items.memo_routing__Type_Request }}<br>Filed by: {{ items.First_Name }} {{ items.Last_Name }}</td>
         <td>{{ items.memo_routing__Date_Faculty_Submitted }}</td>
-          <td>
-            <form action="" method="POST" onsubmit="myFunction()">
-              {% csrf_token %} 
-              <button type="submit" name="Memo_ID" value="{{ items.memo_routing__id }}" class="btn btn-info">APPROVE</button>
-              <script>
-                function myFunction() {
-                alert("You have succesfully Approved the request");
-                }
-                </script>
-            </form>
-          </td>
+        <td> <button type="submit" name="Memo_ID" value="{{ items.memo_routing__id }}" id="button" class="btn btn-info" >View</button>
+        <script>
+          document.getElementById('button').addEventListener('click',
+          function(){
+            document.querySelector('.bg-modal').style.display = 'flex';
+          });
+        </script> 
+        </td>
         {% endifequal %}
         {% ifequal data.Status_Dept "VP Academics" %}
           <td>{{ items.form__Type }}<br>Filed by: {{ items.First_Name }} {{ items.Last_Name }}</td>
@@ -159,7 +156,7 @@
           <td>
             <form action="" method="POST" onsubmit="myFunction()">
               {% csrf_token %} 
-              <button type="submit" name="Memo_ID" value="{{ items.memo_routing__id }}" class="btn btn-info">APPROVE</button>
+              <button type="submit" name="Memo_ID" value="{{ items.memo_routing__id }}" class="btn btn-info">View</button>
               <script>
                 function myFunction() {
                 alert("You have succesfully Approved the request");
@@ -167,7 +164,7 @@
                 </script>
             </form>
           </td>
-        {% endifequal %}
+        {% endifequal %}  
       </tr>
       {% endfor %}
     </tbody>
@@ -200,5 +197,31 @@
       </div>
     </div>
   </footer>
+
+  <div class="bg-modal">
+    <div class="bg-content">
+      <div class="close">+</div>
+      <center><img src="{% static 'images/id.png' %}" width="120" height="120" ></center>
+      <form action="" method="POST" class = "details">
+        {% csrf_token %}
+        <label for="name" class="disabled">Name</label>
+        <input type="text" id="name" class="form-control" disabled> 
+        <label for="amount" class="disabled">Amount</label>
+        <input type="text" id="amount" class="form-control" disabled> 
+        <label for="amount" class="disabled">Reason</label><br>
+        <textarea name="" id="" cols="78" rows="3" disabled></textarea><br>
+        <div class="buttons">
+          <button type="button" class="btn btn-info btn-rounded" id="btnApproved">Approved</button>
+          <button type="button" class="btn btn-danger btn-rounded" id="btnDecline">Decline</button>
+        </div> 
+        <script>
+          document.querySelector('.close').addEventListener('click',
+          function(){   
+            document.querySelector('.bg-modal').style.display = 'none';
+          });
+        </script>
+      </form>
+    </div>
+  </div>
 </body>
 </html>
