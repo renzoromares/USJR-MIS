@@ -58,4 +58,3 @@ def ViewRequestIMS(request,id):
     data = Department.objects.prefetch_related('Id_Number').get(Id_Number = id)
     dataForm = Employee.objects.filter(form__Status='Approved', form__Type__in=('File Leave','Make-up Class','Request for Certificate','RoomTransfer(Permanent)','RoomTransfer(Temporary)','ScheduleTransfer(Temporary)','ScheduleTransfer(Permanent)')).values('First_Name','Last_Name','form__Type','form__Date_Requested','form__Date_Approved','form__Status')
     return render(request,"ViewRequestIMS.html", {'data' : data, 'dataForm' : dataForm})
-
