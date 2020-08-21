@@ -142,27 +142,60 @@
         <td>{{ items.memo_routing__Type_Request }}<br>Filed by: {{ items.First_Name }} {{ items.Last_Name }}</td>
         <td>{{ items.memo_routing__Date_Faculty_Submitted }}</td>
         <td>
-         <button type="submit" onclick="openForm(this.value)" name="Memo_ID" value="{{ items.Id_Number}}" id="{{ items.memo_routing__id }" class="btn btn-info" >View</button>
-         <script>
-          $("#detail-form").submit(function openForm(ID_Memo) {
-            document.getElementById("name").value = parseInt(ID_Memo);
-              var EmployeeID = parseInt(ID_Memo);
-              $.ajax({
-                  url: '', 
-                  type: 'get',
-                  data: {"EmployeeID": EmployeeID},
-                  success: function(data) {
-                      alert(data);
-                  },
-              }); 
-            document.querySelector('.bg-modal').style.display = 'flex';
-          }
-        </script> 
+        <form action="" method="POST" onsubmit="myFunction()">
+          {% csrf_token %} 
+         <button type="submit" name="Memo_ID" value="{{ items.memo_routing__id }}" class="btn btn-info" >View</button>
+        </form>
         </td>
         {% endifequal %}
         {% ifequal data.Status_Dept "VP Academics" %}
-          <td>{{ items.form__Type }}<br>Filed by: {{ items.First_Name }} {{ items.Last_Name }}</td>
-          <td>{{ items.form__Date_Requested }}</td>
+        <td>{{ items.memo_routing__Type_Request }}<br>Filed by: {{ items.First_Name }} {{ items.Last_Name }}</td>
+        <td>{{ items.memo_routing__Date_Faculty_Submitted }}</td>
+          <td>
+            <form action="" method="POST" onsubmit="myFunction()">
+              {% csrf_token %} 
+              <button type="submit" name="Memo_ID" value="{{ items.memo_routing__id }}" class="btn btn-info">View</button>
+              <script>
+                function myFunction() {
+                alert("You have succesfully Approved the request");
+                }
+                </script>
+            </form>
+          </td>
+        {% endifequal %} 
+        {% ifequal data.Status_Dept "President" %}
+        <td>{{ items.memo_routing__Type_Request }}<br>Filed by: {{ items.First_Name }} {{ items.Last_Name }}</td>
+        <td>{{ items.memo_routing__Date_Faculty_Submitted }}</td>
+          <td>
+            <form action="" method="POST" onsubmit="myFunction()">
+              {% csrf_token %} 
+              <button type="submit" name="Memo_ID" value="{{ items.memo_routing__id }}" class="btn btn-info">View</button>
+              <script>
+                function myFunction() {
+                alert("You have succesfully Approved the request");
+                }
+                </script>
+            </form>
+          </td>
+        {% endifequal %}
+        {% ifequal data.Status_Dept "HR" %}
+        <td>{{ items.memo_routing__Type_Request }}<br>Filed by: {{ items.First_Name }} {{ items.Last_Name }}</td>
+        <td>{{ items.memo_routing__Date_Faculty_Submitted }}</td>
+          <td>
+            <form action="" method="POST" onsubmit="myFunction()">
+              {% csrf_token %} 
+              <button type="submit" name="Memo_ID" value="{{ items.memo_routing__id }}" class="btn btn-info">RECEIVE</button>
+              <script>
+                function myFunction() {
+                alert("You have succesfully Approved the request");
+                }
+                </script>
+            </form>
+          </td>
+        {% endifequal %}
+        {% ifequal data.Status_Dept "Accounting" %}
+        <td>{{ items.memo_routing__Type_Request }}<br>Filed by: {{ items.First_Name }} {{ items.Last_Name }}</td>
+        <td>{{ items.memo_routing__Date_Faculty_Submitted }}</td>
           <td>
             <form action="" method="POST" onsubmit="myFunction()">
               {% csrf_token %} 
@@ -221,7 +254,7 @@
         <label for="amount" class="disabled">Reason</label><br>
         <textarea name="" id="" cols="78" rows="3" disabled></textarea><br>
         <div class="buttons">
-          <button type="button" class="btn btn-info btn-rounded" id="btnApproved" name="ButtonPopUP" valu>Approve</button>
+          <button type="button" class="btn btn-info btn-rounded" id="btnApproved" name="ButtonPopUP">Approve</button>
           <button type="button" class="btn btn-danger btn-rounded" id="btnDecline" name="ButtonPopUP">Decline</button>
         </div> 
         <script>

@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from Accounts.models import Employee, Department, Form
+from Accounts.models import Employee, Department, Form, TransacHistory
 from MemoRouting.models import Memo_Routing
 from .models import Room_Transfer
 from datetime import datetime
@@ -27,6 +27,8 @@ def RoomTransferPermanent(request,id):
         roomTransfer.save()
         memo_roomTransfer = Memo_Routing(Id_Number=employeeID, Type_Request = 'RoomTransfer(Permanent)', Date_Faculty_Submitted = datetime.today().strftime('%Y-%m-%d'))
         memo_roomTransfer.save()
+        history = TransacHistory(Id_Number = employeeID, Transac_Type = 'RoomTransfer(Permanent)', Type='Submitted', Date = datetime.today().strftime('%Y-%m-%d'))
+        history.save()
         return render(request,"Room Transfer - Permanent.html",{'data':data})
     
     else: 
@@ -42,6 +44,8 @@ def RoomTransferTemporary(request,id):
         roomTransfer.save()
         memo_roomTransfer = Memo_Routing(Id_Number=employeeID, Type_Request = 'RoomTransfer(Temporary)', Date_Faculty_Submitted = datetime.today().strftime('%Y-%m-%d'))
         memo_roomTransfer.save()
+        history = TransacHistory(Id_Number = employeeID, Transac_Type = 'RoomTransfer(Temporary)', Type='Submitted', Date = datetime.today().strftime('%Y-%m-%d'))
+        history.save()
         return render(request,"Room Transfer - Temporary.html",{'data':data})
     
     else: 

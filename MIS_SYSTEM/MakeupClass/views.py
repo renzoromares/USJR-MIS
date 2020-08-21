@@ -1,5 +1,5 @@
 from django.shortcuts import render,redirect
-from Accounts.models import Employee, Department, Form
+from Accounts.models import Employee, Department, Form, TransacHistory
 from MakeupClass.models import Makeup_Class
 from MemoRouting.models import Memo_Routing
 from datetime import datetime
@@ -17,12 +17,16 @@ def MakeupClass(request,id):
             makeupclass.save()
             memo_makeupclass = Memo_Routing(Id_Number = employeeID, Type_Request = 'Make-up Class', Date_Faculty_Submitted = datetime.today().strftime('%Y-%m-%d'))
             memo_makeupclass.save()
+            history = TransacHistory(Id_Number = employeeID, Transac_Type = 'Make-up Class', Type='Submitted', Date = datetime.today().strftime('%Y-%m-%d'))
+            history.save()
             return render(request,"makeup-class.html", {'data' : data}) 
         else:
             makeupclass = Makeup_Class(Id_Number = employeeID  ,College =  request.POST["college"],Reason = request.POST.get('options'),OfferCode = request.POST["offercode"] ,Date =  datetime.today().strftime('%Y-%m-%d'),Time = request.POST["time"], Room= request.POST["room"], Date_Of = request.POST["dateOf"])
             makeupclass.save()
             memo_makeupclass = Memo_Routing(Id_Number = employeeID, Type_Request = 'Make-up Class', Date_Faculty_Submitted = datetime.today().strftime('%Y-%m-%d'))
             memo_makeupclass.save()
+            history = TransacHistory(Id_Number = employeeID, Transac_Type = 'Make-up Class', Type='Submitted', Date = datetime.today().strftime('%Y-%m-%d'))
+            history.save()
             return render(request,"makeup-class.html", {'data' : data}) 
     else:
         return render(request,"makeup-class.html", {'data' : data}) 

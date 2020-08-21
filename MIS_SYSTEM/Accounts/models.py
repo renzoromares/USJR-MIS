@@ -43,6 +43,16 @@ class Form(models.Model):
         db_table = 'Form'
 
 
+class TransacHistory(models.Model):
+    Id_Number = models.ForeignKey(Employee, on_delete = models.CASCADE)
+    Transac_Type = models.CharField(max_length=50,null=False)
+    Type = models.CharField(max_length=50,null=False)
+    Date = models.DateField(null = True)
+
+    class Meta:
+        db_table = 'History'
+
+
 
 #dataForm=Department.objects.raw('Select * From "Department" Natural Join "Form"')
 #dataForm=Department.objects.select_related('Id_Number').get(department = 'Computer Engineering')

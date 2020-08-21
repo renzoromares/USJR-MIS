@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
-from .models import Employee, Department
+from .models import Employee, Department, TransacHistory
 from django.contrib import messages
 from ViewProfile.views import Profile
 from ViewRequest.views import ViewRequestFac,ViewRequestPres,ViewRequestReads
@@ -49,3 +49,9 @@ def Register(request):
 def Dashboard(request,id):
     data = Department.objects.prefetch_related('Id_Number').get(Id_Number = id)
     return render(request,"Dashboard.html", {'data' : data})
+
+
+def TransactionHistory(request,id):
+    data = Department.objects.prefetch_related('Id_Number').get(Id_Number = id)
+    datatrans = TransacHistory.objects.filter(Id_Number = id)
+    return render(request,"TransactionHistory.html", {'data' : data, 'datatrans' : datatrans})
