@@ -3,7 +3,9 @@ from django.http import HttpResponse
 from Accounts.models import Employee, Department, Form
 from MemoRouting.models import Memo_Routing
 from Risograph.models import risograph
+from CashAdvance.models import Cash_Advance
 from datetime import datetime
+from django.http import JsonResponse
 # Create your views here.
 
 
@@ -18,11 +20,11 @@ def ViewRequestReads(request,id):
 def ViewRequestFac(request,id):
     data = Department.objects.prefetch_related('Id_Number').get(Id_Number = id)
     if data.Status_Dept=='Chairman':
-        dataForm = Employee.objects.filter(department__department = data.department, memo_routing__Date_Chairman_Approved = None, form__Form_ID__isnull = False).distinct('memo_routing__id').values('memo_routing__id','First_Name','Last_Name','memo_routing__Type_Request','memo_routing__Date_Faculty_Submitted')
+        dataForm = Employee.objects.filter(department__department = data.department, memo_routing__Date_Chairman_Approved = None, form__Form_ID__isnull = False).distinct('memo_routing__id').values('memo_routing__id','First_Name','Last_Name','memo_routing__Type_Request','memo_routing__Date_Faculty_Submitted','Id_Number')
     elif data.Status_Dept=='Faculty':
         dataForm = Employee.objects.filter(Id_Number = id, form__Form_ID__isnull = False).values('form__Type','form__Date_Requested','form__Date_Approved','form__Status')
     elif data.Status_Dept=='Dean':
-        dataForm = Employee.objects.filter(department__College = data.College, memo_routing__Date_Dean_Approved = None, memo_routing__Date_Chairman_Approved__isnull = False, form__Form_ID__isnull = False).distinct('memo_routing__id').values('memo_routing__id','First_Name','Last_Name','memo_routing__Type_Request','memo_routing__Date_Faculty_Submitted')
+        dataForm = Employee.objects.filter(department__College = data.College, memo_routing__Date_Dean_Approved = None, memo_routing__Date_Chairman_Approved__isnull = False, form__Form_ID__isnull = False).distinct('memo_routing__id').values('memo_routing__id','First_Name','Last_Name','memo_routing__Type_Request','memo_routing__Date_Faculty_Submitted','Id_Number')
     elif data.Status_Dept=='VP Academics':
         dataForm = Employee.objects.filter(memo_routing__Date_Chairman_Approved__isnull = False, memo_routing__Date_Dean_Approved__isnull = False, memo_routing__Date_VP_Acad_Approved = None, form__Form_ID__isnull = False).distinct('memo_routing__id').values('memo_routing__id','First_Name','Last_Name','memo_routing__Type_Request','memo_routing__Date_Faculty_Submitted')
     if request.method == "POST":
@@ -36,7 +38,11 @@ def ViewRequestFac(request,id):
         elif data.Status_Dept=='VP Academics':
             update.Date_VP_Acad_Approved = datetime.today().strftime('%Y-%m-%d')
             update.save(update_fields=['Date_VP_Acad_Approved'])
-        
+            
+    if request.is_ajax and request.method == "GET":
+        EmployeeID = request.GET.get("EmployeeID",None)
+        data = Employee.objects.filter(Id_Number=EmployeeID).values("cash_advance__Cash_Amount","cash_advance__Reason")
+        return JsonResponse({'data': data})
 
     return render(request,"ViewRequestsFac.html", {'data' : data, 'dataForm' : dataForm})
 
@@ -58,3 +64,4 @@ def ViewRequestIMS(request,id):
     data = Department.objects.prefetch_related('Id_Number').get(Id_Number = id)
     dataForm = Employee.objects.filter(form__Status='Approved', form__Type__in=('File Leave','Make-up Class','Request for Certificate','RoomTransfer(Permanent)','RoomTransfer(Temporary)','ScheduleTransfer(Temporary)','ScheduleTransfer(Permanent)')).values('First_Name','Last_Name','form__Type','form__Date_Requested','form__Date_Approved','form__Status')
     return render(request,"ViewRequestIMS.html", {'data' : data, 'dataForm' : dataForm})
+
