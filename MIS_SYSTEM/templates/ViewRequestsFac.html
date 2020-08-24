@@ -147,7 +147,7 @@
           <div class="buttons">
             <button type="submit" value= "{{ items.memo_routing__id }}" class="btn btn-info btn-rounded" id="btnApproved" name="Memo_ID">Approved</button>
             <button type="submit" value= "{{ items.memo_routing__id }}" class="btn btn-danger btn-rounded" id="btnDecline" name="Memo_ID">Decline</button>
-            <button type="button" value= "{{ items.memo_routing__id }}" class="btn btn-secondary" id="btnDetails" name="Memo_ID" onclick="openForm(this.value)" >Details</button>
+            <button type="button" value= "{{ items.memo_routing__id }}" data-toggle="modal" data-target="#{{items.memo_routing__Type_Request}}" class="btn btn-secondary" id="btnDetails" name="Memo_ID" >Details</button>
           </div>
         </form> 
         </td>
@@ -191,7 +191,24 @@
               <button type="submit" name="Memo_ID" value="{{ items.memo_routing__id }}" class="btn btn-info">View</button>  
             </form>
           </td>
-        {% endifequal %}  
+        {% endifequal %} 
+        <div class="bg-modal" id="{{items.memo_routing__Type_Request}}">
+          <div class="bg-content">
+            <div class="close" onclick="closeForm()">+</div>
+            
+            <center><img src="{% static 'images/id.png' %}" width="120" height="120" ></center>
+            <form id="details-form" action="" method="POST" class = "details">
+              {% csrf_token %}
+              
+              <label for="name" class="disabled">Name</label>
+              <input type="text" id="name" class="form-control" disabled> 
+              <label for="amount" class="disabled">Amount</label>
+              <input type="text" id="amount" class="form-control" disabled> 
+              <label for="amount" class="disabled">Reason</label><br>
+              <textarea name="" id="" cols="78" rows="3" disabled></textarea><br>
+            </form>
+          </div>
+        </div> 
       </tr>
       {% endfor %}
     </tbody>
@@ -224,23 +241,7 @@
       </div>
     </div>
   </footer>
-
-  <div class="bg-modal">
-    <div class="bg-content">
-      <div class="close" onclick="closeForm()">+</div>
-     
-      <center><img src="{% static 'images/id.png' %}" width="120" height="120" ></center>
-      <form id="details-form" action="" method="POST" class = "details">
-        {% csrf_token %}
-        
-        <label for="name" class="disabled">Name</label>
-        <input type="text" id="name" class="form-control" disabled> 
-        <label for="amount" class="disabled">Amount</label>
-        <input type="text" id="amount" class="form-control" disabled> 
-        <label for="amount" class="disabled">Reason</label><br>
-        <textarea name="" id="" cols="78" rows="3" disabled></textarea><br>
-      </form>
-    </div>
-  </div>
+<!--modal-------------------------------------------------------------------------------->
+  
 </body>
 </html>
