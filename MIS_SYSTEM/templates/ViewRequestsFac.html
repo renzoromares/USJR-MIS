@@ -18,7 +18,7 @@
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" ></script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
-
+<script src="{% static 'javascript/display.js' %} "></script>
 
 
 
@@ -144,8 +144,12 @@
         <td>
         <form action="" method="POST" onsubmit="myFunction()">
           {% csrf_token %} 
-         <button type="submit" name="Memo_ID" value="{{ items.memo_routing__id }}" class="btn btn-info" >View</button>
-        </form>
+          <div class="buttons">
+            <button type="submit" value= "{{ items.memo_routing__id }}" class="btn btn-info btn-rounded" id="btnApproved" name="Memo_ID">Approved</button>
+            <button type="submit" value= "{{ items.memo_routing__id }}" class="btn btn-danger btn-rounded" id="btnDecline" name="Memo_ID">Decline</button>
+            <button type="button" value= "{{ items.memo_routing__id }}" class="btn btn-secondary" id="btnDetails" name="Memo_ID" onclick="openForm(this.value)" >Details</button>
+          </div>
+        </form> 
         </td>
         {% endifequal %}
         {% ifequal data.Status_Dept "VP Academics" %}
@@ -155,11 +159,6 @@
             <form action="" method="POST" onsubmit="myFunction()">
               {% csrf_token %} 
               <button type="submit" name="Memo_ID" value="{{ items.memo_routing__id }}" class="btn btn-info">View</button>
-              <script>
-                function myFunction() {
-                alert("You have succesfully Approved the request");
-                }
-                </script>
             </form>
           </td>
         {% endifequal %} 
@@ -170,11 +169,6 @@
             <form action="" method="POST" onsubmit="myFunction()">
               {% csrf_token %} 
               <button type="submit" name="Memo_ID" value="{{ items.memo_routing__id }}" class="btn btn-info">View</button>
-              <script>
-                function myFunction() {
-                alert("You have succesfully Approved the request");
-                }
-                </script>
             </form>
           </td>
         {% endifequal %}
@@ -185,11 +179,6 @@
             <form action="" method="POST" onsubmit="myFunction()">
               {% csrf_token %} 
               <button type="submit" name="Memo_ID" value="{{ items.memo_routing__id }}" class="btn btn-info">RECEIVE</button>
-              <script>
-                function myFunction() {
-                alert("You have succesfully Approved the request");
-                }
-                </script>
             </form>
           </td>
         {% endifequal %}
@@ -199,12 +188,7 @@
           <td>
             <form action="" method="POST" onsubmit="myFunction()">
               {% csrf_token %} 
-              <button type="submit" name="Memo_ID" value="{{ items.memo_routing__id }}" class="btn btn-info">View</button>
-              <script>
-                function myFunction() {
-                alert("You have succesfully Approved the request");
-                }
-                </script>
+              <button type="submit" name="Memo_ID" value="{{ items.memo_routing__id }}" class="btn btn-info">View</button>  
             </form>
           </td>
         {% endifequal %}  
@@ -243,26 +227,18 @@
 
   <div class="bg-modal">
     <div class="bg-content">
-      <div class="close">+</div>
+      <div class="close" onclick="closeForm()">+</div>
+     
       <center><img src="{% static 'images/id.png' %}" width="120" height="120" ></center>
       <form id="details-form" action="" method="POST" class = "details">
         {% csrf_token %}
+        
         <label for="name" class="disabled">Name</label>
         <input type="text" id="name" class="form-control" disabled> 
         <label for="amount" class="disabled">Amount</label>
         <input type="text" id="amount" class="form-control" disabled> 
         <label for="amount" class="disabled">Reason</label><br>
         <textarea name="" id="" cols="78" rows="3" disabled></textarea><br>
-        <div class="buttons">
-          <button type="button" class="btn btn-info btn-rounded" id="btnApproved" name="ButtonPopUP">Approve</button>
-          <button type="button" class="btn btn-danger btn-rounded" id="btnDecline" name="ButtonPopUP">Decline</button>
-        </div> 
-        <script>
-          document.querySelector('.close').addEventListener('click',
-          function(){   
-            document.querySelector('.bg-modal').style.display = 'none';
-          });
-        </script>
       </form>
     </div>
   </div>

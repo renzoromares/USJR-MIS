@@ -39,32 +39,44 @@ def ViewRequestFac(request,id):
         dataForm = Employee.objects.filter(memo_routing__Date_Chairman_Approved__isnull = False, memo_routing__Date_Dean_Approved__isnull = False, memo_routing__Date_President_Approved__isnull = False, memo_routing__Date_HR_Approved__isnull = False, memo_routing__Date_Accounting_Approved = None, form__Form_ID__isnull = False, memo_routing__Type_Request = 'Cash Advance').distinct('memo_routing__id').values('memo_routing__id','First_Name','Last_Name','memo_routing__Type_Request','memo_routing__Date_Faculty_Submitted')
     if request.method == "POST":
         update=Memo_Routing.objects.get(id = request.POST["Memo_ID"])
-        if data.Status_Dept=='Chairman':
-            update.Date_Chairman_Approved = datetime.today().strftime('%Y-%m-%d')
-            update.save(update_fields=['Date_Chairman_Approved'])
-        elif data.Status_Dept=='Dean':
-            update.Date_Dean_Approved = datetime.today().strftime('%Y-%m-%d')
-            update.save(update_fields=['Date_Dean_Approved'])
-        elif data.Status_Dept=='VP Academics':
-            update.Date_VP_Acad_Approved = datetime.today().strftime('%Y-%m-%d')
-            update.save(update_fields=['Date_VP_Acad_Approved'])
-        elif data.Status_Dept=='President':
-            update.Date_President_Approved = datetime.today().strftime('%Y-%m-%d')
-            update.save(update_fields=['Date_President_Approved'])
-        elif data.Status_Dept=='HR':
-            update.Date_HR_Approved = datetime.today().strftime('%Y-%m-%d')
-            update.save(update_fields=['Date_HR_Approved'])
-        elif data.Status_Dept=='Accounting':
-            update.Date_Accounting_Approved = datetime.today().strftime('%Y-%m-%d')
-            update.save(update_fields=['Date_Accounting_Approved'])
-            
-            
-    #if request.is_ajax and request.method == "GET":
-        #EmployeeID = request.GET.get("EmployeeID",None)
-        #print(EmployeeID)
-        #data = Employee.objects.filter(Id_Number=EmployeeID)
-        #ser= serializers.serialize('json', list(data), fields=('cash_advance__Cash_Amount','cash_advance__Reason'))
-        #return JsonResponse("ViewRequestsFac.html",{'data': ser})
+        if request.POST["Memo_ID"] == "btnApproved":
+            if data.Status_Dept=='Chairman':
+                update.Date_Chairman_Approved = datetime.today().strftime('%Y-%m-%d')
+                update.save(update_fields=['Date_Chairman_Approved'])
+            elif data.Status_Dept=='Dean':
+                update.Date_Dean_Approved = datetime.today().strftime('%Y-%m-%d')
+                update.save(update_fields=['Date_Dean_Approved'])
+            elif data.Status_Dept=='VP Academics':
+                update.Date_VP_Acad_Approved = datetime.today().strftime('%Y-%m-%d')
+                update.save(update_fields=['Date_VP_Acad_Approved'])
+            elif data.Status_Dept=='President':
+                update.Date_President_Approved = datetime.today().strftime('%Y-%m-%d')
+                update.save(update_fields=['Date_President_Approved'])
+            elif data.Status_Dept=='HR':
+                update.Date_HR_Approved = datetime.today().strftime('%Y-%m-%d')
+                update.save(update_fields=['Date_HR_Approved'])
+            elif data.Status_Dept=='Accounting':
+                update.Date_Accounting_Approved = datetime.today().strftime('%Y-%m-%d')
+                update.save(update_fields=['Date_Accounting_Approved'])
+        elif request.POST["Memo_ID"] == "btnDecline":
+            if data.Status_Dept=='Chairman':
+                update.Date_Chairman_Approved = None
+                update.save(update_fields=['Date_Chairman_Approved'])
+            elif data.Status_Dept=='Dean':
+                update.Date_Dean_Approved = None
+                update.save(update_fields=['Date_Dean_Approved'])
+            elif data.Status_Dept=='VP Academics':
+                update.Date_VP_Acad_Approved = None
+                update.save(update_fields=['Date_VP_Acad_Approved'])
+            elif data.Status_Dept=='President':
+                update.Date_President_Approved = None
+                update.save(update_fields=['Date_President_Approved'])
+            elif data.Status_Dept=='HR':
+                update.Date_HR_Approved = None
+                update.save(update_fields=['Date_HR_Approved'])
+            elif data.Status_Dept=='Accounting':
+                update.Date_Accounting_Approved = None
+                update.save(update_fields=['Date_Accounting_Approved'])
 
     return render(request,"ViewRequestsFac.html", {'data' : data, 'dataForm' : dataForm})
 
