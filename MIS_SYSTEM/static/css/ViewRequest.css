@@ -21,7 +21,7 @@
 }
 .bg-modal{
   width: 100%;
-  height: 116%;
+  height: 130%;
   background-color : rgba(0 , 0 , 0 , 0.7);
   position: absolute;
   top:0;
@@ -41,7 +41,6 @@
 }
 
 .buttons{
-
   margin-top: 10px;
   margin-left: 200px;
 }

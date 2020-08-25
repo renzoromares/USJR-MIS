@@ -142,12 +142,13 @@
         <td>{{ items.memo_routing__Type_Request }}<br>Filed by: {{ items.First_Name }} {{ items.Last_Name }}</td>
         <td>{{ items.memo_routing__Date_Faculty_Submitted }}</td>
         <td>
-        <form action="" method="POST" onsubmit="myFunction()">
+        <form action="" method="" onsubmit="myFunction()">
           {% csrf_token %} 
           <div class="buttons">
+            <h1 hidden id="types" value="{{ items.memo_routing__Type_Request }}" ></h1>
             <button type="submit" value= "{{ items.memo_routing__id }}" class="btn btn-info btn-rounded" id="btnApproved" name="Memo_ID">Approved</button>
             <button type="submit" value= "{{ items.memo_routing__id }}" class="btn btn-danger btn-rounded" id="btnDecline" name="Memo_ID">Decline</button>
-            <button type="button" value= "{{ items.memo_routing__id }}" data-toggle="modal" data-target="#{{items.memo_routing__Type_Request}}" class="btn btn-secondary" id="btnDetails" name="Memo_ID" >Details</button>
+            <button type="button" value= "{{ items.memo_routing__id }}" class="btn btn-secondary" onclick="openForm(this.value)"  id="btnDetails" name="Memo_ID" >Details</button>
           </div>
         </form> 
         </td>
@@ -192,23 +193,7 @@
             </form>
           </td>
         {% endifequal %} 
-        <div class="bg-modal" id="{{items.memo_routing__Type_Request}}">
-          <div class="bg-content">
-            <div class="close" onclick="closeForm()">+</div>
-            
-            <center><img src="{% static 'images/id.png' %}" width="120" height="120" ></center>
-            <form id="details-form" action="" method="POST" class = "details">
-              {% csrf_token %}
-              
-              <label for="name" class="disabled">Name</label>
-              <input type="text" id="name" class="form-control" disabled> 
-              <label for="amount" class="disabled">Amount</label>
-              <input type="text" id="amount" class="form-control" disabled> 
-              <label for="amount" class="disabled">Reason</label><br>
-              <textarea name="" id="" cols="78" rows="3" disabled></textarea><br>
-            </form>
-          </div>
-        </div> 
+        <!-----modal------------------------------------------------->
       </tr>
       {% endfor %}
     </tbody>
@@ -242,6 +227,25 @@
     </div>
   </footer>
 <!--modal-------------------------------------------------------------------------------->
-  
+
+{% for items in dataForm %}
+<h1 hidden id="twice"></h1>
+    <div class="bg-modal">
+      <h1 hidden  id ="mahal" ></h1>
+      <div class="bg-content">
+        <div class="close" onclick="closeForm()">+</div>
+        <center><img src="{% static 'images/id.png' %}" width="120" height="120" ></center>
+        <form id="details-form" action="" method="POST" class = "details">
+          {% csrf_token %}
+          <label for="name" class="disabled">Name</label>
+          <p>{{ items.First_Name }} {{ items.Last_Name }}</p>
+          <label for="amount" class="disabled">Amount</label>
+          <p>{{ items.cash_advance__Cash_Amount }}</p> 
+          <label for="amount" class="disabled">Reason</label>
+          <p>{{ items.cash_advance__Reason }}</p>
+        </form>
+      </div>
+    </div>
+{% endfor %}
 </body>
 </html>
