@@ -148,7 +148,7 @@
             <h1 hidden id="types" value="{{ items.memo_routing__Type_Request }}" ></h1>
             <button type="submit" value= "{{ items.memo_routing__id }}" class="btn btn-info btn-rounded" id="btnApproved" name="Memo_ID">Approved</button>
             <button type="submit" value= "{{ items.memo_routing__id }}" class="btn btn-danger btn-rounded" id="btnDecline" name="Memo_ID">Decline</button>
-            <button type="button" value= "{{ items.memo_routing__id }}" class="btn btn-secondary" onclick="openForm(this.value)"  id="btnDetails" name="Memo_ID" >Details</button>
+            <button type="button" value= "{{ items.memo_routing__id }}" class="btn btn-secondary" id="btnDetails" onclick="openForm(this.value)" name="Memo_ID" >Details</button>
           </div>
         </form> 
         </td>
@@ -222,15 +222,15 @@
             &nbsp; external@usjr.edu.ph <p></p>
             <i id="phone" class="fa fa-phone" aria-hidden="true"></i>
             &nbsp;(63-32) 253-7900
+            
           </div>
       </div>
     </div>
   </footer>
-<!--modal-------------------------------------------------------------------------------->
-
+<!-----------------------------------------modal----------------------------------------->
 {% for items in dataForm %}
 <h1 hidden id="twice"></h1>
-    <div class="bg-modal">
+    <div class="bg-modal" id="modal_ID"> 
       <h1 hidden  id ="mahal" ></h1>
       <div class="bg-content">
         <div class="close" onclick="closeForm()">+</div>
@@ -247,5 +247,17 @@
       </div>
     </div>
 {% endfor %}
+<script>
+  function openForm(clicked_id){
+    document.getElementById('modal_ID').value = clicked_id; 
+    alert("Modal ID " + document.getElementById('modal_ID').value);
+    alert("BtnDetails ID " + document.getElementById('btnDetails').value);
+
+    if(document.getElementById('btnDetails').value == document.getElementById('modal_ID').value)
+    {
+      document.querySelector('.bg-modal').style.display = 'flex';
+    }
+  }
+</script>
 </body>
 </html>
