@@ -1,5 +1,5 @@
 from django.db import models
-from Accounts.models import Employee
+from Accounts.models import Employee,Form
 
 class Schedule_Transfer(models.Model):
     Id_Number = models.ForeignKey(Employee,on_delete = models.CASCADE)
@@ -11,6 +11,8 @@ class Schedule_Transfer(models.Model):
     Schedule_From = models.CharField(max_length=50,null=False)
     Schedule_To = models.CharField(max_length=50,null=False) 
     Reason = models.TextField(max_length=100, null=False)
+    FormID = models.ForeignKey(Form,on_delete = models.CASCADE)
+    timeSubmitted = models.TimeField(auto_now=True)
 
     class Meta:
         db_table = 'Schedule_Transfer'

@@ -1,5 +1,5 @@
 from django.db import models
-from Accounts.models import Employee
+from Accounts.models import Employee, Form
 
 class Makeup_Class(models.Model):
     Id_Number = models.ForeignKey(Employee,on_delete = models.CASCADE)
@@ -10,6 +10,8 @@ class Makeup_Class(models.Model):
     Time = models.CharField(max_length=20, null=False)
     Room = models.CharField(max_length=20, null=False)
     Date_Of= models.DateField()
+    FormID = models.ForeignKey(Form,on_delete = models.CASCADE)
+    timeSubmitted = models.TimeField(auto_now=True)
 
     
     class Meta:

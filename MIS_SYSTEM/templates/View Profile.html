@@ -49,8 +49,6 @@
               </a>
               <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                 <a class="dropdown-item" href="{% url 'viewrequestfac' id=data.Id_Number.Id_Number %}">View Request</a>
-                <a class="dropdown-item" href="{% url 'viewrequestincoming' id=data.Id_Number.Id_Number %}">View Request - Incoming</a>
-                <a class="dropdown-item" href="{% url 'viewrequestoutgoing' id=data.Id_Number.Id_Number %}">View Request - Outgoing</a>
                 <a class="dropdown-item" href="{% url 'makeupclass' id=data.Id_Number.Id_Number  %}">Make-up Class</a>
                 <a class="dropdown-item" href="{% url 'cashadvance' id=data.Id_Number.Id_Number %}">Cash Advance</a>
                 <a class="dropdown-item" href="{% url 'requestcertificate' id=data.Id_Number.Id_Number %}">Certificate</a>

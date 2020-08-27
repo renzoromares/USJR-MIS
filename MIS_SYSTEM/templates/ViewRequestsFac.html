@@ -127,70 +127,48 @@
           <td>{{ items.memo_routing__Type_Request }}<br>Filed by: {{ items.First_Name }} {{ items.Last_Name }}</td>
           <td>{{ items.memo_routing__Date_Faculty_Submitted }}</td>
           <td>
-            <form action="" method="POST" onsubmit="myFunction()">
               {% csrf_token %} 
-              <button type="submit" name="Memo_ID" value="{{ items.memo_routing__id }}" class="btn btn-info">View</button>
-              <script>
-                function myFunction() {
-                alert("You have succesfully Approved the request");
-                }
-                </script>
-            </form>
+              <button type="submit" onclick="location.href='{% url 'viewrequestdetails' id=data.Id_Number.Id_Number idf=items.memo_routing__FormID idm=items.memo_routing__id %}'" class="btn btn-info">View Details</button>
           </td>
         {% endifequal %}
         {% ifequal data.Status_Dept "Dean" %}
         <td>{{ items.memo_routing__Type_Request }}<br>Filed by: {{ items.First_Name }} {{ items.Last_Name }}</td>
         <td>{{ items.memo_routing__Date_Faculty_Submitted }}</td>
         <td>
-        <form action="" method="" onsubmit="myFunction()">
           {% csrf_token %} 
-          <div class="buttons">
-            <h1 hidden id="types" value="{{ items.memo_routing__Type_Request }}" ></h1>
-            <button type="submit" value= "{{ items.memo_routing__id }}" class="btn btn-info btn-rounded" id="btnApproved" name="Memo_ID">Approved</button>
-            <button type="submit" value= "{{ items.memo_routing__id }}" class="btn btn-danger btn-rounded" id="btnDecline" name="Memo_ID">Decline</button>
-            <button type="button" value= "{{ items.memo_routing__id }}" class="btn btn-secondary" id="btnDetails" onclick="openForm(this.value)" name="Memo_ID" >Details</button>
-          </div>
-        </form> 
+          <button type="submit" onclick="location.href='{% url 'viewrequestdetails' id=data.Id_Number.Id_Number idf=items.memo_routing__FormID idm=items.memo_routing__id %}'" class="btn btn-info">View Details</button>
         </td>
         {% endifequal %}
         {% ifequal data.Status_Dept "VP Academics" %}
         <td>{{ items.memo_routing__Type_Request }}<br>Filed by: {{ items.First_Name }} {{ items.Last_Name }}</td>
         <td>{{ items.memo_routing__Date_Faculty_Submitted }}</td>
           <td>
-            <form action="" method="POST" onsubmit="myFunction()">
-              {% csrf_token %} 
-              <button type="submit" name="Memo_ID" value="{{ items.memo_routing__id }}" class="btn btn-info">View</button>
-            </form>
+            {% csrf_token %} 
+              <button type="submit" onclick="location.href='{% url 'viewrequestdetails' id=data.Id_Number.Id_Number idf=items.memo_routing__FormID idm=items.memo_routing__id %}'" class="btn btn-info">View Details</button>
           </td>
         {% endifequal %} 
         {% ifequal data.Status_Dept "President" %}
         <td>{{ items.memo_routing__Type_Request }}<br>Filed by: {{ items.First_Name }} {{ items.Last_Name }}</td>
         <td>{{ items.memo_routing__Date_Faculty_Submitted }}</td>
           <td>
-            <form action="" method="POST" onsubmit="myFunction()">
-              {% csrf_token %} 
-              <button type="submit" name="Memo_ID" value="{{ items.memo_routing__id }}" class="btn btn-info">View</button>
-            </form>
+            {% csrf_token %} 
+              <button type="submit" onclick="location.href='{% url 'viewrequestdetails' id=data.Id_Number.Id_Number idf=items.memo_routing__FormID idm=items.memo_routing__id %}'" class="btn btn-info">View Details</button>
           </td>
         {% endifequal %}
         {% ifequal data.Status_Dept "HR" %}
         <td>{{ items.memo_routing__Type_Request }}<br>Filed by: {{ items.First_Name }} {{ items.Last_Name }}</td>
         <td>{{ items.memo_routing__Date_Faculty_Submitted }}</td>
           <td>
-            <form action="" method="POST" onsubmit="myFunction()">
-              {% csrf_token %} 
-              <button type="submit" name="Memo_ID" value="{{ items.memo_routing__id }}" class="btn btn-info">RECEIVE</button>
-            </form>
+            {% csrf_token %} 
+              <button type="submit" onclick="location.href='{% url 'viewrequestdetails' id=data.Id_Number.Id_Number idf=items.memo_routing__FormID idm=items.memo_routing__id %}'" class="btn btn-info">View Details</button>
           </td>
         {% endifequal %}
         {% ifequal data.Status_Dept "Accounting" %}
         <td>{{ items.memo_routing__Type_Request }}<br>Filed by: {{ items.First_Name }} {{ items.Last_Name }}</td>
         <td>{{ items.memo_routing__Date_Faculty_Submitted }}</td>
           <td>
-            <form action="" method="POST" onsubmit="myFunction()">
-              {% csrf_token %} 
-              <button type="submit" name="Memo_ID" value="{{ items.memo_routing__id }}" class="btn btn-info">View</button>  
-            </form>
+            {% csrf_token %} 
+              <button type="submit" onclick="location.href='{% url 'viewrequestdetails' id=data.Id_Number.Id_Number idf=items.memo_routing__FormID idm=items.memo_routing__id %}'" class="btn btn-info">View Details</button>
           </td>
         {% endifequal %} 
         <!-----modal------------------------------------------------->
@@ -228,36 +206,5 @@
     </div>
   </footer>
 <!-----------------------------------------modal----------------------------------------->
-{% for items in dataForm %}
-<h1 hidden id="twice"></h1>
-    <div class="bg-modal" id="modal_ID"> 
-      <h1 hidden  id ="mahal" ></h1>
-      <div class="bg-content">
-        <div class="close" onclick="closeForm()">+</div>
-        <center><img src="{% static 'images/id.png' %}" width="120" height="120" ></center>
-        <form id="details-form" action="" method="POST" class = "details">
-          {% csrf_token %}
-          <label for="name" class="disabled">Name</label>
-          <p>{{ items.First_Name }} {{ items.Last_Name }}</p>
-          <label for="amount" class="disabled">Amount</label>
-          <p>{{ items.cash_advance__Cash_Amount }}</p> 
-          <label for="amount" class="disabled">Reason</label>
-          <p>{{ items.cash_advance__Reason }}</p>
-        </form>
-      </div>
-    </div>
-{% endfor %}
-<script>
-  function openForm(clicked_id){
-    document.getElementById('modal_ID').value = clicked_id; 
-    alert("Modal ID " + document.getElementById('modal_ID').value);
-    alert("BtnDetails ID " + document.getElementById('btnDetails').value);
-
-    if(document.getElementById('btnDetails').value == document.getElementById('modal_ID').value)
-    {
-      document.querySelector('.bg-modal').style.display = 'flex';
-    }
-  }
-</script>
 </body>
 </html>

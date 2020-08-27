@@ -13,13 +13,14 @@ def FileLeave(request,id):
     if request.method == 'POST':
         form = Form(Id_Number = employeeID, Type = 'File Leave' , Date_Requested = datetime.today().strftime('%Y-%m-%d'),Date_Approved = dateApprove ,Status = 'Pending')  
         form.save()
+        formPK = Form.objects.get(Form_ID = form.pk)
         tempStatus = request.POST.get('status')
         tempLeave = request.POST.get('typeofLeave')
         upload_file = request.FILES['document']
 
-        fileleave = Leave(Id_Number = employeeID, Employee_Status = tempStatus ,Typeof_Leave = tempLeave , Date_Start = request.POST["Date_Start"],Date_End = request.POST["Date_End"],Period_Days ='3',Reason = request.POST["Reasons"],Image = upload_file)
+        fileleave = Leave(Id_Number = employeeID, Employee_Status = tempStatus ,Typeof_Leave = tempLeave , Date_Start = request.POST["Date_Start"],Date_End = request.POST["Date_End"],Period_Days ='3',Reason = request.POST["Reasons"],Image = upload_file, FormID = formPK)
         fileleave.save()
-        memo_fileleave = Memo_Routing(Id_Number = employeeID, Type_Request = 'File Leave', Date_Faculty_Submitted = datetime.today().strftime('%Y-%m-%d'))
+        memo_fileleave = Memo_Routing(Id_Number = employeeID, Type_Request = 'File Leave', Date_Faculty_Submitted = datetime.today().strftime('%Y-%m-%d'), FormID = formPK)
         memo_fileleave.save()
         history = TransacHistory(Id_Number = employeeID, Transac_Type = 'File Leave', Type='Submitted', Date = datetime.today().strftime('%Y-%m-%d'))
         history.save()
