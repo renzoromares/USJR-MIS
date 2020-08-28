@@ -13,7 +13,6 @@ class Room_Transfer(models.Model):
     Date_Effective = models.DateField(null=True)
     Reason = models.TextField(max_length=150, null=False)
     FormID = models.ForeignKey(Form,on_delete = models.CASCADE)
-    timeSubmitted = models.TimeField(auto_now=True)
 
     class Meta:
         db_table = 'RoomTransfer'

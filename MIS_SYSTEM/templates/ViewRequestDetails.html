@@ -374,10 +374,24 @@
   {% ifequal dataMemo.Type_Request "Request for Certificate" %}
   {% endifequal %}
 <center>
-  <form action="{% url 'viewrequestfac' id=data.Id_Number.Id_Number %}" method="POST" onsubmit="myFunction()">
+  <form action="" method="POST" onsubmit="myFunction()">
           {% csrf_token %}
-          <button type="submit" name="Memo_ID" value="{{ dataMemo.id }}" class="btn btn-info btn-rounded">APPROVE</button>
-          <button type="submit" name="Form_ID" value="{{ dataDetails.FormID.Form_ID }}" class="btn btn-danger btn-rounded">DECLINE</button>
+          <a href="{% url 'viewrequestfac' id=data.Id_Number.Id_Number %}">
+          <button type="submit" name="Memo_ID" id="ApproveButton" value="{{ dataMemo.id }}" class="btn btn-info btn-rounded">APPROVE</button>
+          <button type="submit" name="Form_ID" id="DeclineButton" value="{{ dataDetails.FormID.Form_ID }}" class="btn btn-danger btn-rounded">DECLINE</button>
+      <script>
+      function myFunction() {
+        if(document.getElementById('ApproveButton').clicked == true)
+        {
+          alert("You have succesfully approved the request");
+        }
+
+        else if(document.getElementById('DeclineButton').clicked == true)
+        {
+          alert("You have succesfully decline the request");
+        }
+      }
+      </script>
         </form> 
       </center>
   </div>

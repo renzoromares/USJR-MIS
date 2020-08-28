@@ -88,7 +88,7 @@ def ViewRequestDetails(request,id,idf,idm):
     if request.method == "POST":
         if request.POST.get('Memo_ID') == idm:
             updateMemo = Memo_Routing.objects.get(id = request.POST["Memo_ID"])
-            if data.Status_Dept == 'Chairman':
+            if data.Status_Dept == 'Chairman':              
                 updateMemo.Date_Chairman_Approved=datetime.today().strftime('%Y-%m-%d')
                 updateMemo.save(update_fields=['Date_Chairman_Approved'])
             elif data.Status_Dept == 'Dean':
@@ -105,11 +105,13 @@ def ViewRequestDetails(request,id,idf,idm):
                 updateMemo.save(update_fields=['Date_HR_Approved'])
             elif data.Status_Dept == 'Accounting':
                 updateMemo.Date_Accounting_Approved=datetime.today().strftime('%Y-%m-%d')
-                updateMemo.save(update_fields=['Date_Accounting_Approved'])            
+                updateMemo.save(update_fields=['Date_Accounting_Approved'])
+            return redirect("viewrequestfac", id =data.Id_Number.Id_Number)            
         elif request.POST.get('Form_ID') == idf:
             updateForm = Form.objects.get(Form_ID = request.POST["Form_ID"])
             updateForm.Status = 'Declined'
             updateForm.save(update_fields=['Status'])
+            return redirect("viewrequestfac", id =data.Id_Number.Id_Number)
         #updateForm = Form.objects.get(id = request.POST["Form_ID"])
         #if data.Status_Dept == 'Chairman':
 

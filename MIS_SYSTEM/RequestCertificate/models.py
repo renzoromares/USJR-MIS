@@ -7,7 +7,6 @@ class Certifacate(models.Model):
     Others_Certificate = models.CharField(max_length=60, null=True)
     Reason = models.TextField(max_length=150, null=True)
     FormID = models.ForeignKey(Form,on_delete = models.CASCADE)
-    timeSubmitted = models.TimeField(auto_now=True)
     
 
     class Meta:

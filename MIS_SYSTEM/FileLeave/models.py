@@ -12,7 +12,6 @@ class Leave(models.Model):
     Reason = models.TextField(max_length=100,null=False)
     Image = models.ImageField(null = True, blank = True, upload_to = "images/")
     FormID = models.ForeignKey(Form,on_delete = models.CASCADE)
-    timeSubmitted = models.TimeField(auto_now=True)
     
 
     class Meta:

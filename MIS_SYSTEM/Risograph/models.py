@@ -12,7 +12,6 @@ class risograph(models.Model):
     File = models.ImageField(upload_to='pictures',null=True)
     Price = models.BigIntegerField(null=True)
     FormID = models.ForeignKey(Form,on_delete = models.CASCADE)
-    timeSubmitted = models.TimeField(auto_now=True)
 
     class Meta:
         db_table = 'Risograph'

@@ -12,7 +12,6 @@ class Schedule_Transfer(models.Model):
     Schedule_To = models.CharField(max_length=50,null=False) 
     Reason = models.TextField(max_length=100, null=False)
     FormID = models.ForeignKey(Form,on_delete = models.CASCADE)
-    timeSubmitted = models.TimeField(auto_now=True)
 
     class Meta:
         db_table = 'Schedule_Transfer'

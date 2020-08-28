@@ -35,8 +35,8 @@ class Form(models.Model):
     Form_ID = models.AutoField(primary_key=True)
     Id_Number = models.ForeignKey(Employee, on_delete = models.CASCADE)
     Type = models.CharField(max_length=50,null=False)
-    Date_Requested = models.DateField(null = True)
-    Date_Approved = models.DateField(null = True) 
+    Date_Requested = models.DateTimeField(null = True)
+    Date_Approved = models.DateTimeField(null = True) 
     Status = models.CharField(max_length=20, null=False)
 
     class Meta:
@@ -47,7 +47,7 @@ class TransacHistory(models.Model):
     Id_Number = models.ForeignKey(Employee, on_delete = models.CASCADE)
     Transac_Type = models.CharField(max_length=50,null=False)
     Type = models.CharField(max_length=50,null=False)
-    Date = models.DateField(null = True)
+    Date = models.DateTimeField(null = True)
 
     class Meta:
         db_table = 'History'
