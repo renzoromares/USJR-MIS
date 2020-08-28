@@ -11,7 +11,7 @@ def FileLeave(request,id):
     dateApprove = None
     
     if request.method == 'POST':
-        form = Form(Id_Number = employeeID, Type = 'File Leave' , Date_Requested = datetime.today().strftime('%Y-%m-%d,%H:%M'),Date_Approved = dateApprove ,Status = 'Pending')  
+        form = Form(Id_Number = employeeID, Type = 'File Leave' , Date_Requested = datetime.today(),Date_Approved = dateApprove ,Status = 'Pending')  
         form.save()
         formPK = Form.objects.get(Form_ID = form.pk)
         tempStatus = request.POST.get('status')
@@ -20,9 +20,9 @@ def FileLeave(request,id):
 
         fileleave = Leave(Id_Number = employeeID, Employee_Status = tempStatus ,Typeof_Leave = tempLeave , Date_Start = request.POST["Date_Start"],Date_End = request.POST["Date_End"],Period_Days ='3',Reason = request.POST["Reasons"],Image = upload_file, FormID = formPK)
         fileleave.save()
-        memo_fileleave = Memo_Routing(Id_Number = employeeID, Type_Request = 'File Leave', Date_Faculty_Submitted = datetime.today().strftime('%Y-%m-%d,%H:%M'), FormID = formPK)
+        memo_fileleave = Memo_Routing(Id_Number = employeeID, Type_Request = 'File Leave', Date_Faculty_Submitted = datetime.today(), FormID = formPK)
         memo_fileleave.save()
-        history = TransacHistory(Id_Number = employeeID, Transac_Type = 'File Leave', Type='Submitted', Date = datetime.today().strftime('%Y-%m-%d,%H:%M'))
+        history = TransacHistory(Id_Number = employeeID, Transac_Type = 'File Leave', Type='Submitted', Date = datetime.today())
         history.save()
         return render(request,"File a Leave.html", {'data' : data}) 
     else:

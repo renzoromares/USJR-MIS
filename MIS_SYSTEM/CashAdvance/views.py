@@ -10,15 +10,15 @@ def CashAdvance(request,id):
     employeeID = Employee.objects.get(Id_Number = id)
     dateApprove = None
     if(request.method == "POST"):    
-        form = Form(Id_Number = employeeID, Type = 'Cash Advance' , Date_Requested = datetime.today().strftime('%Y-%m-%d,%H:%M'),Date_Approved = dateApprove ,Status = 'Pending')  
+        form = Form(Id_Number = employeeID, Type = 'Cash Advance' , Date_Requested = datetime.today(),Date_Approved = dateApprove ,Status = 'Pending')  
         form.save()
         print(form.pk)
         formPK = Form.objects.get(Form_ID = form.pk)
         cash_advance = Cash_Advance(Id_Number = employeeID, Cash_Amount = request.POST["Amount"], Reason  = request.POST["Reason"], FormID = formPK)
         cash_advance.save()
-        memo_cash_advance = Memo_Routing(Id_Number = employeeID, Type_Request = 'Cash Advance', Date_Faculty_Submitted = datetime.today().strftime('%Y-%m-%d,%H:%M'), FormID = formPK)
+        memo_cash_advance = Memo_Routing(Id_Number = employeeID, Type_Request = 'Cash Advance', Date_Faculty_Submitted = datetime.today(), FormID = formPK)
         memo_cash_advance.save()
-        history = TransacHistory(Id_Number = employeeID, Transac_Type = 'Cash Advance', Type='Submitted', Date = datetime.today().strftime('%Y-%m-%d,%H:%M'))
+        history = TransacHistory(Id_Number = employeeID, Transac_Type = 'Cash Advance', Type='Submitted', Date = datetime.today())
         history.save()
         return render(request,"Cash Advance.html", {'data' : data})
     else:     
