@@ -110,28 +110,25 @@
   <div class="form-row">
     <div class="form-group col-md-4">
       <label for="datestart"><b>From</b>:</label>
-      <input type="date" class="form-control" id="datestart" name ="Date_Start" required>
+      <input type="text" class="form-control" value="{{ dataDetails.Date_Start }}" id="datestart" name ="Date_Start" disabled>
     </div>
     <div class="form-group col-md-4">
         <label for="dateEnd"><b>To:</b></label>
-        <input type="date" class="form-control" id="dateEnd" name = "Date_End" required>
+        <input type="text" class="form-control" value="{{ dataDetails.Date_End }}" id="dateEnd" name = "Date_End" disabled>
       </div>
     </div>
 
-<fieldset class="form-group">
-    <div class="row">
-      <legend class="col-form-label col-sm-2 pt-0"><b>Employment Status:</b></legend>
-      <input class="form-control" value="{{ dataDetails.Employee_Status }}" disabled>
-    </div>
-  </fieldset>
+    <div class="form-row">
+      <div class="form-group col-md-4">
+        <label for="Status"><b>Employment Status:</b>:</label>
+        <input type="text" class="form-control" value="{{ dataDetails.Employee_Status }}" id="Status" name ="Date_Start" disabled>
+      </div>
+      <div class="form-group col-md-4">
+          <label for="Leave"><b>Leave Applied For:</b></label>
+          <input type="text" class="form-control" value="{{ dataDetails.Typeof_Leave }}" id="Leave" name = "Date_End" disabled>
+        </div>
+      </div>
 
-
-  <fieldset class="form-group">
-    <div class="row">
-      <legend class="col-form-label col-sm-2 pt-0"><b>Leave Applied For:</b></legend>
-      <input class="form-control" value="{{ dataDetails.Typeof_Leave }}" disabled>
-    </div>
-  </fieldset>
 
 <!-- Textarea -->
 <center>
@@ -307,7 +304,7 @@
         <div class="form-row">
           <div class="form-group col-md-4">
             <label for="fromroom"><b>From Room:</b></label>
-            <input type="text" class="form-control" value={{dataDetails.Schedule_From }}id=fromroom name="Room_From" placeholder="" disabled>
+            <input type="text" class="form-control" value={{dataDetails.Schedule_From }} id=fromroom name="Room_From" placeholder="" disabled>
           </div>
           <div class="form-group col-md-4">
             <label for="to"><b>To:</b></label>
@@ -329,9 +326,15 @@
 
   {%ifequal dataMemo.Type_Request "ScheduleTransfer(Permanent)"%}
         <div class="form-row">
+
         <div class="form-group col-md-4">
+          <label for="desig"><b>Offer Code:</b></label>
+          <input type="text" class="form-control" value="{{dataDetails.Offer_Code}}" disabled>
+        </div>
+
+           <div class="form-group col-md-4">
           <label for="desig"><b>Subject:</b></label>
-          <input type="text" class="form-control" value="{{dataDetails.Subject}} {{dataDetails.Offer_Code}}" disabled>
+          <input type="text" class="form-control" value="{{dataDetails.Subject}}" disabled>
         </div>
 
         <div class="form-group col-md-4">
@@ -344,18 +347,18 @@
       <div class="form-row">
           <div class="form-group col-md-4">
             <label for="Roomfrom"><b>Transfer Room From</b>:</label>
-            <input type="text" class="form-control" name="Schedule_From" value="{{dataDetails.Room_From}}" disabled>
+            <input type="text" class="form-control" name="Schedule_From" value="{{dataDetails.Schedule_From}}" disabled>
           </div>
           <div class="form-group col-md-4">
               <label for="Roomto"><b>To:</b></label>
-              <input type="text" class="form-control" name="Schedule_To" value="{{dataDetails.Room_To}}" disabled>
+              <input type="text" class="form-control" name="Schedule_To" value="{{dataDetails.Schedule_To}}" disabled>
             </div>
       </div>
   
       <div class="form-row">
           <div class="form-group col-md-4">
             <label for="TakeEffect"><b>To take effect on:</b></label>
-            <input type="date" class="form-control" name="Date_Effective" value="{{dataDetails.Date_Effective}}" disabled>
+            <input type="text" class="form-control" name="Date_Effective" value="{{dataDetails.Date_Effective}}" disabled>
           </div>
         </div>
       
@@ -364,7 +367,7 @@
       <div class="form-group">
       <label class="col-md-4 control-label" for="textarea"><b>Reasons:</b></label>
       <div class="col-md-8">                     
-      <textarea class="form-control" id="textarea"  name="Reason" value="{{dateDetails.Reason}}" disabled ></textarea>
+      <textarea class="form-control" id="textarea"  name="Reason" disabled>{{dataDetails.Reason}}</textarea>
       </div>
       </div>
       </center>
@@ -372,25 +375,38 @@
   {%endifequal%}
 
   {% ifequal dataMemo.Type_Request "Request for Certificate" %}
+
+        <center>
+    <div class="form-group">
+      <div class="form-group col-md-4">
+        <label for="subject"><b><strong>Certificate to Request:</b></strong></label>
+        <input type="text" class="form-control" name = "Amount" id=subject value="{{dataDetails.Certificate_To_Request}}" disabled>
+      </div>
+    </div>
+  
+
+  <div class="form-group">
+  <label class="col-md-4 control-label" for="textarea"><b>Request for Certificate Reason:</b></label>
+  <div class="col-md-8">                     
+  <textarea class="form-control" id="textarea" name="Reason" rows="9" cols="80" disabled>{{ dataDetails.Reason }}</textarea>
+  </div>
+  </div>
+  </center>
   {% endifequal %}
 <center>
-  <form action="" method="POST" onsubmit="myFunction()">
+  <form action="" method="POST">
           {% csrf_token %}
           <a href="{% url 'viewrequestfac' id=data.Id_Number.Id_Number %}">
-          <button type="submit" name="Memo_ID" id="ApproveButton" value="{{ dataMemo.id }}" class="btn btn-info btn-rounded">APPROVE</button>
-          <button type="submit" name="Form_ID" id="DeclineButton" value="{{ dataDetails.FormID.Form_ID }}" class="btn btn-danger btn-rounded">DECLINE</button>
+          <button type="submit" name="Memo_ID" onclick="ApprovedFunction()" value="{{ dataMemo.id }}" class="btn btn-info btn-rounded">APPROVE</button>
+          <button type="submit" name="Form_ID" onclick="DeclineFunction()" id="DeclineButton" value="{{ dataDetails.FormID.Form_ID }}" class="btn btn-danger btn-rounded">DECLINE</button>
       <script>
-      function myFunction() {
-        if(document.getElementById('ApproveButton').clicked == true)
-        {
+      function ApprovedFunction() {
           alert("You have succesfully approved the request");
         }
 
-        else if(document.getElementById('DeclineButton').clicked == true)
-        {
+        function DeclineFunction() {
           alert("You have succesfully decline the request");
         }
-      }
       </script>
         </form> 
       </center>
