@@ -10,6 +10,7 @@ class Schedule_Transfer(models.Model):
     Time_Day = models.CharField(max_length=50,null=False)
     Schedule_From = models.CharField(max_length=50,null=False)
     Schedule_To = models.CharField(max_length=50,null=False) 
+    Date_Effective = models.DateField(null=True)
     Reason = models.TextField(max_length=100, null=False)
     FormID = models.ForeignKey(Form,on_delete = models.CASCADE)
 

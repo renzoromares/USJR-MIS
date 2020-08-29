@@ -128,18 +128,32 @@
             <input type="text" class="form-control" id="daysnum" name="Time_Day" required>
           </div>
         </div>
-        <p><b>This is to inform the IMS of the following activity/ies of my class to be conducted as specified:</p></b>
+        <center>
+          <p1><u><b>This is to inform the IMS of the following activity/ie of my class to be conducted as specified</b></p1></u></b>
+        </center>
 
+
+          <p2><b>Schedule Transfer </p></b>
         <div class="form-row">
-            <div class="form-group col-md-4">
-              <label for="datestart"><b>From</b>:</label>
-              <input type="date" class="form-control" id="datestart" name="Schedule_From" required>
+          <div class="form-group col-md-4">
+            <label for="fromroom"><b>From:</b></label>
+            <input type="date" class="form-control" id=fromroom name="Schedule_From" required>
+          </div>
+          <div class="form-group col-md-4">
+            <label for="to"><b>To:</b></label>
+            <input type="text" class="form-control" id=to name="Schedule_To" required>
+          </div>
             </div>
+
+
+          <p3>To take effect on</p>
+
+          <div class="form-row">
             <div class="form-group col-md-4">
-                <label for="dateEnd"><b>To:</b></label>
-                <input type="date" class="form-control" id="dateEnd" name="Schedule_To" required>
-              </div>
+              <label for="Date"><b>Date:</b></label>
+              <input type="date" class="form-control" placeholder="" name="Date_Effective">
             </div>
+          </div>
        
        
         <!-- Textarea -->

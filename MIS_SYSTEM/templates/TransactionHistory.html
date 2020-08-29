@@ -205,6 +205,7 @@
       <table class="table mb-3 mt-3 table-striped">
         <thead>
             <tr>
+              <th scope="col"></th>
               <th scope="col">Date</th>
               <th scope="col">Transaction</th>
             </tr>
@@ -212,8 +213,10 @@
         <tbody>
           {% for items in datatrans %}
           <tr>
-            <td>{{items.Date}}</td>
-            <td>{{ items.Type }} {{ items.Transac_Type }} request</td> 
+          <td>{{items.First_Name}} {{items.Last_Name}}</td>
+            <td>{{items.transachistory__Date}}</td>
+            <td>{{ items.transachistory__Type}} {{ items.transachistory__Transac_Type }} request</td> 
+            <td> <button type="submit"  class="btn btn-danger btn-rounded">Remove</button></td>
           </tr>
           {% endfor %}
         </tbody>
