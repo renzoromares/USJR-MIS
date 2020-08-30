@@ -397,16 +397,17 @@
   <form action="" method="POST">
           {% csrf_token %}
           <a href="{% url 'viewrequestfac' id=data.Id_Number.Id_Number %}">
-          <button type="submit" name="Memo_ID" onclick="ApprovedFunction()" value="{{ dataMemo.id }}" class="btn btn-info btn-rounded">APPROVE</button>
-          <button type="submit" name="Form_ID" onclick="DeclineFunction()" id="DeclineButton" value="{{ dataDetails.FormID.Form_ID }}" class="btn btn-danger btn-rounded">DECLINE</button>
+          <button type="submit" name="Memo_ID" onclick="MessageFunction(1)" value="{{ dataMemo.id }}" class="btn btn-info btn-rounded">APPROVE</button>
+          <button type="submit" name="Form_ID" onclick="MessageFunction(2)" id="DeclineButton" value="{{ dataDetails.FormID.Form_ID }}" class="btn btn-danger btn-rounded">DECLINE</button>
       <script>
-      function ApprovedFunction() {
-          alert("You have succesfully approved the request");
+      function MessageFunction(value) {
+        if (value==1){
+          document.querySelector('#Approve_Modal').style.display = 'flex';
         }
-
-        function DeclineFunction() {
-          alert("You have succesfully decline the request");
+        else{
+          document.querySelector('#Decline_Modal').style.display = 'flex';
         }
+      }
       </script>
         </form> 
       </center>
@@ -437,5 +438,32 @@
       </div>
     </div>
   </footer>
+<!-----------------------------------------modal----------------------------------------->
+<div class="bg-modal" id="Approve_Modal">
+  <div class="bg-content">
+    <p>You have successfully approved the request.</p>
+      <div class="buttons">
+        <button type="button" onclick="closeForm(1)" class="btn btn-info btn-rounded" id="btnApproved" name="ButtonPopUP" valu>OK</button>
+      </div> 
+  </div>
+</div>
+<div class="bg-modal" id="Decline_Modal">
+  <div class="bg-content">
+    <p>You have successfully declined the request.</p>
+      <div class="buttons">
+        <button type="button" onclick="closeForm(2)" class="btn btn-info btn-rounded" id="btnApproved" name="ButtonPopUP" valu>OK</button>
+      </div> 
+  </div>
+</div>
+<script>
+  function closeForm(value) {
+        if (value==1){
+          document.querySelector('#Approve_Modal').style.display = 'none';
+        }
+        else{
+          document.querySelector('#Decline_Modal').style.display = 'none';
+        }
+      }
+</script>
 </body>
 </html>

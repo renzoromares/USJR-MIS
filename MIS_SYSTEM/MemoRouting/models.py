@@ -5,6 +5,7 @@ from Accounts.models import Employee, Form
 class Memo_Routing(models.Model):
     Id_Number = models.ForeignKey(Employee,on_delete=models.CASCADE)
     FormID = models.ForeignKey(Form,on_delete=models.CASCADE)
+    Status = models.CharField(max_length=20, null=True)
     Type_Request = models.CharField(null = False, max_length=100)
     Date_Faculty_Submitted = models.DateTimeField(null = True)
     Date_Chairman_Approved = models.DateTimeField(null = True)

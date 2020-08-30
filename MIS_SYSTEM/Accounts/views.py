@@ -53,6 +53,6 @@ def Dashboard(request,id):
 
 def TransactionHistory(request,id):
     data = Department.objects.prefetch_related('Id_Number').get(Id_Number = id)
-    #datatrans = TransacHistory.objects.filter(Id_Number = id)
-    datatrans = Employee.objects.filter(Id_Number = id).values('transachistory__Date', 'transachistory__Type', 'transachistory__Transac_Type','First_Name','Last_Name')
+    datatrans = TransacHistory.objects.filter(Id_Number = id)
     return render(request,"TransactionHistory.html", {'data' : data, 'datatrans' : datatrans})
+    

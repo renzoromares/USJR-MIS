@@ -228,7 +228,7 @@
         <td>{{ items.form__Status }}</td>
         {% endifequal %}
         {% ifequal data.Status_Dept "Chairman" %}
-          <td>{{ items.memo_routing__Type_Request }}<br>Filed by: {{ items.First_Name }} {{ items.Last_Name }}</td>
+          <td>{{ items.memo_routing__Type_Request }} {{ items.memo_routing__Status }}<br>Filed by: {{ items.First_Name }} {{ items.Last_Name }}</td>
           <td>{{ items.memo_routing__Date_Faculty_Submitted }}</td>
           <td>
               {% csrf_token %} 
@@ -309,6 +309,6 @@
       </div>
     </div>
   </footer>
-<!-----------------------------------------modal----------------------------------------->
+
 </body>
 </html>

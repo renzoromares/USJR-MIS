@@ -16,10 +16,10 @@ def CashAdvance(request,id):
         formPK = Form.objects.get(Form_ID = form.pk)
         cash_advance = Cash_Advance(Id_Number = employeeID, Cash_Amount = request.POST["Amount"], Reason  = request.POST["Reason"], FormID = formPK)
         cash_advance.save()
-        memo_cash_advance = Memo_Routing(Id_Number = employeeID, Type_Request = 'Cash Advance', Date_Faculty_Submitted = datetime.today(), FormID = formPK)
+        memo_cash_advance = Memo_Routing(Id_Number = employeeID, Type_Request = 'Cash Advance', Date_Faculty_Submitted = datetime.today(), FormID = formPK, Status = 'Pending')
         memo_cash_advance.save()
         history = TransacHistory(Id_Number = employeeID, Transac_Type = 'Cash Advance', Type='Submitted', Date = datetime.today())
         history.save()
-        return render(request,"Cash Advance.html", {'data' : data})
+        return redirect("transachis", id = data.Id_Number.Id_Number)
     else:     
         return render(request,"Cash Advance.html", {'data' : data}) 

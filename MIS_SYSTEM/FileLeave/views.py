@@ -20,11 +20,11 @@ def FileLeave(request,id):
 
         fileleave = Leave(Id_Number = employeeID, Employee_Status = tempStatus ,Typeof_Leave = tempLeave , Date_Start = request.POST["Date_Start"],Date_End = request.POST["Date_End"],Period_Days ='3',Reason = request.POST["Reasons"],Image = upload_file, FormID = formPK)
         fileleave.save()
-        memo_fileleave = Memo_Routing(Id_Number = employeeID, Type_Request = 'File Leave', Date_Faculty_Submitted = datetime.today(), FormID = formPK)
+        memo_fileleave = Memo_Routing(Id_Number = employeeID, Type_Request = 'File Leave', Date_Faculty_Submitted = datetime.today(), FormID = formPK, Status = 'Pending')
         memo_fileleave.save()
         history = TransacHistory(Id_Number = employeeID, Transac_Type = 'File Leave', Type='Submitted', Date = datetime.today())
         history.save()
-        return render(request,"File a Leave.html", {'data' : data}) 
+        return redirect("transachis", id = data.Id_Number.Id_Number) 
     else:
         return render(request,"File a Leave.html", {'data' : data}) 
 

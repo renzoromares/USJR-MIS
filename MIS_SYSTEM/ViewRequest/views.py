@@ -28,7 +28,7 @@ def ViewRequestFac(request,id):
     data = Department.objects.prefetch_related('Id_Number').get(Id_Number = id)
 
     if data.Status_Dept=='Chairman':
-        dataForm = Employee.objects.filter(department__Status_Dept = 'Faculty', department__department = data.department, form__Status = 'Pending', memo_routing__Date_Chairman_Approved = None, memo_routing__FormID__isnull = False).distinct('memo_routing__FormID').values('memo_routing__id','First_Name','Last_Name','memo_routing__Type_Request','memo_routing__Date_Faculty_Submitted','memo_routing__FormID')
+        dataForm = Employee.objects.filter(department__Status_Dept = 'Faculty', department__department = data.department, memo_routing__Status = 'Pending', memo_routing__Date_Chairman_Approved = None, memo_routing__FormID__isnull = False).distinct('memo_routing__id').values('memo_routing__Status','memo_routing__id','First_Name','Last_Name','memo_routing__Type_Request','memo_routing__Date_Faculty_Submitted','memo_routing__FormID')
     elif data.Status_Dept=='Faculty':
         dataForm = Employee.objects.filter(Id_Number = id, form__Form_ID__isnull = False).values('form__Type','form__Date_Requested','form__Date_Approved','form__Status')
     elif data.Status_Dept=='Dean':
@@ -93,41 +93,46 @@ def ViewRequestDetails(request,id,idf,idm):
         if request.POST.get('Memo_ID') == idm:
             updateMemo = Memo_Routing.objects.get(id = request.POST["Memo_ID"])
             if data.Status_Dept == 'Chairman':              
-                updateMemo.Date_Chairman_Approved=datetime.today().strftime('%Y-%m-%d')
+                updateMemo.Date_Chairman_Approved=datetime.today()
                 updateMemo.save(update_fields=['Date_Chairman_Approved'])
-                history = TransacHistory(Id_Number = data.Id_Number, Transac_Type = dataDetails.FormID.Type, Type='Approved', Date = datetime.today())
+                history = TransacHistory(Id_Number = data.Id_Number, Faculty_Id = dataEm.Id_Number.Id_Number, Faculty_Name = dataEm.Id_Number.First_Name + " " + dataEm.Id_Number.Last_Name, Transac_Type = dataDetails.FormID.Type, Type='Approved', Date = datetime.today())
                 history.save() 
             elif data.Status_Dept == 'Dean':
-                updateMemo.Date_Dean_Approved=datetime.today().strftime('%Y-%m-%d')
+                updateMemo.Date_Dean_Approved=datetime.today()
                 updateMemo.save(update_fields=['Date_Dean_Approved'])
-                history = TransacHistory(Id_Number = data.Id_Number, Transac_Type = dataDetails.FormID.Type, Type='Approved', Date = datetime.today())
+                history = TransacHistory(Id_Number = data.Id_Number, Faculty_Id = dataEm.Id_Number.Id_Number, Faculty_Name = dataEm.Id_Number.First_Name + " " + dataEm.Id_Number.Last_Name, Transac_Type = dataDetails.FormID.Type, Type='Approved', Date = datetime.today())
                 history.save() 
             elif data.Status_Dept == 'VP Academics':
-                updateMemo.Date_VP_Acad_Approved=datetime.today().strftime('%Y-%m-%d')
+                updateMemo.Date_VP_Acad_Approved=datetime.today()
                 updateMemo.save(update_fields=['Date_VP_Acad_Approved'])
-                history = TransacHistory(Id_Number = data.Id_Number, Transac_Type = dataDetails.FormID.Type, Type='Approved', Date = datetime.today())
+                history = TransacHistory(Id_Number = data.Id_Number, Faculty_Id = dataEm.Id_Number.Id_Number, Faculty_Name = dataEm.Id_Number.First_Name + " " + dataEm.Id_Number.Last_Name, Transac_Type = dataDetails.FormID.Type, Type='Approved', Date = datetime.today())
                 history.save() 
             elif data.Status_Dept == 'President':
-                updateMemo.Date_President_Approved=datetime.today().strftime('%Y-%m-%d')
+                updateMemo.Date_President_Approved=datetime.today()
                 updateMemo.save(update_fields=['Date_President_Approved'])
-                history = TransacHistory(Id_Number = data.Id_Number, Transac_Type = dataDetails.FormID.Type, Type='Approved', Date = datetime.today())
+                history = TransacHistory(Id_Number = data.Id_Number, Faculty_Id = dataEm.Id_Number.Id_Number, Faculty_Name = dataEm.Id_Number.First_Name + " " + dataEm.Id_Number.Last_Name, Transac_Type = dataDetails.FormID.Type, Type='Approved', Date = datetime.today())
                 history.save() 
             elif data.Status_Dept == 'HR':
-                updateMemo.Date_HR_Approved=datetime.today().strftime('%Y-%m-%d')
+                updateMemo.Date_HR_Approved=datetime.today()
                 updateMemo.save(update_fields=['Date_HR_Approved'])
-                history = TransacHistory(Id_Number = data.Id_Number, Transac_Type = dataDetails.FormID.Type, Type='Approved', Date = datetime.today())
+                history = TransacHistory(Id_Number = data.Id_Number, Faculty_Id = dataEm.Id_Number.Id_Number, Faculty_Name = dataEm.Id_Number.First_Name + " " + dataEm.Id_Number.Last_Name, Transac_Type = dataDetails.FormID.Type, Type='Approved', Date = datetime.today())
                 history.save() 
             elif data.Status_Dept == 'Accounting':
-                updateMemo.Date_Accounting_Approved=datetime.today().strftime('%Y-%m-%d')
+                updateMemo.Date_Accounting_Approved=datetime.today()
                 updateMemo.save(update_fields=['Date_Accounting_Approved'])
-                history = TransacHistory(Id_Number = data.Id_Number, Transac_Type = dataDetails.FormID.Type, Type='Approved', Date = datetime.today())
+                history = TransacHistory(Id_Number = data.Id_Number, Faculty_Id = dataEm.Id_Number.Id_Number, Faculty_Name = dataEm.Id_Number.First_Name + " " + dataEm.Id_Number.Last_Name, Transac_Type = dataDetails.FormID.Type, Type='Approved', Date = datetime.today())
                 history.save() 
-            return redirect("viewrequestfac", id =data.Id_Number.Id_Number)            
+            return redirect("transachis", id =data.Id_Number.Id_Number)            
         elif request.POST.get('Form_ID') == idf:
             updateForm = Form.objects.get(Form_ID = request.POST["Form_ID"])
+            updateMemo = Memo_Routing.objects.get(FormID = request.POST["Form_ID"])
             updateForm.Status = 'Declined'
+            updateMemo.Status = 'Declined'
             updateForm.save(update_fields=['Status'])
-            return redirect("viewrequestfac", id =data.Id_Number.Id_Number)
+            updateMemo.save(update_fields=['Status'])
+            history = TransacHistory(Id_Number = data.Id_Number, Faculty_Id = dataEm.Id_Number.Id_Number, Faculty_Name = dataEm.Id_Number.First_Name + " " + dataEm.Id_Number.Last_Name, Transac_Type = dataDetails.FormID.Type, Type='Declined', Date = datetime.today())
+            history.save()
+            return redirect("transachis", id = data.Id_Number.Id_Number)
         #updateForm = Form.objects.get(id = request.POST["Form_ID"])
         #if data.Status_Dept == 'Chairman':
 

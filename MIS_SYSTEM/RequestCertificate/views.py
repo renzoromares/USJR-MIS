@@ -14,11 +14,11 @@ def RequestCertificate(request,id):
         formPK = Form.objects.get(Form_ID = form.pk)
         certificate = Certifacate(Id_Number=employeeID,Certificate_To_Request=request.POST["Certificate"],Others_Certificate=request.POST["Others_Certificate"],Reason=request.POST["Reason"], FormID = formPK)
         certificate.save()
-        memo_certificate = Memo_Routing(Id_Number = employeeID, Type_Request = 'Request for Certificate', Date_Faculty_Submitted = datetime.today(), FormID = formPK)
+        memo_certificate = Memo_Routing(Id_Number = employeeID, Type_Request = 'Request for Certificate', Date_Faculty_Submitted = datetime.today(), FormID = formPK, Status = 'Pending')
         memo_certificate.save()
         history = TransacHistory(Id_Number = employeeID, Transac_Type = 'Certificate', Type='Submitted', Date = datetime.today())
         history.save()
-        return render(request,"Request Certificate.html", {'data' : data}) 
+        return redirect("transachis", id = data.Id_Number.Id_Number) 
             
     else:
         return render(request,"Request Certificate.html", {'data' : data}) 

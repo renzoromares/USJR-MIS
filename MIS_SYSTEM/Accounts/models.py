@@ -45,6 +45,8 @@ class Form(models.Model):
 
 class TransacHistory(models.Model):
     Id_Number = models.ForeignKey(Employee, on_delete = models.CASCADE)
+    Faculty_Id = models.IntegerField(null = True)
+    Faculty_Name = models.CharField(max_length=50,null = True)
     Transac_Type = models.CharField(max_length=50,null=False)
     Type = models.CharField(max_length=50,null=False)
     Date = models.DateTimeField(null = True)
