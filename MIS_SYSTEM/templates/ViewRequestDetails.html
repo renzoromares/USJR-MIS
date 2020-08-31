@@ -310,7 +310,13 @@
             <label for="to"><b>To:</b></label>
             <input type="text" class="form-control" value={{dataDetails.Schedule_To}} id=to name="Room_To" placeholder="" disabled>
           </div>
-            </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group col-md-4">
+            <label for="TakeEffect"><b>To take effect on:</b></label>
+            <input type="text" class="form-control" name="Date_Effective" value="{{dataDetails.Date_Effective}}" disabled>
+          </div>
+       </div>
 
 
         <!-- Textarea -->
@@ -358,9 +364,9 @@
       <div class="form-row">
           <div class="form-group col-md-4">
             <label for="TakeEffect"><b>To take effect on:</b></label>
-            <input type="date" class="form-control" name="Date_Effective" value="{{dataDetails.Date_Effective}}" disabled>
+            <input type="text" class="form-control" name="Date_Effective" value="{{dataDetails.Date_Effective}}" disabled>
           </div>
-        </div>
+      </div>
       
 
       <center>
@@ -394,7 +400,7 @@
   </center>
   {% endifequal %}
 <center>
-  <form action="" method="POST">
+  <form action="" method="POST"> 
           {% csrf_token %}
           <a href="{% url 'viewrequestfac' id=data.Id_Number.Id_Number %}">
           <button type="submit" name="Memo_ID" onclick="MessageFunction(1)" value="{{ dataMemo.id }}" class="btn btn-info btn-rounded">APPROVE</button>
@@ -438,6 +444,7 @@
       </div>
     </div>
   </footer>
+ </div>
 <!-----------------------------------------modal----------------------------------------->
 <div class="bg-modal" id="Approve_Modal">
   <div class="bg-content">
@@ -449,7 +456,7 @@
 </div>
 <div class="bg-modal" id="Decline_Modal">
   <div class="bg-content">
-    <p>You have successfully declined the request.</p>
+      <p>You have successfully declined the request.</p>
       <div class="buttons">
         <button type="button" onclick="closeForm(2)" class="btn btn-info btn-rounded" id="btnApproved" name="ButtonPopUP" valu>OK</button>
       </div> 
