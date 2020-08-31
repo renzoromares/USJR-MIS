@@ -34,29 +34,14 @@
       </button>
       <div class="collapse navbar-collapse" id="navbarNavDropdown">
         <ul class="navbar-nav ml-auto">
-          <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                Requests
-              </a>
-              <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                <a class="dropdown-item" href="{% url 'viewrequestpao' id=dataEmployee.Id_Number.Id_Number  %} "> View Request</a>
-                <a class="dropdown-item" href="{% url 'makeupclass' id=dataEmployee.Id_Number.Id_Number  %}">Make-up Class</a>
-                <a class="dropdown-item" href="{% url 'cashadvance' id=dataEmployee.Id_Number.Id_Number   %}">Cash Advance</a>
-                <a class="dropdown-item" href="{% url 'requestcertificate' id=dataEmployee.Id_Number.Id_Number  %}">Certificate</a>
-              </div>
-            </li>
                    
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               Other Transcations
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-              <a class="dropdown-item" href="{% url 'fileleave' id= %}">File a Leave</a>
-              <a class="dropdown-item" href="{% url 'roomtransfer' id=2016019590 %}">Room Transfer</a>
-              <a class="dropdown-item" href="{% url 'scheduletransfer' id=2016019590  %}">Schedule Transfer</a>
-              <a class="dropdown-item" href="{% url  'attendancereport' id=2016019590 %}">Attendance Report</a>
-              <a class="dropdown-item" href="{% url 'memorouting' id=2016019590 %}">Memo Routing</a>
-              <a class="dropdown-item" href="{% url 'risograph' id=2016019590 %}">Requisition for Risograph</a>
+                  <a class="dropdown-item" href="{% url 'viewrequestfac' id=dataEmployee.Id_Number.Id_Number %}">View Request</a>
+                  <a class="dropdown-item" href="{% url 'transachis' id=dataEmployee.Id_Number.Id_Number  %}">Transaction History</a>
             </div>
           </li>
 
@@ -100,15 +85,15 @@
   <table class="table mb-3 mt-3 "style="width: 100%">
     <thead>
       <tr id="gg">
-        <th scope="col">#</th>
-        <b><th scope="col">College/Department:</th>
-        <b><th scope="col">Date Requested</th></b>
 		    <th scope="col">No. Copies</th>
 		    <th scope="col">Paper Type</th>
 	    	<th scope="col">Paper Size</th>
-        <th scope="col">Status</th>
-        <th scope="col">Date Approved</th>
         <th scope="col">Price</th>
+        <th></th>
+        <th></th>
+        <th></th>
+        <th></th>
+        <th></th>
       </tr>
     </thead>
     <tbody>
@@ -118,23 +103,26 @@
           <form method="POST" onsubmit="myFunction()">
             {% csrf_token %}
             <tr>
-            <th scope="row">{{ forloop.counter }}</th>
-            <td>{{items.risograph__Department}}</td>
-            <td>{{items.form__Date_Requested}}</td>   
             <td>{{items.risograph__No_of_Copies}}</td>
             <td>{{items.risograph__Paper_Type}}</td>
             <td>{{items.risograph__Size}}</td>
-            <td>{{items.form__Status}}</td>
-            <td>{{items.form__Date_Approved}}</td>
-            <td><input type="text" class="form-control" name="price" size="10" placeholder="₱" required></td>
-            <td><input type="text" class="form-control" name="Riso_ID" value="{{items.risograph__Risograph_ID}}" hidden></button></td>
-            <td><button type="submit" class="btn btn-info" name="FormID" value="{{items.form__Form_ID}}">SUBMIT</button></td>
+            <td><input type="number" min="1" style="width: 7em" id="price" class="form-control" name="price" size="10" placeholder="₱" required></td>
+            <td><input type="hidden" class="form-control" name="Riso_ID" value="{{items.risograph__Risograph_ID}}" ></button></td>
+            <td><input type="hidden" class="form-control" name="EmployeeNumber" value="{{items.Id_Number}}" ></td>
+            <td><input type="hidden" class="form-control" name="EmployeeName" value="{{items.First_Name}} {{items.Last_Name}}" ></td>
+            <td><button type="submit" class="btn btn-info" name="buttonButton" onclick="MessageFunction(1)"  value="approve">SUBMIT</button></td>
+            <td><button type="submit" name="buttonButton" onclick="onclick="MessageFunction(2)"  value="decline" class="btn btn-danger btn-rounded">DECLINE</button></td>
             </tr>
-                <script>
-                function myFunction() {
-                alert("You have succesfully Approved the request");
-                }
-                </script>
+            <script>
+            function MessageFunction(value) {
+              if (value==1){
+                document.querySelector('#Approve_Modal').style.display = 'flex';
+              }
+              else{
+                document.querySelector('#Decline_Modal').style.display = 'flex';
+              }
+            }
+            </script>
           </form>
       {% endfor %}
     </tbody>
@@ -168,5 +156,32 @@
       </div>
     </div>
   </footer>
+  <!-----------------------------------------modal----------------------------------------->
+<div class="bg-modal" id="Approve_Modal">
+  <div class="bg-content">
+    <p>You have successfully approved the request.</p>
+      <div class="buttons">
+        <button type="button" onclick="closeForm(1)" class="btn btn-info btn-rounded" id="btnApproved" name="ButtonPopUP" valu>OK</button>
+      </div> 
+  </div>
+</div>
+<div class="bg-modal" id="Decline_Modal">
+  <div class="bg-content">
+      <p>You have successfully declined the request.</p>
+      <div class="buttons">
+        <button type="button" onclick="closeForm(2)" class="btn btn-info btn-rounded" id="btnApproved" name="ButtonPopUP" valu>OK</button>
+      </div> 
+  </div>
+</div>
+<script>
+  function closeForm(value) {
+        if (value==1){
+          document.querySelector('#Approve_Modal').style.display = 'none';
+        }
+        else{
+          document.querySelector('#Decline_Modal').style.display = 'none';
+        }
+      }
+</script>
 </body>
 </html>

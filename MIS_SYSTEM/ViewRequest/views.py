@@ -40,28 +40,42 @@ def ViewRequestFac(request,id):
     elif data.Status_Dept=='HR':
         dataForm = Employee.objects.filter(memo_routing__Date_Chairman_Approved__isnull = False, memo_routing__Date_Dean_Approved__isnull = False, memo_routing__Date_VP_Acad_Approved__isnull = False, memo_routing__Date_President_Approved__isnull = False, memo_routing__Date_HR_Approved = None, form__Form_ID__isnull = False, form__Status = 'Pending', memo_routing__Type_Request__in = ('Cash Advance','File Leave')).distinct('memo_routing__id').values('memo_routing__id','First_Name','Last_Name','memo_routing__Type_Request','memo_routing__Date_Faculty_Submitted','memo_routing__FormID')
     elif data.Status_Dept=='PAO':
-        dataForm = Employee.objects.filter(memo_routing__Date_Chairman_Approved__isnull = False, memo_routing__Date_Dean_Approved__isnull = False, memo_routing__Date_PAO_Approved = None, form__Form_ID__isnull = False, form__Status = 'Pending', memo_routing__Type_Request = 'Risograph').distinct('memo_routing__id').values('memo_routing__id','First_Name','Last_Name','memo_routing__Type_Request','memo_routing__Date_Faculty_Submitted','memo_routing__FormID')
+        dataForm = Employee.objects.filter(form__Type='Risograph',form__Status='Pending',risograph__Price = None).distinct('risograph__Risograph_ID').values('risograph__Risograph_ID','risograph__Department','risograph__Paper_Type','risograph__No_of_Copies','risograph__Size','risograph__File','form__Status','form__Date_Requested','form__Form_ID','First_Name','Last_Name','Id_Number')
     elif data.Status_Dept=='Accounting':
         dataForm = Employee.objects.filter(memo_routing__Date_Chairman_Approved__isnull = False, memo_routing__Date_Dean_Approved__isnull = False, memo_routing__Date_VP_Acad_Approved__isnull = False, memo_routing__Date_President_Approved__isnull = False, memo_routing__Date_HR_Approved__isnull = False, memo_routing__Date_Accounting_Approved = None, form__Form_ID__isnull = False, form__Status = 'Pending', memo_routing__Type_Request = 'Cash Advance').distinct('memo_routing__id').values('memo_routing__id','First_Name','Last_Name','memo_routing__Type_Request','memo_routing__Date_Faculty_Submitted','memo_routing__FormID')
+    elif data.Status_Dept=='IMS':
+        dataForm = Employee.objects.filter(memo_routing__Status='Approved').distinct('memo_routing__id').values('memo_routing__id','First_Name','Last_Name','memo_routing__Type_Request','memo_routing__Date_Faculty_Submitted','memo_routing__FormID')
     return render(request,"ViewRequestsFac.html", {'data' : data, 'dataForm' : dataForm})
 
-def ViewRequestPao(request,id):
+def ViewRequestPao(request,id,idr):
     dataEmployee = Department.objects.prefetch_related('Id_Number').get(Id_Number = id)
-    data = Employee.objects.filter(form__Type='Risograph',form__Status='Pending',risograph__Price = None).distinct('risograph__Risograph_ID').values('risograph__Risograph_ID','risograph__Department','risograph__Paper_Type','risograph__No_of_Copies','risograph__Size','risograph__File','form__Status','form__Date_Approved','form__Date_Requested','form__Form_ID')
-    if request.method == "POST": 
-        updateRiso=risograph.objects.get(Risograph_ID=request.POST["Riso_ID"])
-        updateRiso.Price= request.POST["price"]
-        updateRiso.save(update_fields=['Price'])
-            
-        update=Memo_Routing.objects.get(Form_ID=request.POST["FormID"])
-        update.Date_Approved=datetime.today().strftime('%Y-%m-%d')
-        update.save(update_fields=['Date_Approved'])
+    empID = Employee.objects.get(Id_Number=id)
+    data = Employee.objects.filter(form__Type='Risograph',form__Status='Pending',risograph__Risograph_ID=idr ,risograph__Price = None).distinct('risograph__Risograph_ID').values('risograph__Risograph_ID','risograph__Department','risograph__Paper_Type','risograph__No_of_Copies','risograph__Size','risograph__File','form__Status','form__Date_Approved','form__Date_Requested','form__Form_ID','First_Name','Last_Name','Id_Number')
+    if request.method == "POST":
+        if request.POST["buttonButton"] == 'approve': 
+            updateRiso=risograph.objects.filter(Risograph_ID=request.POST["Riso_ID"]).update(Price=request.POST["price"])
+            FormPK = risograph.objects.filter(Risograph_ID=request.POST["Riso_ID"]).values('FormID')
+            for formID in FormPK:
+                formupdate = Form.objects.filter(Form_ID=formID['FormID']).update(Status="Approved")           
+                update=Memo_Routing.objects.filter(FormID=formID['FormID']).update(Date_PAO_Approved=datetime.today(),Status='Approved')   
+            history = TransacHistory(Id_Number= empID, Faculty_Id=request.POST["EmployeeNumber"], Faculty_Name=request.POST["EmployeeName"], Transac_Type='Risograph',Type='Approved',Date=datetime.today())   
+            history.save()   
+ 
+        elif request.POST["buttonButton"] == 'decline': 
+            updateRiso=risograph.objects.filter(Risograph_ID=request.POST["Riso_ID"]).update(Price=None)
+            FormPK = risograph.objects.filter(Risograph_ID=request.POST["Riso_ID"]).values('FormID')
+            for formID in FormPK:
+                formupdate = Form.objects.filter(Form_ID=formID['FormID']).update(Status="Declined")           
+                updateMemo=Memo_Routing.objects.filter(FormID=formID['FormID']).update(Status="Declined") 
+            history = TransacHistory(Id_Number= empID, Faculty_Id=request.POST["EmployeeNumber"], Faculty_Name=request.POST["EmployeeName"], Transac_Type='Risograph', Type='Declined',Date=datetime.today())   
+            history.save()       
+        return redirect("transachis", id = id)    
     return render(request,"ViewRequestPAO.html", {'data' : data, 'dataEmployee': dataEmployee}) 
 
 
 def ViewRequestIMS(request,id):
     data = Department.objects.prefetch_related('Id_Number').get(Id_Number = id)
-    dataForm = Employee.objects.filter(form__Status='Approved', form__Type__in=('File Leave','Make-up Class','Request for Certificate','RoomTransfer(Permanent)','RoomTransfer(Temporary)','ScheduleTransfer(Temporary)','ScheduleTransfer(Permanent)')).values('First_Name','Last_Name','form__Type','form__Date_Requested','form__Date_Approved','form__Status')
+    dataForm = Employee.objects.filter(memo_routing__Status='Approved').values('First_Name','Last_Name','memo_routing__Type_Request','memo_routing__Date_Faculty_Submitted','memo_routing__Status')
     return render(request,"ViewRequestIMS.html", {'data' : data, 'dataForm' : dataForm})
     
 def ViewRequestDetails(request,id,idf,idm):
@@ -89,6 +103,9 @@ def ViewRequestDetails(request,id,idf,idm):
     elif dataMemo.Type_Request == 'ScheduleTransfer(Permanent)' or dataMemo.Type_Request == 'ScheduleTransfer(Temporary)':
         dataEm = Department.objects.prefetch_related('Id_Number').get(Id_Number = dataMemo.Id_Number)
         dataDetails = Schedule_Transfer.objects.get(FormID = idf)
+    elif dataMemo.Type_Request == 'Risograph':
+        dataEm = Department.objects.prefetch_related('Id_Number').get(Id_Number = dataMemo.Id_Number)
+        dataDetails = risograph.objects.get(FormID = idf)
     if request.method == "POST":
         if request.POST.get('Memo_ID') == idm:
             updateMemo = Memo_Routing.objects.get(id = request.POST["Memo_ID"])

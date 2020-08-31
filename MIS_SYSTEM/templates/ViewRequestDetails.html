@@ -106,6 +106,29 @@
   </div>
   </center>
   {% endifequal %}
+
+    {% ifequal dataMemo.Type_Request "Risograph" %}
+
+  <table class="table mb-3 mt-3 "style="width: 100%">
+    <thead>
+      <tr>
+		    <th scope="col">No. Copies</th>
+		    <th scope="col">Paper Type</th>
+	    	<th scope="col">Paper Size</th>
+        <th scope="col">Price</th>
+      </tr>
+    </thead>
+    <tbody>
+            <tr>  
+            <td>{{dataDetails.No_of_Copies}}</td>
+            <td>{{dataDetails.Paper_Type}}</td>
+            <td>{{dataDetails.Size}}</td>
+            <td>{{dataDetails.Price}}</td>
+    </tbody>
+  </table>
+
+  {% endifequal %}
+
   {% ifequal dataMemo.Type_Request "File Leave" %}
   <div class="form-row">
     <div class="form-group col-md-4">

@@ -160,6 +160,29 @@
                   </div>
                 </li>
                 {% endifequal %}
+
+                {% ifequal data.Status_Dept "PAO" %}
+                <li class="nav-item dropdown">
+                  <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Other Transcations
+                  </a>
+                  <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                    <a class="dropdown-item" href="{% url 'viewrequestfac' id=data.Id_Number.Id_Number %}">View Request</a>
+                    <a class="dropdown-item" href="{% url 'transachis' id=data.Id_Number.Id_Number  %}">Transaction History</a>
+                  </div>
+                </li>
+                {% endifequal %}
+                {% ifequal data.Status_Dept "IMS" %}
+                <li class="nav-item dropdown">
+                  <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Other Transcations
+                  </a>
+                  <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                    <a class="dropdown-item" href="{% url 'viewrequestfac' id=data.Id_Number.Id_Number %}">View Request</a>
+                    <a class="dropdown-item" href="{% url 'transachis' id=data.Id_Number.Id_Number  %}">Transaction History</a>
+                  </div>
+                </li>
+                {% endifequal %}
           {% endifequal %}
           
 

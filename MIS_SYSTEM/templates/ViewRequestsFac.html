@@ -163,6 +163,28 @@
                   </div>
                 </li>
                 {% endifequal %}
+                {% ifequal data.Status_Dept "PAO" %}
+                <li class="nav-item dropdown">
+                  <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Other Transcations
+                  </a>
+                  <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                    <a class="dropdown-item" href="{% url 'viewrequestfac' id=data.Id_Number.Id_Number %}">View Request</a>
+                    <a class="dropdown-item" href="{% url 'transachis' id=data.Id_Number.Id_Number  %}">Transaction History</a>
+                  </div>
+                </li>
+                {% endifequal %}
+                {% ifequal data.Status_Dept "IMS" %}
+                <li class="nav-item dropdown">
+                  <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Other Transcations
+                  </a>
+                  <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                    <a class="dropdown-item" href="{% url 'viewrequestfac' id=data.Id_Number.Id_Number %}">View Request</a>
+                    <a class="dropdown-item" href="{% url 'transachis' id=data.Id_Number.Id_Number  %}">Transaction History</a>
+                  </div>
+                </li>
+                {% endifequal %}               
           {% endifequal %}
           <li class="nav-item">
               <a class="nav-link" href="{% url 'dashboard' id=data.Id_Number.Id_Number %}">&nbsp;Home</a>
@@ -265,6 +287,23 @@
           <td>
             {% csrf_token %} 
               <button type="submit" onclick="location.href='{% url 'viewrequestdetails' id=data.Id_Number.Id_Number idf=items.memo_routing__FormID idm=items.memo_routing__id %}'" class="btn btn-info">View Details</button>
+          </td>
+        {% endifequal %}
+        {% ifequal data.Status_Dept "IMS" %}
+        <td>{{ items.memo_routing__Type_Request }} (Approved)<br>Filed by: {{ items.First_Name }} {{ items.Last_Name }}</td>
+        <td>{{ items.memo_routing__Date_Faculty_Submitted }}</td>
+          <td>
+            {% csrf_token %} 
+              <button type="submit" onclick="location.href='{% url 'viewrequestdetails' id=data.Id_Number.Id_Number idf=items.memo_routing__FormID idm=items.memo_routing__id %}'" class="btn btn-info">View Details</button>
+          </td>
+        {% endifequal %}
+        {% ifequal data.Status_Dept "PAO" %}
+        <td>Risograph Pending<br>Filed by: {{ items.First_Name }} {{ items.Last_Name }}</td>
+        <td>{{ items.form__Date_Requested }}</td>
+        <td><input type="hidden" class="form-control" name="Riso_ID" value="{{items.risograph__Risograph_ID}}" ></button></td>
+          <td>
+            {% csrf_token %} 
+              <button type="submit" onclick="location.href='{% url 'viewrequestpao' id=data.Id_Number.Id_Number idr=items.risograph__Risograph_ID%}'" class="btn btn-info">View Details</button>
           </td>
         {% endifequal %}
         {% ifequal data.Status_Dept "Accounting" %}
