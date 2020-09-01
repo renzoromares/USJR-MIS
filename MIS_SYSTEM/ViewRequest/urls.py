@@ -1,6 +1,8 @@
 from django.urls import path
 from .import views
 from ViewRequest.views import ViewRequestPres, ViewRequestReads, ViewRequestFac, ViewRequestPao, ViewRequestIMS, ViewRequestDetails
+from django.conf import settings
+from django.conf.urls.static import static
 
 urlpatterns = [
 
@@ -11,4 +13,4 @@ urlpatterns = [
     path('View-Request/View-Request-Details/<id>/<idf>/<idm>', ViewRequestDetails, name="viewrequestdetails"),
     path('View-Request-IMS/<id>', ViewRequestIMS, name="viewrequestims")
 
-]
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

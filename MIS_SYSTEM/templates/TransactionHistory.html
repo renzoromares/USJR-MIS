@@ -247,11 +247,13 @@
             <td>{{items.Date}}</td>
             <td>{{ items.Type}} {{ items.Transac_Type }} request<br>Filed by: {{ items.Faculty_Name }}</td>
             {% endifequal %}
-            <td> <button type="submit"  class="btn btn-danger btn-rounded">Remove</button></td>
           </tr>
           {% endfor %}
         </tbody>
       </table>
+      <form method="POST" action=" ">
+      <td> <button type="submit"  class="btn btn-danger btn-rounded">Clear</button></td>
+      </form>
     </form>
   </form>
 </div>

@@ -174,7 +174,7 @@
 
         <script>
           function myFunction() {
-          alert("You have succesfully submitted your request");
+            document.querySelector('#Response_Modal').style.display = 'flex';
           }
           </script>
     </form>
@@ -205,5 +205,13 @@
       </div>
     </div>
   </footer>
+  <div class="bg-modal" id="Response_Modal">
+    <div class="bg-content">
+        <p>You have successfully submitted your request.</p>
+        <div class="buttons">
+          <button type="button" onclick="closeForm()" class="btn btn-info btn-rounded" id="btnApproved" name="ButtonPopUP" valu>OK</button>
+        </div> 
+    </div>
+  </div>
 </body>
 </html>

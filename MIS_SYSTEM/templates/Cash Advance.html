@@ -4,6 +4,7 @@
 <head>
 <title>Request for Cash Advance</title>
 
+<link rel="stylesheet" href="{% static 'css/ViewRequest.css' %}">
 <link rel="stylesheet" href="{% static 'css/Cash Advance.css' %}">
 <link rel="stylesheet" href="{% static 'css/Design.css' %}">
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
@@ -125,13 +126,12 @@
             <button type="submit" class="btn btn-info"><center>SUBMIT</center></button>
             </div>
         </center>
-
-     <script>
-      function myFunction() {
-      alert("You have succesfully submitted your request");
-      }
-      </script>
-
+        <script>
+          function myFunction()
+          {
+            document.querySelector('#Response_Modal').style.display = 'flex';
+          }
+        </script>
 
       </form>
     </form>
@@ -163,5 +163,13 @@
       </div>
     </div>
   </footer>
+  <div class="bg-modal" id="Response_Modal">
+    <div class="bg-content">
+        <p>You have successfully submitted your request.</p>
+        <div class="buttons">
+          <button type="button" onclick="closeForm()" class="btn btn-info btn-rounded" id="btnApproved" name="ButtonPopUP" valu>OK</button>
+        </div> 
+    </div>
+  </div>
 </body>
 </html>

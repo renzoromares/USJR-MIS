@@ -88,6 +88,7 @@
 		    <th scope="col">No. Copies</th>
 		    <th scope="col">Paper Type</th>
 	    	<th scope="col">Paper Size</th>
+        <th scope="col">File Uploaded</th>
         <th scope="col">Price</th>
         <th></th>
         <th></th>
@@ -100,12 +101,14 @@
 
       {% for items in data %}
       
-          <form method="POST" onsubmit="myFunction()">
-            {% csrf_token %}
+          
             <tr>
             <td>{{items.risograph__No_of_Copies}}</td>
             <td>{{items.risograph__Paper_Type}}</td>
             <td>{{items.risograph__Size}}</td>
+            <td><a href="{{ items.risograph__File.url }}" target="_blank">Click here</a></td>
+          <form method="POST" onsubmit="myFunction()">
+            {% csrf_token %}
             <td><input type="number" min="1" style="width: 7em" id="price" class="form-control" name="price" size="10" placeholder="₱" required></td>
             <td><input type="hidden" class="form-control" name="Riso_ID" value="{{items.risograph__Risograph_ID}}" ></button></td>
             <td><input type="hidden" class="form-control" name="EmployeeNumber" value="{{items.Id_Number}}" ></td>
@@ -124,6 +127,7 @@
             }
             </script>
           </form>
+          
       {% endfor %}
     </tbody>
   </table>
@@ -132,6 +136,7 @@
 
 <!-------------------------------------------------------------------------------FOOOTER---------------------------------------------------------------------->
 <div id="cardheader" class="card-header"></div>
+<a href="{{ items.risograph__File.url }}" target="_blank">Click here</a>
   <footer id="pagefooter" class="page-footer font-small pt-4">
     <div class="container-fluid text-center text-md-left">  
       <div class="row">

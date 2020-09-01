@@ -54,5 +54,7 @@ def Dashboard(request,id):
 def TransactionHistory(request,id):
     data = Department.objects.prefetch_related('Id_Number').get(Id_Number = id)
     datatrans = TransacHistory.objects.filter(Id_Number = id)
+    if request.method == "POST":
+        datatrans = TransacHistory.objects.filter(Id_Number = id).delete()
     return render(request,"TransactionHistory.html", {'data' : data, 'datatrans' : datatrans})
     

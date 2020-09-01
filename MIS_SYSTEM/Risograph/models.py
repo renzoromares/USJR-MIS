@@ -9,7 +9,7 @@ class risograph(models.Model):
     Paper_Type = models.CharField(max_length=50, null=False )
     No_of_Copies = models.IntegerField(null=False)
     Size = models.CharField(max_length=50, null=False)
-    File = models.ImageField(upload_to='pictures',null=True)
+    File = models.ImageField(upload_to = "risoImages/", null=True, blank=True)
     Price = models.BigIntegerField(null=True)
     FormID = models.ForeignKey(Form,on_delete = models.CASCADE)
 
