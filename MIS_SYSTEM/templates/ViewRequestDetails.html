@@ -433,7 +433,8 @@
   </div>
   </center>
   {% endifequal %}
-<center>
+  {% ifnotequal data.Status_Dept "IMS" %}
+  <center>
   <form action="" method="POST"> 
           {% csrf_token %}
           <a href="{% url 'viewrequestfac' id=data.Id_Number.Id_Number %}">
@@ -451,6 +452,7 @@
       </script>
         </form> 
       </center>
+  {% endifnotequal %}
   </div>
 <!-------------------------------------------------------------------------------FOOOTER---------------------------------------------------------------------->
 <div id="cardheader" class="card-header"></div>

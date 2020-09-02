@@ -26,7 +26,6 @@ def ViewRequestReads(request,id):
 
 def ViewRequestFac(request,id):
     data = Department.objects.prefetch_related('Id_Number').get(Id_Number = id)
-
     if data.Status_Dept=='Chairman':
         dataForm = Employee.objects.filter(department__Status_Dept = 'Faculty', department__department = data.department, memo_routing__Status = 'Pending', memo_routing__Date_Chairman_Approved = None, memo_routing__FormID__isnull = False).distinct('memo_routing__id').values('memo_routing__Status','memo_routing__id','First_Name','Last_Name','memo_routing__Type_Request','memo_routing__Date_Faculty_Submitted','memo_routing__FormID')
     elif data.Status_Dept=='Faculty':
@@ -44,7 +43,7 @@ def ViewRequestFac(request,id):
     elif data.Status_Dept=='Accounting':
         dataForm = Employee.objects.filter(memo_routing__Date_Chairman_Approved__isnull = False, memo_routing__Date_Dean_Approved__isnull = False, memo_routing__Date_VP_Acad_Approved__isnull = False, memo_routing__Date_President_Approved__isnull = False, memo_routing__Date_HR_Approved__isnull = False, memo_routing__Date_Accounting_Approved = None, form__Form_ID__isnull = False, form__Status = 'Pending', memo_routing__Type_Request = 'Cash Advance').distinct('memo_routing__id').values('memo_routing__id','First_Name','Last_Name','memo_routing__Type_Request','memo_routing__Date_Faculty_Submitted','memo_routing__FormID')
     elif data.Status_Dept=='IMS':
-        dataForm = Employee.objects.filter(memo_routing__Status='Approved').distinct('memo_routing__id').values('memo_routing__id','First_Name','Last_Name','memo_routing__Type_Request','memo_routing__Date_Faculty_Submitted','memo_routing__FormID')
+        dataForm = Employee.objects.filter(memo_routing__Type_Request__in=('Make-up Class','RoomTransfer(Permanent)','RoomTransfer(Temporary)','ScheduleTransfer(Temporary)','ScheduleTransfer(Permanent)'), memo_routing__Status='Approved').distinct('memo_routing__id').values('memo_routing__id','First_Name','Last_Name','memo_routing__Type_Request','memo_routing__Date_Faculty_Submitted','memo_routing__FormID')
     return render(request,"ViewRequestsFac.html", {'data' : data, 'dataForm' : dataForm})
 
 def ViewRequestPao(request,id,idr):

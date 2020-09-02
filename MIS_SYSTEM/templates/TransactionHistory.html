@@ -222,8 +222,8 @@
 </div>
 <!-------------------------------------------------------------FORMS------------------------------------------------------------------------------------------------>
 <div class = "container contact-form">
-  <form>
-    <form>
+  <form method="POST" action=" ">
+  {% csrf_token %}
       <table class="table mb-3 mt-3 table-striped">
         <thead>
             <tr>
@@ -251,10 +251,17 @@
           {% endfor %}
         </tbody>
       </table>
-      <form method="POST" action=" ">
-      <td> <button type="submit"  class="btn btn-danger btn-rounded">Clear</button></td>
-      </form>
-    </form>
+      
+    {% if count > 0%}
+      <Center>
+      <td> <button type="submit"  class="btn btn-danger btn-rounded">Clear All</button></td>
+    </Center>
+    {% else %}
+    <Center>
+      <p><i>-------Nothing Follows-------</i></p>
+    </Center>
+    {% endif %}
+      
   </form>
 </div>
 

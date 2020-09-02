@@ -54,7 +54,11 @@ def Dashboard(request,id):
 def TransactionHistory(request,id):
     data = Department.objects.prefetch_related('Id_Number').get(Id_Number = id)
     datatrans = TransacHistory.objects.filter(Id_Number = id)
+    count = datatrans.count()
+    print(count)
     if request.method == "POST":
+        print(id)
         datatrans = TransacHistory.objects.filter(Id_Number = id).delete()
-    return render(request,"TransactionHistory.html", {'data' : data, 'datatrans' : datatrans})
+        return redirect("transachis", id = id)
+    return render(request,"TransactionHistory.html", {'data' : data, 'datatrans' : datatrans, 'count' : count})
     
