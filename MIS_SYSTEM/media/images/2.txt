@@ -1,0 +1,28 @@
+faculty-> chairman(1) -> dean(2) -> vp academics(3) -> return faculty
+
+if(chairman "approved" ):
+	indicator 1;
+if(dean  "approved" ):
+	indicator 2;
+if(vp academics "approved")
+	indicator 3;
+if(indicator == 3):
+	IMS display;
+
+
+if faculty submit :
+	indicator =1 ;
+then chairman can view all indicator base on his department with indicator = 1;
+if chairman submit:
+	indicator = 2;
+then dean can view all indicator = 2;
+	indicator = 3;
+if vp acadmeics submit:
+	indicator = 4;
+
+then all indicators which is 4 will be displayed to view ims
+
+
+
+
+
