@@ -55,7 +55,16 @@ class TransacHistory(models.Model):
         db_table = 'History'
 
 
+class TransacHistoryBackUp(models.Model):
+    Id_Number = models.ForeignKey(Employee, on_delete = models.CASCADE)
+    Faculty_Id = models.IntegerField(null = True)
+    Faculty_Name = models.CharField(max_length=50,null = True)
+    Transac_Type = models.CharField(max_length=50,null=False)
+    Type = models.CharField(max_length=50,null=False)
+    Date = models.DateTimeField(null = True)
 
+    class Meta:
+        db_table = 'HistoryBackUp'
 #dataForm=Department.objects.raw('Select * From "Department" Natural Join "Form"')
 #dataForm=Department.objects.select_related('Id_Number').get(department = 'Computer Engineering')
 #dataForm=Employee.objects.filter(department__department='Computer Engineering').values_list('form__Type','form__Date_Requested','form__Date_Approved','form__Status')

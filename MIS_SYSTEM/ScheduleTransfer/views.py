@@ -1,5 +1,5 @@
 from django.shortcuts import render,redirect
-from Accounts.models import Employee, Department, Form, TransacHistory
+from Accounts.models import Employee, Department, Form, TransacHistory,TransacHistoryBackUp
 from MemoRouting.models import Memo_Routing
 from .models import Schedule_Transfer
 from datetime import datetime
@@ -30,6 +30,8 @@ def ScheduleTransferPermanent(request,id):
         memo_schedTransfer.save()
         history = TransacHistory(Id_Number = employeeID, Transac_Type = 'ScheduleTransfer(Permanent)', Type='Submitted', Date = datetime.today())
         history.save()
+        historyback = TransacHistoryBackUp(Id_Number = employeeID, Transac_Type = 'ScheduleTransfer(Permanent)', Type='Submitted', Date = datetime.today())
+        historyback.save()
         return redirect("transachis", id = data.Id_Number.Id_Number)
     
     else: 
@@ -48,6 +50,8 @@ def ScheduleTransferTemporary(request,id):
         memo_schedTransfer.save()
         history = TransacHistory(Id_Number = employeeID, Transac_Type = 'ScheduleTransfer(Temporary)', Type='Submitted', Date = datetime.today())
         history.save()
+        historyback = TransacHistoryBackUp(Id_Number = employeeID, Transac_Type = 'ScheduleTransfer(Temporary)', Type='Submitted', Date = datetime.today())
+        historyback.save()
         return redirect("transachis", id = data.Id_Number.Id_Number)
     
     else: 

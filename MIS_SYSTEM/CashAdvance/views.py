@@ -1,5 +1,5 @@
 from django.shortcuts import render,redirect
-from Accounts.models import Employee, Department, Form, TransacHistory
+from Accounts.models import Employee, Department, Form, TransacHistory, TransacHistoryBackUp
 from MemoRouting.models import Memo_Routing
 from datetime import datetime
 from CashAdvance.models import Cash_Advance
@@ -20,6 +20,8 @@ def CashAdvance(request,id):
         memo_cash_advance.save()
         history = TransacHistory(Id_Number = employeeID, Transac_Type = 'Cash Advance', Type='Submitted', Date = datetime.today())
         history.save()
+        historyback = TransacHistoryBackUp(Id_Number = employeeID, Transac_Type = 'Cash Advance', Type='Submitted', Date = datetime.today())
+        historyback.save()
         return redirect("transachis", id = data.Id_Number.Id_Number)
     else:     
         return render(request,"Cash Advance.html", {'data' : data}) 

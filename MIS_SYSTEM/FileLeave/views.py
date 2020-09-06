@@ -1,5 +1,5 @@
 from django.shortcuts import render,redirect
-from Accounts.models import Employee, Department, Form, TransacHistory
+from Accounts.models import Employee, Department, Form, TransacHistory, TransacHistoryBackUp
 from MemoRouting.models import Memo_Routing
 from FileLeave.models import Leave
 from datetime import datetime
@@ -24,6 +24,8 @@ def FileLeave(request,id):
         memo_fileleave.save()
         history = TransacHistory(Id_Number = employeeID, Transac_Type = 'File Leave', Type='Submitted', Date = datetime.today())
         history.save()
+        historyback = TransacHistoryBackUp(Id_Number = employeeID, Transac_Type = 'File Leave', Type='Submitted', Date = datetime.today())
+        historyback.save()
         return redirect("transachis", id = data.Id_Number.Id_Number) 
     else:
         return render(request,"File a Leave.html", {'data' : data}) 

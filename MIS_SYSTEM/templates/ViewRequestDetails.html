@@ -121,7 +121,7 @@
 
     <div class="form-group col-md-4">
         <label for="dateEnd" style="margin: -10px"><b>File upload:</b></label>
-        <a href="{{ dataDetails.Image.url }}" target="_blank" style="margin: 10px"> Click here to view </a>
+        <a href="{{ dataDetails.Image.url }}" download style="margin: 10px"> Click here</a>
     </div>
 
     <div class="form-row">
@@ -410,7 +410,7 @@
   </div>      
 
   <div class="add-file">
-    <label for="myfile">File Attachment: <a href="{{ dataDetails.File.url }}" target="_blank">Click here</a></label>
+    <label for="myfile">File Attachment: <a href="{{ dataDetails.File.url }}" download>Click here</a></label>
   </div>
 
   {%endifequal%}
@@ -437,16 +437,49 @@
   <center>
   <form action="" method="POST"> 
           {% csrf_token %}
+          {% ifequal data.Status_Dept "HR" %}
+          <button type="submit" name="Memo_ID" onclick="MessageFunction(3)" value="{{ dataMemo.id }}" class="btn btn-info btn-rounded">RECEIVE</button>
+          {% endifequal %}
+          {% ifequal data.Status_Dept "Chairman" %}
           <a href="{% url 'viewrequestfac' id=data.Id_Number.Id_Number %}">
           <button type="submit" name="Memo_ID" onclick="MessageFunction(1)" value="{{ dataMemo.id }}" class="btn btn-info btn-rounded">APPROVE</button>
           <button type="submit" name="Form_ID" onclick="MessageFunction(2)" id="DeclineButton" value="{{ dataDetails.FormID.Form_ID }}" class="btn btn-danger btn-rounded">DECLINE</button>
+          {% endifequal %}
+          {% ifequal data.Status_Dept "Dean" %}
+          <a href="{% url 'viewrequestfac' id=data.Id_Number.Id_Number %}">
+          <button type="submit" name="Memo_ID" onclick="MessageFunction(1)" value="{{ dataMemo.id }}" class="btn btn-info btn-rounded">APPROVE</button>
+          <button type="submit" name="Form_ID" onclick="MessageFunction(2)" id="DeclineButton" value="{{ dataDetails.FormID.Form_ID }}" class="btn btn-danger btn-rounded">DECLINE</button>
+          {% endifequal %}
+          {% ifequal data.Status_Dept "VP Academics" %}
+          <a href="{% url 'viewrequestfac' id=data.Id_Number.Id_Number %}">
+          <button type="submit" name="Memo_ID" onclick="MessageFunction(1)" value="{{ dataMemo.id }}" class="btn btn-info btn-rounded">APPROVE</button>
+          <button type="submit" name="Form_ID" onclick="MessageFunction(2)" id="DeclineButton" value="{{ dataDetails.FormID.Form_ID }}" class="btn btn-danger btn-rounded">DECLINE</button>
+          {% endifequal %}
+          {% ifequal data.Status_Dept "President" %}
+          <a href="{% url 'viewrequestfac' id=data.Id_Number.Id_Number %}">
+          <button type="submit" name="Memo_ID" onclick="MessageFunction(1)" value="{{ dataMemo.id }}" class="btn btn-info btn-rounded">APPROVE</button>
+          <button type="submit" name="Form_ID" onclick="MessageFunction(2)" id="DeclineButton" value="{{ dataDetails.FormID.Form_ID }}" class="btn btn-danger btn-rounded">DECLINE</button>
+          {% endifequal %}
+          {% ifequal data.Status_Dept "Accounting" %}
+          <a href="{% url 'viewrequestfac' id=data.Id_Number.Id_Number %}">
+          <button type="submit" name="Memo_ID" onclick="MessageFunction(1)" value="{{ dataMemo.id }}" class="btn btn-info btn-rounded">APPROVE</button>
+          <button type="submit" name="Form_ID" onclick="MessageFunction(2)" id="DeclineButton" value="{{ dataDetails.FormID.Form_ID }}" class="btn btn-danger btn-rounded">DECLINE</button>
+          {% endifequal %}
+          {% ifequal data.Status_Dept "PAO" %}
+          <a href="{% url 'viewrequestfac' id=data.Id_Number.Id_Number %}">
+          <button type="submit" name="Memo_ID" onclick="MessageFunction(1)" value="{{ dataMemo.id }}" class="btn btn-info btn-rounded">APPROVE</button>
+          <button type="submit" name="Form_ID" onclick="MessageFunction(2)" id="DeclineButton" value="{{ dataDetails.FormID.Form_ID }}" class="btn btn-danger btn-rounded">DECLINE</button>
+          {% endifequal %}
       <script>
       function MessageFunction(value) {
         if (value==1){
           document.querySelector('#Approve_Modal').style.display = 'flex';
         }
-        else{
+        else if(value==2){
           document.querySelector('#Decline_Modal').style.display = 'flex';
+        }
+        else{
+          document.querySelector('#Receive_Modal').style.display = 'flex';
         }
       }
       </script>
@@ -488,6 +521,11 @@
   </div>
 </div>
 <div class="bg-modal" id="Decline_Modal">
+  <div class="bg-content">
+      <p>You have successfully declined the request.</p> 
+  </div>
+</div>
+<div class="bg-modal" id="Receive_Modal">
   <div class="bg-content">
       <p>You have successfully declined the request.</p> 
   </div>

@@ -106,7 +106,7 @@
             <td>{{items.risograph__No_of_Copies}}</td>
             <td>{{items.risograph__Paper_Type}}</td>
             <td>{{items.risograph__Size}}</td>
-            <td><a href="{{ items.risograph__File.url }}" target="_blank">Click here</a></td>
+            <td><a href="{{ items.risograph__File.url }}" download>Click here</a></td>
           <form method="POST" onsubmit="myFunction()">
             {% csrf_token %}
             <td><input type="number" min="1" style="width: 7em" id="price" class="form-control" name="price" size="10" placeholder="₱" required></td>

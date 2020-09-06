@@ -1,5 +1,5 @@
 from django.shortcuts import render,redirect
-from Accounts.models import Employee, Department, Form, TransacHistory
+from Accounts.models import Employee, Department, Form, TransacHistory, TransacHistoryBackUp
 from MakeupClass.models import Makeup_Class
 from MemoRouting.models import Memo_Routing
 from datetime import datetime
@@ -20,6 +20,8 @@ def MakeupClass(request,id):
             memo_makeupclass.save()
             history = TransacHistory(Id_Number = employeeID, Transac_Type = 'Make-up Class', Type='Submitted', Date = datetime.today())
             history.save()
+            historyback = TransacHistoryBackUp(Id_Number = employeeID, Transac_Type = 'Make-up Class', Type='Submitted', Date = datetime.today())
+            historyback.save()
             return redirect("transachis", id = data.Id_Number.Id_Number) 
         else:
             makeupclass = Makeup_Class(Id_Number = employeeID  ,College =  request.POST["college"],Reason = request.POST.get('options'),OfferCode = request.POST["offercode"] ,Date =  datetime.today(),Time = request.POST["time"], Room= request.POST["room"], Date_Of = request.POST["dateOf"], FormID = formPK)
@@ -28,6 +30,8 @@ def MakeupClass(request,id):
             memo_makeupclass.save()
             history = TransacHistory(Id_Number = employeeID, Transac_Type = 'Make-up Class', Type='Submitted', Date = datetime.today())
             history.save()
+            historyback = TransacHistoryBackUp(Id_Number = employeeID, Transac_Type = 'Make-up Class', Type='Submitted', Date = datetime.today())
+            historyback.save()
             return redirect("transachis", id = data.Id_Number.Id_Number) 
     else:
         return render(request,"makeup-class.html", {'data' : data}) 

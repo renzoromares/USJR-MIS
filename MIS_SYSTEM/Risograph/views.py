@@ -1,5 +1,5 @@
 from django.shortcuts import render,redirect
-from Accounts.models import Employee, Department, Form, TransacHistory
+from Accounts.models import Employee, Department, Form, TransacHistory, TransacHistoryBackUp
 from MemoRouting.models import Memo_Routing
 from Risograph.models import risograph
 from datetime import datetime
@@ -18,6 +18,8 @@ def Risograph(request,id):
         memo_risograph.save()
         history = TransacHistory(Id_Number = employeeID, Transac_Type = 'Risograph', Type='Submitted', Date = datetime.today())
         history.save()
+        historyback = TransacHistoryBackUp(Id_Number = employeeID, Transac_Type = 'Risograph', Type='Submitted', Date = datetime.today())
+        historyback.save()
         return redirect("transachis", id = data.Id_Number.Id_Number) 
     else:
         return render(request,"Risograph.html", {'data' : data}) 
