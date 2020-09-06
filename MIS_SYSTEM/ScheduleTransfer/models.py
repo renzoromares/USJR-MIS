@@ -7,7 +7,6 @@ class Schedule_Transfer(models.Model):
     Date_Notify = models.DateField()
     Subject = models.CharField(max_length=100,null=False)
     Offer_Code = models.CharField(max_length=20, null=False)
-    Time_Day = models.CharField(max_length=50,null=False)
     Schedule_From = models.CharField(max_length=50,null=False)
     Schedule_To = models.CharField(max_length=50,null=False) 
     Date_Effective = models.DateField(null=True)

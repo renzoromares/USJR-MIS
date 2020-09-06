@@ -6,6 +6,7 @@
 
 <link rel="stylesheet" href="{% static 'css/Schedule Transfer - Permanent.css' %}">
 <link rel="stylesheet" href="{% static 'css/Design.css' %}">
+<link rel="stylesheet" href="{% static 'css/ViewRequest.css' %}">
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
 <link rel = "stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 <link href="https://fonts.googleapis.com/css2?family=EB+Garamond&display=swap" rel="stylesheet">
@@ -52,7 +53,6 @@
                 <a class="dropdown-item" href="{% url 'fileleave' id=data.Id_Number.Id_Number %}">File a Leave</a>
                 <a class="dropdown-item" href="{% url 'roomtransfer' id=data.Id_Number.Id_Number %}">Room Transfer</a>
                 <a class="dropdown-item" href="{% url 'scheduletransfer' id=data.Id_Number.Id_Number  %}">Schedule Transfer</a>
-                <a class="dropdown-item" href="{% url  'attendancereport' id=data.Id_Number.Id_Number %}">Attendance Report</a>
                 <a class="dropdown-item" href="{% url 'memoroutingincoming' id=data.Id_Number.Id_Number %}">Memo Routing</a>
                 <a class="dropdown-item" href="{% url 'risograph' id=data.Id_Number.Id_Number %}">Requisition for Risograph</a>
                 <a class="dropdown-item" href="{% url 'transachis' id=data.Id_Number.Id_Number  %}">Transaction History</a>
@@ -131,14 +131,9 @@
             <label for="offercode"><b>Offer Code:</b></label>
             <input type="text" class="form-control" id="offercode" name="Offer_Code" required>
           </div>
-          <div class="form-group col-md-4">
-            <label for="timeday"><b>Time/Day:</b></label>
-            <input type="text" class="form-control" id="timeday" name="Time_Day" required>
-          </div>
-        </div>
 
         <center>
-          <p1><u><b>This is to inform the IMS of the following activity/ie of my class to be conducted as specified</b></p1></u></b>
+          <p1><u><b>This is to inform the IMS of the following activity/ies of my class to be conducted as specified</b></p1></u></b>
         </center>
 
 

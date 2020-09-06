@@ -68,7 +68,6 @@
                 <a class="dropdown-item" href="{% url 'fileleave' id=data.Id_Number.Id_Number %}">File a Leave</a>
                 <a class="dropdown-item" href="{% url 'roomtransfer' id=data.Id_Number.Id_Number  %}">Room Transfer</a>
                 <a class="dropdown-item" href="{% url 'scheduletransfer' id=data.Id_Number.Id_Number   %}">Schedule Transfer</a>
-                <a class="dropdown-item" href="{% url 'attendancereport' id=data.Id_Number.Id_Number  %}">Attendance Report</a>
                 <a class="dropdown-item" href="{% url 'memoroutingincoming' id=data.Id_Number.Id_Number %}">Memo Routing</a>
                 <a class="dropdown-item" href="{% url 'risograph' id=data.Id_Number.Id_Number  %}">Requisition for Risograph</a>
                 <a class="dropdown-item" href="{% url 'transachis' id=data.Id_Number.Id_Number  %}">Transaction History</a>
@@ -217,9 +216,12 @@
           <h4 class="card-text"><b>{{ data.Id_Number.First_Name }} {{ data.Id_Number.Last_Name }}</b></h4>   <!----Number--->
           <h5 class="card-text">{{ data.Id_Number.Id_Number }}</h5>
           <h5 class="card-text">{{ data.Status_Dept }}</h5>
-          {% if status == "1" %} 
+          <script>
+            alert(status);
+          </script>
+          {% ifequal status "0" %} 
           <h5 class="card-text">{{ data.department }}</h5>
-          {% endif %}
+          {% endifequal %}
           <h5 class="card-text">{{ data.Id_Number.Email }}</h5>
           <h5 class="card-text">{{ data.Id_Number.Contact }}</h5>
         </div>
