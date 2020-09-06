@@ -214,14 +214,14 @@
       
       <div class="col-md-8">
         <div class="card-body">
-          <h3 class="card-text">{{ data.Id_Number.First_Name }} {{ data.Id_Number.Last_Name }}</h3>   <!----Number--->
-          <h4 class="card-text">{{ data.Id_Number.Id_Number }}</h4>
-          {% if status == "1" %}   
-          
+          <h4 class="card-text"><b>{{ data.Id_Number.First_Name }} {{ data.Id_Number.Last_Name }}</b></h4>   <!----Number--->
+          <h5 class="card-text">{{ data.Id_Number.Id_Number }}</h5>
+          <h5 class="card-text">{{ data.Status_Dept }}</h5>
+          {% if status == "1" %} 
+          <h5 class="card-text">{{ data.department }}</h5>
           {% endif %}
-          <h4 class="card-text">{{ data.department }}</h4>
-          <h4 class="card-text">{{ data.Id_Number.Email }}</h4>
-          <h4 class="card-text">{{ data.Id_Number.Contact }}</h4>
+          <h5 class="card-text">{{ data.Id_Number.Email }}</h5>
+          <h5 class="card-text">{{ data.Id_Number.Contact }}</h5>
         </div>
       </div>
     </div>  
