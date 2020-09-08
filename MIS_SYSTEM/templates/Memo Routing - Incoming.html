@@ -105,6 +105,7 @@
             <th scope="col">#</th>
             <th scope="col">Type</th>
             <th scope="col">Date Submitted</th>
+            {% ifequal data.Status_Dept "Faculty" %}
             <th scope="col">Chairman</th>
             <th scope="col">Dean</th>
             <th scope="col">VP Acad</th>
@@ -112,6 +113,22 @@
             <th scope="col">PAO</th>
             <th scope="col">HR</th>
             <th scope="col">Accounting</th>
+            {% endifequal %}
+            {% ifequal data.Status_Dept "Chairman" %}
+            <th scope="col">Dean</th>
+            <th scope="col">VP Acad</th>
+            <th scope="col">President</th>
+            <th scope="col">PAO</th>
+            <th scope="col">HR</th>
+            <th scope="col">Accounting</th>
+            {% endifequal %}
+            {% ifequal data.Status_Dept "Dean" %}
+            <th scope="col">VP Acad</th>
+            <th scope="col">President</th>
+            <th scope="col">PAO</th>
+            <th scope="col">HR</th>
+            <th scope="col">Accounting</th>
+            {% endifequal %}
           </tr>
         </thead>
         <tbody>
@@ -120,61 +137,162 @@
             <th scope="row">{{ forloop.counter }}</th>
             <td>{{items.Type_Request}}</td>
             <td>{{items.Date_Faculty_Submitted}}</td>
-            {% if items.Date_Chairman_Approved is None %}
-            <td>Pending</td>
-            {% else %}
-            <td>{{items.Date_Chairman_Approved}}</td>
-            {% endif %}
-            {% if items.Date_Dean_Approved is None %}
-            <td>Pending</td>
-            {% else %}
-            <td>{{items.Date_Dean_Approved}}</td>
-            {% endif %}
-            {% if items.Date_VP_Acad_Approved is None %}
-              {% if items.Type_Request == 'Cash Advance' or items.Type_Request == 'Risograph' %}
-                <td>N/A</td>
+            {% ifequal data.Status_Dept "Faculty" %}
+              {% if items.Date_Chairman_Approved is None %}
+              <td>Pending</td>
               {% else %}
-                <td>Pending</td>
-              {% endif %} 
-            {% else %}
-            <td>{{items.Date_VP_Acad_Approved}}</td>
-            {% endif %}
-            {% if items.Date_President_Approved is None %}
-              {% if items.Type_Request == 'Make-up Class' or items.Type_Request == 'RoomTransfer(Temporary)' or items.Type_Request == 'RoomTransfer(Permanent)' or items.Type_Request == 'Risograph' %}
-                <td>N/A</td>
-              {% else %}
-                <td>Pending</td>
+              <td>{{items.Date_Chairman_Approved}}</td>
               {% endif %}
-            {% else %}
-            <td>{{items.Date_President_Approved}}</td>
-            {% endif %}
-            {% if items.Date_PAO_Approved is None %}
-              {% if items.Type_Request == 'Risograph' %}
-                <td>Pending</td>
+              {% if items.Date_Dean_Approved is None %}
+              <td>Pending</td>
               {% else %}
-                <td>N/A</td>
-              {% endif %} 
-            {% else %}
-            <td>{{items.Date_PAO_Approved}}</td>
-            {% endif %}
-            {% if items.Date_HR_Approved is None %}
-              {% if items.Type_Request == 'Cash Advance' or items.Type_Request == 'File Leave' %}
-                <td>Pending</td>
+              <td>{{items.Date_Dean_Approved}}</td>
+              {% endif %}
+              {% if items.Date_VP_Acad_Approved is None %}
+                {% if items.Type_Request == 'Cash Advance' or items.Type_Request == 'Risograph' %}
+                  <td>N/A</td>
+                {% else %}
+                  <td>Pending</td>
+                {% endif %} 
               {% else %}
-                <td>N/A</td>
-              {% endif %} 
-            {% else %}
-            <td>{{items.Date_HR_Approved}}</td>
-            {% endif %}
-            {% if items.Date_Accounting_Approved is None %}
-              {% if items.Type_Request == 'Cash Advance' %}
-                <td>Pending</td>
+              <td>{{items.Date_VP_Acad_Approved}}</td>
+              {% endif %}
+              {% if items.Date_President_Approved is None %}
+                {% if items.Type_Request == 'Make-up Class' or items.Type_Request == 'RoomTransfer(Temporary)' or items.Type_Request == 'RoomTransfer(Permanent)' or items.Type_Request == 'Risograph' %}
+                  <td>N/A</td>
+                {% else %}
+                  <td>Pending</td>
+                {% endif %}
               {% else %}
-                <td>N/A</td>
-              {% endif %} 
-            {% else %}
-            <td>{{items.Date_Accounting_Approved}}</td>
-            {% endif %}
+              <td>{{items.Date_President_Approved}}</td>
+              {% endif %}
+              {% if items.Date_PAO_Approved is None %}
+                {% if items.Type_Request == 'Risograph' %}
+                  <td>Pending</td>
+                {% else %}
+                  <td>N/A</td>
+                {% endif %} 
+              {% else %}
+              <td>{{items.Date_PAO_Approved}}</td>
+              {% endif %}
+              {% if items.Date_HR_Approved is None %}
+                {% if items.Type_Request == 'Cash Advance' or items.Type_Request == 'File Leave' %}
+                  <td>Pending</td>
+                {% else %}
+                  <td>N/A</td>
+                {% endif %} 
+              {% else %}
+              <td>{{items.Date_HR_Approved}}</td>
+              {% endif %}
+              {% if items.Date_Accounting_Approved is None %}
+                {% if items.Type_Request == 'Cash Advance' %}
+                  <td>Pending</td>
+                {% else %}
+                  <td>N/A</td>
+                {% endif %} 
+              {% else %}
+              <td>{{items.Date_Accounting_Approved}}</td>
+              {% endif %}
+            {% endifequal %}
+            {% ifequal data.Status_Dept "Chairman" %}
+              {% if items.Date_Dean_Approved is None %}
+              <td>Pending</td>
+              {% else %}
+              <td>{{items.Date_Dean_Approved}}</td>
+              {% endif %}
+              {% if items.Date_VP_Acad_Approved is None %}
+                {% if items.Type_Request == 'Cash Advance' or items.Type_Request == 'Risograph' %}
+                  <td>N/A</td>
+                {% else %}
+                  <td>Pending</td>
+                {% endif %} 
+              {% else %}
+              <td>{{items.Date_VP_Acad_Approved}}</td>
+              {% endif %}
+              {% if items.Date_President_Approved is None %}
+                {% if items.Type_Request == 'Make-up Class' or items.Type_Request == 'RoomTransfer(Temporary)' or items.Type_Request == 'RoomTransfer(Permanent)' or items.Type_Request == 'Risograph' %}
+                  <td>N/A</td>
+                {% else %}
+                  <td>Pending</td>
+                {% endif %}
+              {% else %}
+              <td>{{items.Date_President_Approved}}</td>
+              {% endif %}
+              {% if items.Date_PAO_Approved is None %}
+                {% if items.Type_Request == 'Risograph' %}
+                  <td>Pending</td>
+                {% else %}
+                  <td>N/A</td>
+                {% endif %} 
+              {% else %}
+              <td>{{items.Date_PAO_Approved}}</td>
+              {% endif %}
+              {% if items.Date_HR_Approved is None %}
+                {% if items.Type_Request == 'Cash Advance' or items.Type_Request == 'File Leave' %}
+                  <td>Pending</td>
+                {% else %}
+                  <td>N/A</td>
+                {% endif %} 
+              {% else %}
+              <td>{{items.Date_HR_Approved}}</td>
+              {% endif %}
+              {% if items.Date_Accounting_Approved is None %}
+                {% if items.Type_Request == 'Cash Advance' %}
+                  <td>Pending</td>
+                {% else %}
+                  <td>N/A</td>
+                {% endif %} 
+              {% else %}
+              <td>{{items.Date_Accounting_Approved}}</td>
+              {% endif %}
+            {% endifequal %}
+            {% ifequal data.Status_Dept "Dean" %}
+              {% if items.Date_VP_Acad_Approved is None %}
+                {% if items.Type_Request == 'Cash Advance' or items.Type_Request == 'Risograph' %}
+                  <td>N/A</td>
+                {% else %}
+                  <td>Pending</td>
+                {% endif %} 
+              {% else %}
+              <td>{{items.Date_VP_Acad_Approved}}</td>
+              {% endif %}
+              {% if items.Date_President_Approved is None %}
+                {% if items.Type_Request == 'Make-up Class' or items.Type_Request == 'RoomTransfer(Temporary)' or items.Type_Request == 'RoomTransfer(Permanent)' or items.Type_Request == 'Risograph' %}
+                  <td>N/A</td>
+                {% else %}
+                  <td>Pending</td>
+                {% endif %}
+              {% else %}
+              <td>{{items.Date_President_Approved}}</td>
+              {% endif %}
+              {% if items.Date_PAO_Approved is None %}
+                {% if items.Type_Request == 'Risograph' %}
+                  <td>Pending</td>
+                {% else %}
+                  <td>N/A</td>
+                {% endif %} 
+              {% else %}
+              <td>{{items.Date_PAO_Approved}}</td>
+              {% endif %}
+              {% if items.Date_HR_Approved is None %}
+                {% if items.Type_Request == 'Cash Advance' or items.Type_Request == 'File Leave' %}
+                  <td>Pending</td>
+                {% else %}
+                  <td>N/A</td>
+                {% endif %} 
+              {% else %}
+              <td>{{items.Date_HR_Approved}}</td>
+              {% endif %}
+              {% if items.Date_Accounting_Approved is None %}
+                {% if items.Type_Request == 'Cash Advance' %}
+                  <td>Pending</td>
+                {% else %}
+                  <td>N/A</td>
+                {% endif %} 
+              {% else %}
+              <td>{{items.Date_Accounting_Approved}}</td>
+              {% endif %}
+            {% endifequal %}
           </tr>
           {% endfor %}
         </tbody>

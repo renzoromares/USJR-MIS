@@ -26,7 +26,12 @@ def ScheduleTransferPermanent(request,id):
         formPK = Form.objects.get(Form_ID = form.pk)
         schedTransfer = Schedule_Transfer(Id_Number=employeeID, Type='ScheduleTransfer(Permanent)', Date_Notify=datetime.today(), Subject=request.POST["Subject"], Offer_Code=request.POST["Offer_Code"], Schedule_From=request.POST["Schedule_From"], Schedule_To=request.POST["Schedule_To"], Date_Effective = request.POST["Date_Effective"],Reason=request.POST["Reason"], FormID = formPK)
         schedTransfer.save()
-        memo_schedTransfer = Memo_Routing(Id_Number=employeeID, Type_Request = 'ScheduleTransfer(Permanent)', Date_Faculty_Submitted = datetime.today(), FormID = formPK, Status = 'Pending')
+        if (data.Status_Dept == "Faculty"):
+            memo_schedTransfer = Memo_Routing(Id_Number = employeeID, Type_Request = 'ScheduleTransfer(Permanent)', Date_Faculty_Submitted = datetime.today(), FormID = formPK, Status = 'Pending')
+        if (data.Status_Dept == "Chairman"):
+            memo_schedTransfer = Memo_Routing(Id_Number = employeeID, Type_Request = 'ScheduleTransfer(Permanent)', Date_Faculty_Submitted = datetime.today(), FormID = formPK, Status = 'Pending',Date_Chairman_Approved=datetime.today())
+        if (data.Status_Dept == "Dean"):
+            memo_schedTransfer = Memo_Routing(Id_Number = employeeID, Type_Request = 'ScheduleTransfer(Permanent)', Date_Faculty_Submitted = datetime.today(), FormID = formPK, Status = 'Pending',Date_Chairman_Approved=datetime.today(),Date_Dean_Approved=datetime.today())
         memo_schedTransfer.save()
         history = TransacHistory(Id_Number = employeeID, Transac_Type = 'ScheduleTransfer(Permanent)', Type='Submitted', Date = datetime.today())
         history.save()
@@ -46,7 +51,12 @@ def ScheduleTransferTemporary(request,id):
         formPK = Form.objects.get(Form_ID = form.pk)
         schedTransfer = Schedule_Transfer(Id_Number=employeeID, Type='ScheduleTransfer(Temporary)', Date_Notify=datetime.today(), Subject=request.POST["Subject"], Offer_Code=request.POST["Offer_Code"], Schedule_From=request.POST["Schedule_From"], Schedule_To=request.POST["Schedule_To"],Reason=request.POST["Reason"],Date_Effective = request.POST["Date_Effective"], FormID = formPK)
         schedTransfer.save()
-        memo_schedTransfer = Memo_Routing(Id_Number=employeeID, Type_Request = 'ScheduleTransfer(Temporary)', Date_Faculty_Submitted = datetime.today(), FormID = formPK, Status = 'Pending')
+        if (data.Status_Dept == "Faculty"):
+            memo_schedTransfer = Memo_Routing(Id_Number = employeeID, Type_Request = 'ScheduleTransfer(Temporary)', Date_Faculty_Submitted = datetime.today(), FormID = formPK, Status = 'Pending')
+        if (data.Status_Dept == "Chairman"):
+            memo_schedTransfer = Memo_Routing(Id_Number = employeeID, Type_Request = 'ScheduleTransfer(Temporary)', Date_Faculty_Submitted = datetime.today(), FormID = formPK, Status = 'Pending',Date_Chairman_Approved=datetime.today())
+        if (data.Status_Dept == "Dean"):
+            memo_schedTransfer = Memo_Routing(Id_Number = employeeID, Type_Request = 'ScheduleTransfer(Temporary)', Date_Faculty_Submitted = datetime.today(), FormID = formPK, Status = 'Pending',Date_Chairman_Approved=datetime.today(),Date_Dean_Approved=datetime.today())
         memo_schedTransfer.save()
         history = TransacHistory(Id_Number = employeeID, Transac_Type = 'ScheduleTransfer(Temporary)', Type='Submitted', Date = datetime.today())
         history.save()

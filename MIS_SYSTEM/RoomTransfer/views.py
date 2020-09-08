@@ -26,7 +26,12 @@ def RoomTransferPermanent(request,id):
         formPK = Form.objects.get(Form_ID = form.pk)
         roomTransfer = Room_Transfer(Id_Number=employeeID, Type='RoomTransfer(Permanent)', Date_Notify=datetime.today(), Subject=request.POST["Subject"], Offer_Code=request.POST["Offer_Code"], Time_Day=request.POST["Time_Day"], Room_From=request.POST["Room_From"], Room_To=request.POST["Room_To"],Date_Effective=request.POST["Date_Effective"] ,Reason=request.POST["Reason"], FormID = formPK)
         roomTransfer.save()
-        memo_roomTransfer = Memo_Routing(Id_Number=employeeID, Type_Request = 'RoomTransfer(Permanent)', Date_Faculty_Submitted = datetime.today(), FormID = formPK, Status = 'Pending')
+        if (data.Status_Dept == "Faculty"):
+            memo_roomTransfer = Memo_Routing(Id_Number = employeeID, Type_Request = 'RoomTransfer(Permanent)', Date_Faculty_Submitted = datetime.today(), FormID = formPK, Status = 'Pending')
+        if (data.Status_Dept == "Chairman"):
+            memo_roomTransfer = Memo_Routing(Id_Number = employeeID, Type_Request = 'RoomTransfer(Permanent)', Date_Faculty_Submitted = datetime.today(), FormID = formPK, Status = 'Pending',Date_Chairman_Approved=datetime.today())
+        if (data.Status_Dept == "Dean"):
+            memo_roomTransfer = Memo_Routing(Id_Number = employeeID, Type_Request = 'RoomTransfer(Permanent)', Date_Faculty_Submitted = datetime.today(), FormID = formPK, Status = 'Pending',Date_Chairman_Approved=datetime.today(),Date_Dean_Approved=datetime.today())
         memo_roomTransfer.save()
         history = TransacHistory(Id_Number = employeeID, Transac_Type = 'RoomTransfer(Permanent)', Type='Submitted', Date = datetime.today())
         history.save()
@@ -46,7 +51,12 @@ def RoomTransferTemporary(request,id):
         formPK = Form.objects.get(Form_ID = form.pk)
         roomTransfer = Room_Transfer(Id_Number=employeeID, Type='RoomTransfer(Temporary)', Date_Notify=datetime.today(), Subject=request.POST["Subject"], Offer_Code=request.POST["Offer_Code"], Time_Day=request.POST["Time_Day"], Room_From=request.POST["Room_From"], Room_To=request.POST["Room_To"],Date_Effective=request.POST["Date_Effective"],Reason=request.POST["Reason"], FormID = formPK)
         roomTransfer.save()
-        memo_roomTransfer = Memo_Routing(Id_Number=employeeID, Type_Request = 'RoomTransfer(Temporary)', Date_Faculty_Submitted = datetime.today(), FormID = formPK, Status = 'Pending')
+        if (data.Status_Dept == "Faculty"):
+            memo_roomTransfer = Memo_Routing(Id_Number = employeeID, Type_Request = 'RoomTransfer(Temporary)', Date_Faculty_Submitted = datetime.today(), FormID = formPK, Status = 'Pending')
+        if (data.Status_Dept == "Chairman"):
+            memo_roomTransfer = Memo_Routing(Id_Number = employeeID, Type_Request = 'RoomTransfer(Temporary)', Date_Faculty_Submitted = datetime.today(), FormID = formPK, Status = 'Pending',Date_Chairman_Approved=datetime.today())
+        if (data.Status_Dept == "Dean"):
+            memo_roomTransfer = Memo_Routing(Id_Number = employeeID, Type_Request = 'RoomTransfer(Temporary)', Date_Faculty_Submitted = datetime.today(), FormID = formPK, Status = 'Pending',Date_Chairman_Approved=datetime.today(),Date_Dean_Approved=datetime.today())
         memo_roomTransfer.save()
         history = TransacHistory(Id_Number = employeeID, Transac_Type = 'RoomTransfer(Temporary)', Type='Submitted', Date = datetime.today())
         history.save()

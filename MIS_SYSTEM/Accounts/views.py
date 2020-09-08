@@ -53,7 +53,7 @@ def Dashboard(request,id):
 
 def TransactionHistory(request,id):
     data = Department.objects.prefetch_related('Id_Number').get(Id_Number = id)
-    datatrans = TransacHistory.objects.filter(Id_Number = id).order_by('Date')
+    datatrans = TransacHistory.objects.filter(Id_Number = id).order_by('-Date')
     count = datatrans.count()
     print(count)
     if request.method == "POST":

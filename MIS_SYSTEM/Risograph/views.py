@@ -14,7 +14,12 @@ def Risograph(request,id):
         formPK = Form.objects.get(Form_ID = form.pk)
         _risograph = risograph(Id_Number=employeeID,Date=datetime.today(),Department=request.POST["College/Department"],Paper_Type=request.POST["Paper_Type"], No_of_Copies=request.POST["No_Of_Copies"],Size=request.POST["PaperSize"], FormID = formPK, File = upload_file)
         _risograph.save()
-        memo_risograph = Memo_Routing(Id_Number=employeeID, Type_Request = 'Risograph', Date_Faculty_Submitted = datetime.today(), FormID = formPK, Status = 'Pending')
+        if (data.Status_Dept == "Faculty"):
+            memo_risograph = Memo_Routing(Id_Number = employeeID, Type_Request = 'Risograph', Date_Faculty_Submitted = datetime.today(), FormID = formPK, Status = 'Pending')
+        if (data.Status_Dept == "Chairman"):
+            memo_risograph = Memo_Routing(Id_Number = employeeID, Type_Request = 'Risograph', Date_Faculty_Submitted = datetime.today(), FormID = formPK, Status = 'Pending',Date_Chairman_Approved=datetime.today())
+        if (data.Status_Dept == "Dean"):
+            memo_risograph = Memo_Routing(Id_Number = employeeID, Type_Request = 'Risograph', Date_Faculty_Submitted = datetime.today(), FormID = formPK, Status = 'Pending',Date_Chairman_Approved=datetime.today(),Date_Dean_Approved=datetime.today())
         memo_risograph.save()
         history = TransacHistory(Id_Number = employeeID, Transac_Type = 'Risograph', Type='Submitted', Date = datetime.today())
         history.save()
