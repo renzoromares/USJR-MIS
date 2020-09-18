@@ -193,6 +193,7 @@
               {% else %}
               <td>{{items.Date_Accounting_Approved}}</td>
               {% endif %}
+              <td>{{items.Status}}</td>
             {% endifequal %}
             {% ifequal data.Status_Dept "Chairman" %}
               {% if items.Date_Dean_Approved is None %}
@@ -245,6 +246,7 @@
               {% else %}
               <td>{{items.Date_Accounting_Approved}}</td>
               {% endif %}
+              <td>{{items.Status}}</td>
             {% endifequal %}
             {% ifequal data.Status_Dept "Dean" %}
               {% if items.Date_VP_Acad_Approved is None %}
@@ -292,6 +294,7 @@
               {% else %}
               <td>{{items.Date_Accounting_Approved}}</td>
               {% endif %}
+              <td>{{items.Status}}</td>
             {% endifequal %}
           </tr>
           {% endfor %}

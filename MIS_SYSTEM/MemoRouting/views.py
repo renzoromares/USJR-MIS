@@ -23,8 +23,8 @@ def MemoRoutingOutgoing(request,id):
 
 def MemoRoutingIngoing(request,id):
     data = Department.objects.prefetch_related('Id_Number').get(Id_Number = id)
-    dataMemo = Memo_Routing.objects.filter(Id_Number = id).order_by('Date_Faculty_Submitted')
-    return render(request,"Memo Routing - Incoming.html", {'data' : data, 'dataMemo': dataMemo}) 
+    dataMemo = Memo_Routing.objects.filter(Id_Number = id).order_by('-Date_Faculty_Submitted')
+    return render(request,"Memo Routing - Incoming.html", {'data' : data, 'dataMemo': dataMemo})
     
    
     
