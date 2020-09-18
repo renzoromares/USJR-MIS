@@ -198,7 +198,7 @@
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                   <a class="dropdown-item" href="{% url 'profile' id=data.Id_Number.Id_Number %}">Profile</a>
-                  <a class="dropdown-item" href="login/login.html">Logout</a>
+                  <a class="dropdown-item" href="{%url 'home' %}">Logout</a>
   
                 </div>
               </li>
@@ -220,9 +220,30 @@
   </div>
 </div>
 <!-------------------------------------------------------------FORMS------------------------------------------------------------------------------------------------>
-<div class = "container contact-form">
-  <form method="POST" action=" ">
+<form method="POST" action=" ">
   {% csrf_token %}
+<div class="form-group">
+  <div>
+  <button name="btn_Transac" value="filter" type="submit" style="float:left; margin-left: 1040px; padding: 3px; border-radius: 5px;">Filter</button>
+  <select style="float:right; margin-right: 120px; padding: 5px; border-radius: 5px;" type="text" name = "month" required>
+  <option disabled selected hidden>Choose Month</option>
+  <option value="01">January</option>
+  <option value="02">Februaury</option>
+  <option value="03">March</option>
+  <option value="04">April</option>
+  <option value="05">May</option>
+  <option value="06">June</option>
+  <option value="07">July</option>
+  <option value="08">August</option>
+  <option value="09">September</option>
+  <option value="10">October</option>
+  <option value="11">November</option>
+  <option value="12">December</option>
+  </select>
+  </div>
+</div>
+
+<div class = "container contact-form">
       <table class="table mb-3 mt-3 table-striped">
         <thead>
             <tr>
@@ -252,7 +273,7 @@
       
     {% if count > 0%}
       <Center>
-      <td> <button type="submit"  class="btn btn-danger btn-rounded">Clear All</button></td>
+      <td> <button type="submit" name="btn_Transac" value="clear_all" class="btn btn-danger btn-rounded">Clear All</button></td>
     </Center>
     {% else %}
     <Center>
@@ -260,9 +281,9 @@
     </Center>
     {% endif %}
       
-  </form>
+  
 </div>
-
+</form>
 <!-------------------------------------------------------------------------------FOOOTER---------------------------------------------------------------------->
 <div id="cardheader" class="card-header"></div>
   <footer id="pagefooter" class="page-footer font-small pt-4">

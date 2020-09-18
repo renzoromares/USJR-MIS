@@ -8,6 +8,5 @@ urlpatterns = [
     path('Register/', Register, name="register"),
     path('Dashboard/', Dashboard, name="dashboard"),
     path('Dashboard/<id>', Dashboard, name="dashboard"),
-    path('TransactionHistory/<id>', TransactionHistory, name="transachis")
-    
+    path('TransactionHistory/<id>', TransactionHistory, name="transachis")   
 ]

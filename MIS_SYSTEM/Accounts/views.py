@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
-from .models import Employee, Department, TransacHistory
+from .models import Employee, Department, TransacHistory, TransacHistoryBackUp
 from django.contrib import messages
 from ViewProfile.views import Profile
 from ViewRequest.views import ViewRequestFac,ViewRequestPres,ViewRequestReads
@@ -53,12 +53,17 @@ def Dashboard(request,id):
 
 def TransactionHistory(request,id):
     data = Department.objects.prefetch_related('Id_Number').get(Id_Number = id)
-    datatrans = TransacHistory.objects.filter(Id_Number = id).order_by('-Date')
-    count = datatrans.count()
-    print(count)
     if request.method == "POST":
-        print(id)
-        datatrans = TransacHistory.objects.filter(Id_Number = id).delete()
-        return redirect("transachis", id = id)
-    return render(request,"TransactionHistory.html", {'data' : data, 'datatrans' : datatrans, 'count' : count})
+        if request.POST.get("btn_Transac")=="filter":
+            print(request.POST['month'])
+            datatrans = TransacHistoryBackUp.objects.filter(Id_Number = id, Date__month = request.POST['month'])
+            count = datatrans.count()
+            return render(request,"TransactionHistory.html", {'data' : data, 'datatrans' : datatrans, 'count' : count})
+        elif request.POST.get("btn_Transac")=="clear_all":
+            datatrans = TransacHistory.objects.filter(Id_Number = id).delete()
+            return redirect("transachis", id = id)
+    else:
+        datatrans = TransacHistory.objects.filter(Id_Number = id).order_by('-Date')
+        count = datatrans.count()
+        return render(request,"TransactionHistory.html", {'data' : data, 'datatrans' : datatrans, 'count' : count})
     
