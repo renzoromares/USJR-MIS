@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
-from Accounts.models import Employee, Department, Form, TransacHistory
+from Accounts.models import Employee, Department, Form, TransacHistory, TransacHistoryBackUp
 from MemoRouting.models import Memo_Routing
 from Risograph.models import risograph
 from CashAdvance.models import Cash_Advance
@@ -30,7 +30,7 @@ def ViewRequestFac(request,id):
     elif data.Status_Dept=='Dean':
         dataForm = Employee.objects.filter(department__College = data.College, memo_routing__Date_Dean_Approved = None, memo_routing__Date_Chairman_Approved__isnull = False, form__Form_ID__isnull = False, memo_routing__Status = 'Pending').distinct('memo_routing__id').values('memo_routing__id','First_Name','Last_Name','memo_routing__Type_Request','memo_routing__Date_Faculty_Submitted','memo_routing__FormID')
     elif data.Status_Dept=='VP Academics':
-        dataForm = Employee.objects.filter(memo_routing__Date_Chairman_Approved__isnull = False, memo_routing__Date_Dean_Approved__isnull = False, memo_routing__Date_VP_Acad_Approved = None, form__Form_ID__isnull = False, memo_routing__Status = 'Pending', memo_routing__Type_Request__in = ('File Leave','Make-up Class','Request for Certificate','RoomTransfer(Permanent)','RoomTransfer(Temporary)','ScheduleTransfer(Temporary)','ScheduleTransfer(Permanent)','Cash Advance')).distinct('memo_routing__id').values('memo_routing__id','First_Name','Last_Name','memo_routing__Type_Request','memo_routing__Date_Faculty_Submitted','memo_routing__FormID')
+        dataForm = Employee.objects.filter(memo_routing__Date_Chairman_Approved__isnull = False, memo_routing__Date_Dean_Approved__isnull = False, memo_routing__Date_VP_Acad_Approved = None, form__Form_ID__isnull = False, memo_routing__Status = 'Pending', memo_routing__Type_Request__in = ('File Leave','Make-up Class','Certificate','RoomTransfer(Permanent)','RoomTransfer(Temporary)','ScheduleTransfer(Temporary)','ScheduleTransfer(Permanent)','Cash Advance')).distinct('memo_routing__id').values('memo_routing__id','First_Name','Last_Name','memo_routing__Type_Request','memo_routing__Date_Faculty_Submitted','memo_routing__FormID')
     elif data.Status_Dept=='President':
         dataForm = Employee.objects.filter(memo_routing__Date_Chairman_Approved__isnull = False, memo_routing__Date_Dean_Approved__isnull = False, memo_routing__Date_VP_Acad_Approved__isnull = False, memo_routing__Date_President_Approved = None, form__Form_ID__isnull = False, memo_routing__Type_Request__in = ('Cash Advance','File Leave'), memo_routing__Status = 'Pending').distinct('memo_routing__id').values('memo_routing__id','First_Name','Last_Name','memo_routing__Type_Request','memo_routing__Date_Faculty_Submitted','memo_routing__FormID')
     elif data.Status_Dept=='HR':
@@ -56,7 +56,8 @@ def ViewRequestPao(request,id,idr):
                 update=Memo_Routing.objects.filter(FormID=formID['FormID']).update(Date_PAO_Approved=datetime.today(),Status='Approved')   
             history = TransacHistory(Id_Number= empID, Faculty_Id=request.POST["EmployeeNumber"], Faculty_Name=request.POST["EmployeeName"], Transac_Type='Risograph',Type='Approved',Date=datetime.today())   
             history.save()   
- 
+            historybackup = TransacHistoryBackUp(Id_Number= empID, Faculty_Id=request.POST["EmployeeNumber"], Faculty_Name=request.POST["EmployeeName"], Transac_Type='Risograph', Type='Approved',Date=datetime.today())   
+            historybackup.save()
         elif request.POST["buttonButton"] == 'decline': 
             updateRiso=risograph.objects.filter(Risograph_ID=request.POST["Riso_ID"]).update(Price=None)
             FormPK = risograph.objects.filter(Risograph_ID=request.POST["Riso_ID"]).values('FormID')
@@ -64,7 +65,9 @@ def ViewRequestPao(request,id,idr):
                 formupdate = Form.objects.filter(Form_ID=formID['FormID']).update(Status="Declined")           
                 updateMemo=Memo_Routing.objects.filter(FormID=formID['FormID']).update(Status="Declined") 
             history = TransacHistory(Id_Number= empID, Faculty_Id=request.POST["EmployeeNumber"], Faculty_Name=request.POST["EmployeeName"], Transac_Type='Risograph', Type='Declined',Date=datetime.today())   
-            history.save()       
+            history.save() 
+            historybackup = TransacHistoryBackUp(Id_Number= empID, Faculty_Id=request.POST["EmployeeNumber"], Faculty_Name=request.POST["EmployeeName"], Transac_Type='Risograph', Type='Declined',Date=datetime.today())   
+            historybackup.save()      
         return redirect("transachis", id = id)    
     return render(request,"ViewRequestPAO.html", {'data' : data, 'dataEmployee': dataEmployee}) 
 
@@ -90,7 +93,7 @@ def ViewRequestDetails(request,id,idf,idm):
     elif dataMemo.Type_Request == 'Risograph':
         dataEm = Department.objects.prefetch_related('Id_Number').get(Id_Number = dataMemo.Id_Number)
         dataDetails = risograph.objects.get(FormID = idf)
-    elif dataMemo.Type_Request == 'Request for Certificate':
+    elif dataMemo.Type_Request == 'Certificate':
         dataEm = Department.objects.prefetch_related('Id_Number').get(Id_Number = dataMemo.Id_Number)
         dataDetails = Certifacate.objects.get(FormID = idf)
     elif dataMemo.Type_Request == 'RoomTransfer(Permanent)' or dataMemo.Type_Request == 'RoomTransfer(Temporary)':
@@ -111,11 +114,15 @@ def ViewRequestDetails(request,id,idf,idm):
                 updateMemo.save(update_fields=['Date_Chairman_Approved'])
                 history = TransacHistory(Id_Number = data.Id_Number, Faculty_Id = dataEm.Id_Number.Id_Number, Faculty_Name = dataEm.Id_Number.First_Name + " " + dataEm.Id_Number.Last_Name, Transac_Type = dataDetails.FormID.Type, Type='Approved', Date = datetime.today())
                 history.save() 
+                historybackup = TransacHistoryBackUp(Id_Number = data.Id_Number, Faculty_Id = dataEm.Id_Number.Id_Number, Faculty_Name = dataEm.Id_Number.First_Name + " " + dataEm.Id_Number.Last_Name, Transac_Type = dataDetails.FormID.Type, Type='Approved', Date = datetime.today())
+                historybackup.save()
             elif data.Status_Dept == 'Dean':
                 updateMemo.Date_Dean_Approved=datetime.today()
                 updateMemo.save(update_fields=['Date_Dean_Approved'])
                 history = TransacHistory(Id_Number = data.Id_Number, Faculty_Id = dataEm.Id_Number.Id_Number, Faculty_Name = dataEm.Id_Number.First_Name + " " + dataEm.Id_Number.Last_Name, Transac_Type = dataDetails.FormID.Type, Type='Approved', Date = datetime.today())
                 history.save() 
+                historybackup = TransacHistoryBackUp(Id_Number = data.Id_Number, Faculty_Id = dataEm.Id_Number.Id_Number, Faculty_Name = dataEm.Id_Number.First_Name + " " + dataEm.Id_Number.Last_Name, Transac_Type = dataDetails.FormID.Type, Type='Approved', Date = datetime.today())
+                historybackup.save()
             elif data.Status_Dept == 'VP Academics':
                 if updateMemo.Type_Request == 'Cash Advance':
                     pass
@@ -130,16 +137,22 @@ def ViewRequestDetails(request,id,idf,idm):
                 updateMemo.save(update_fields=['Date_VP_Acad_Approved'])
                 history = TransacHistory(Id_Number = data.Id_Number, Faculty_Id = dataEm.Id_Number.Id_Number, Faculty_Name = dataEm.Id_Number.First_Name + " " + dataEm.Id_Number.Last_Name, Transac_Type = dataDetails.FormID.Type, Type='Approved', Date = datetime.today())
                 history.save()
+                historybackup = TransacHistoryBackUp(Id_Number = data.Id_Number, Faculty_Id = dataEm.Id_Number.Id_Number, Faculty_Name = dataEm.Id_Number.First_Name + " " + dataEm.Id_Number.Last_Name, Transac_Type = dataDetails.FormID.Type, Type='Approved', Date = datetime.today())
+                historybackup.save()
             elif data.Status_Dept == 'President':
                 updateMemo.Date_President_Approved=datetime.today()
                 updateMemo.save(update_fields=['Date_President_Approved'])
                 history = TransacHistory(Id_Number = data.Id_Number, Faculty_Id = dataEm.Id_Number.Id_Number, Faculty_Name = dataEm.Id_Number.First_Name + " " + dataEm.Id_Number.Last_Name, Transac_Type = dataDetails.FormID.Type, Type='Approved', Date = datetime.today())
                 history.save() 
+                historybackup = TransacHistoryBackUp(Id_Number = data.Id_Number, Faculty_Id = dataEm.Id_Number.Id_Number, Faculty_Name = dataEm.Id_Number.First_Name + " " + dataEm.Id_Number.Last_Name, Transac_Type = dataDetails.FormID.Type, Type='Approved', Date = datetime.today())
+                historybackup.save()
             elif data.Status_Dept == 'HR':
                 updateMemo.Date_HR_Approved=datetime.today()
                 updateMemo.save(update_fields=['Date_HR_Approved'])
                 history = TransacHistory(Id_Number = data.Id_Number, Faculty_Id = dataEm.Id_Number.Id_Number, Faculty_Name = dataEm.Id_Number.First_Name + " " + dataEm.Id_Number.Last_Name, Transac_Type = dataDetails.FormID.Type, Type='Approved', Date = datetime.today())
-                history.save() 
+                history.save()
+                historybackup = TransacHistoryBackUp(Id_Number = data.Id_Number, Faculty_Id = dataEm.Id_Number.Id_Number, Faculty_Name = dataEm.Id_Number.First_Name + " " + dataEm.Id_Number.Last_Name, Transac_Type = dataDetails.FormID.Type, Type='Approved', Date = datetime.today())
+                historybackup.save()
             elif data.Status_Dept == 'Accounting':
                 updateMemo.Status = 'Approved'
                 updateForm.Status = 'Approved'
@@ -149,6 +162,8 @@ def ViewRequestDetails(request,id,idf,idm):
                 updateMemo.save(update_fields=['Date_Accounting_Approved'])
                 history = TransacHistory(Id_Number = data.Id_Number, Faculty_Id = dataEm.Id_Number.Id_Number, Faculty_Name = dataEm.Id_Number.First_Name + " " + dataEm.Id_Number.Last_Name, Transac_Type = dataDetails.FormID.Type, Type='Approved', Date = datetime.today())
                 history.save() 
+                historybackup = TransacHistoryBackUp(Id_Number = data.Id_Number, Faculty_Id = dataEm.Id_Number.Id_Number, Faculty_Name = dataEm.Id_Number.First_Name + " " + dataEm.Id_Number.Last_Name, Transac_Type = dataDetails.FormID.Type, Type='Approved', Date = datetime.today())
+                historybackup.save()
             return redirect("transachis", id =data.Id_Number.Id_Number)            
         elif request.POST.get('Form_ID') == idf:
             updateForm = Form.objects.get(Form_ID = request.POST["Form_ID"])
@@ -176,6 +191,8 @@ def ViewRequestDetails(request,id,idf,idm):
             updateForm.save(update_fields=['Status'])
             history = TransacHistory(Id_Number = data.Id_Number, Faculty_Id = dataEm.Id_Number.Id_Number, Faculty_Name = dataEm.Id_Number.First_Name + " " + dataEm.Id_Number.Last_Name, Transac_Type = dataDetails.FormID.Type, Type='Declined', Date = datetime.today())
             history.save()
+            historybackup = TransacHistoryBackUp(Id_Number = data.Id_Number, Faculty_Id = dataEm.Id_Number.Id_Number, Faculty_Name = dataEm.Id_Number.First_Name + " " + dataEm.Id_Number.Last_Name, Transac_Type = dataDetails.FormID.Type, Type='Declined', Date = datetime.today())
+            historybackup.save()
             return redirect("transachis", id = data.Id_Number.Id_Number)
         #updateForm = Form.objects.get(id = request.POST["Form_ID"])
         #if data.Status_Dept == 'Chairman':

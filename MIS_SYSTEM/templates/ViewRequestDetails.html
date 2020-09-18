@@ -203,7 +203,7 @@
 
           <div class="form-group col-md-4">
             <label for="timedate"><b>Time/Day:</b></label>
-            <input type="text" class="form-control" value="{{dataDetails.Time_Day|date:'Y-m-d'}}" name="Time_Day" placeholder="" disabled>
+            <input type="text" class="form-control" value="{{dataDetails.Time_Day}}" name="Time_Day" placeholder="" disabled>
           </div>
         </div>
         
@@ -217,11 +217,11 @@
         <div class="form-row">
           <div class="form-group col-md-4">
             <label for="fromroom"><b>From Room:</b></label>
-            <input type="text" class="form-control" value={{dataDetails.Room_From }} placeholder="" disabled>
+            <input type="text" class="form-control" value="{{dataDetails.Room_From }}" placeholder="" disabled>
           </div>
           <div class="form-group col-md-4">
-            <label for="to"><b>To:</b></label>
-            <input type="text" class="form-control" value={{dataDetails.Room_To}} id=to name="Room_To" placeholder="" disabled>
+            <label for="Room_To"><b>To:</b></label>
+            <input type="text" class="form-control" value="{{dataDetails.Room_To}}" name="Room_To" placeholder="" disabled>
           </div>
             </div>
 
@@ -259,11 +259,11 @@
 
       <div class="form-row">
           <div class="form-group col-md-4">
-            <label for="Roomfrom"><b>Transfer Room From</b>:</label>
+            <label for="Room_From"><b>Transfer Room From</b>:</label>
             <input type="text" class="form-control" name="Room_From" value="{{dataDetails.Room_From}}" disabled>
           </div>
           <div class="form-group col-md-4">
-              <label for="Roomto"><b>To:</b></label>
+              <label for="Room_To"><b>To:</b></label>
               <input type="text" class="form-control" name="Room_To" value="{{dataDetails.Room_To}}" disabled>
             </div>
       </div>
@@ -288,46 +288,48 @@
 
   {%endifequal%}
   {%ifequal dataMemo.Type_Request "ScheduleTransfer(Temporary)"%}
-          <div class="form-row">
-          <div class="form-group col-md-4">
-            <label for="subject"><b>Subject:</b></label>
-            <input type="text" class="form-control" value={{dataDetails.Subject}} {{dataDetails.Offer_Code}}  name="Subject" placeholder="" disabled>
-          </div>
-        
-        <center>
-        <p><u><b>This is to inform the IMS of the following activity/ie of my class
-          to be conducted as specified</p></u></b>
-        </center>
+  <div class="form-row">
 
-      
+    <div class="form-group col-md-4">
+      <label for="desig"><b>Offer Code:</b></label>
+      <input type="text" class="form-control" value="{{dataDetails.Offer_Code}}" disabled>
+    </div>
 
-        <div class="form-row">
-          <div class="form-group col-md-4">
-            <label for="fromroom"><b>From Room:</b></label>
-            <input type="text" class="form-control" value={{dataDetails.Schedule_From }} id=fromroom name="Room_From" placeholder="" disabled>
-          </div>
-          <div class="form-group col-md-4">
-            <label for="to"><b>To:</b></label>
-            <input type="text" class="form-control" value={{dataDetails.Schedule_To}} id=to name="Room_To" placeholder="" disabled>
-          </div>
+       <div class="form-group col-md-4">
+      <label for="desig"><b>Subject:</b></label>
+      <input type="text" class="form-control" value="{{dataDetails.Subject}}" disabled>
+    </div>
+
+  </div>
+  <p><b>This is to inform the IMS of the following activity/ies of my class to be conducted as specified:</p></b>
+
+  <div class="form-row">
+      <div class="form-group col-md-4">
+        <label for="Schedule_From"><b>Transfer Schedule From</b>:</label>
+        <input type="text" class="form-control" name="Schedule_From" value="{{dataDetails.Schedule_From}}" disabled>
+      </div>
+      <div class="form-group col-md-4">
+          <label for="Schedule_To"><b>To:</b></label>
+          <input type="text" class="form-control" name="Schedule_To" value="{{dataDetails.Schedule_To}}" disabled>
         </div>
-        <div class="form-row">
-          <div class="form-group col-md-4">
-            <label for="TakeEffect"><b>To take effect on:</b></label>
-            <input type="text" class="form-control" name="Date_Effective" value="{{dataDetails.Date_Effective}}" disabled>
-          </div>
-       </div>
+  </div>
 
+  <div class="form-row">
+      <div class="form-group col-md-4">
+        <label for="TakeEffect"><b>To take effect on:</b></label>
+        <input type="text" class="form-control" name="Date_Effective" value="{{dataDetails.Date_Effective}}" disabled>
+      </div>
+  </div>
+  
 
-        <!-- Textarea -->
-        <center>
-        <div class="form-group">
-        <label class="col-md-4 control-label" for="textarea"><b>Reasons:</b></label>
-        <div class="col-md-8">                     
-        <textarea class="form-control" id="textarea" name="Reason" disabled>{{dataDetails.Reason}}</textarea>
-        </div>
-        </div>
-    </center>
+  <center>
+  <div class="form-group">
+  <label class="col-md-4 control-label" for="textarea"><b>Reasons:</b></label>
+  <div class="col-md-8">                     
+  <textarea class="form-control" id="textarea"  name="Reason" disabled>{{dataDetails.Reason}}</textarea>
+  </div>
+  </div>
+  </center>
   {%endifequal%}
 
   {%ifequal dataMemo.Type_Request "ScheduleTransfer(Permanent)"%}
@@ -343,27 +345,23 @@
           <input type="text" class="form-control" value="{{dataDetails.Subject}}" disabled>
         </div>
 
-        <div class="form-group col-md-4">
-          <label for="daysnum"><b>Time/Day:</b></label>
-          <input type="text" class="form-control" id="daysnum" name="Time_Day" value="{{dataDetails.Time_Day}}" disabled>
-        </div>
       </div>
       <p><b>This is to inform the IMS of the following activity/ies of my class to be conducted as specified:</p></b>
 
       <div class="form-row">
           <div class="form-group col-md-4">
-            <label for="Roomfrom"><b>Transfer Room From</b>:</label>
+            <label for="Schedule_From"><b>Transfer Schedule From</b>:</label>
             <input type="text" class="form-control" name="Schedule_From" value="{{dataDetails.Schedule_From}}" disabled>
           </div>
           <div class="form-group col-md-4">
-              <label for="Roomto"><b>To:</b></label>
+              <label for="Schedule_To"><b>To:</b></label>
               <input type="text" class="form-control" name="Schedule_To" value="{{dataDetails.Schedule_To}}" disabled>
             </div>
       </div>
   
       <div class="form-row">
           <div class="form-group col-md-4">
-            <label for="TakeEffect"><b>To take effect on:</b></label>
+            <label for="Date_Effective"><b>To take effect on:</b></label>
             <input type="text" class="form-control" name="Date_Effective" value="{{dataDetails.Date_Effective}}" disabled>
           </div>
       </div>
