@@ -12,7 +12,7 @@ def RequestCertificate(request,id):
         form = Form(Id_Number=employeeID, Type='Certificate',Date_Requested=datetime.today(),Date_Approved=None, Status='Pending')
         form.save()
         formPK = Form.objects.get(Form_ID = form.pk)
-        certificate = Certifacate(Id_Number=employeeID,Certificate_To_Request=request.POST["Certificate"],Others_Certificate=request.POST["Others_Certificate"],Reason=request.POST["Reason"], FormID = formPK)
+        certificate = Certifacate(Id_Number=employeeID,Certificate_To_Request=request.POST["Certificate"],Reason=request.POST["Reason"], FormID = formPK)
         certificate.save()
         if (data.Status_Dept == "Faculty"):
             memo_certificate = Memo_Routing(Id_Number = employeeID, Type_Request = 'Certificate', Date_Faculty_Submitted = datetime.today(), FormID = formPK, Status = 'Pending')
