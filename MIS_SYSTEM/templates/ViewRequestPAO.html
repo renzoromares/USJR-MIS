@@ -106,7 +106,7 @@
             <td>{{items.risograph__No_of_Copies}}</td>
             <td>{{items.risograph__Paper_Type}}</td>
             <td>{{items.risograph__Size}}</td>
-            <td><a href="{% get_media_prefix %}{{items.risograph__File.url}}" target="_blank">Click Here</a></td>
+            <td><a href="{% get_media_prefix %}{{items.risograph__File}}" target="_blank">Click Here</a></td>
           <form method="POST" onsubmit="myFunction()">
             {% csrf_token %}
             <td><input type="number" min="1" style="width: 7em" id="price" class="form-control" name="price" size="10" placeholder="₱" required></td>
@@ -164,17 +164,12 @@
 <div class="bg-modal" id="Approve_Modal">
   <div class="bg-content">
     <p>You have successfully approved the request.</p>
-      <div class="buttons">
-        <button type="button" onclick="closeForm(1)" class="btn btn-info btn-rounded" id="btnApproved" name="ButtonPopUP" valu>OK</button>
-      </div> 
+      
   </div>
 </div>
 <div class="bg-modal" id="Decline_Modal">
   <div class="bg-content">
       <p>You have successfully declined the request.</p>
-      <div class="buttons">
-        <button type="button" onclick="closeForm(2)" class="btn btn-info btn-rounded" id="btnApproved" name="ButtonPopUP" valu>OK</button>
-      </div> 
   </div>
 </div>
 <script>

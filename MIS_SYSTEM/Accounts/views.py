@@ -56,7 +56,7 @@ def TransactionHistory(request,id):
     if request.method == "POST":
         if request.POST.get("btn_Transac")=="filter":
             print(request.POST['month'])
-            datatrans = TransacHistoryBackUp.objects.filter(Id_Number = id, Date__month = request.POST['month'])
+            datatrans = TransacHistoryBackUp.objects.filter(Id_Number = id, Date__month = request.POST['month']).order_by('-Date')
             count = datatrans.count()
             return render(request,"TransactionHistory.html", {'data' : data, 'datatrans' : datatrans, 'count' : count})
         elif request.POST.get("btn_Transac")=="clear_all":
